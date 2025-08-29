@@ -1,0 +1,2 @@
+regex:sk-proj-[^"'\s]{10,}==>OPENAI_KEY_REDACTED
+regex:sk-[^"'\s]{10,}==>OPENAI_KEY_REDACTED
