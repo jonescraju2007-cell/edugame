@@ -1,47 +1,59 @@
+// backend/server.js
 import express from "express";
 import dotenv from "dotenv";
-import OpenAI from "openai";
 import cors from "cors";
+import OpenAI from "openai";
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
+
+// ✅ Middlewares
+app.use(cors()); // allow frontend → backend requests
 app.use(express.json());
-app.use(cors());
+app.use(express.static("frontend"));
 
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-// Health check
-app.get("/", (req, res) => {
-  res.send("EduGame backend is running ✅");
+// ✅ OpenAI setup
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Mentor endpoint
+// Root route
+app.get("/", (req, res) => {
+  res.send("Rix Edugame Backend Running 🚀");
+});
+
+// ✅ AI Mentor Route
 app.post("/mentor", async (req, res) => {
   try {
     const { question } = req.body;
 
+    if (!question) {
+      return res.status(400).json({ error: "Question is required" });
+    }
+
     const response = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
-        { role: "system", content: "You are Rix Mentor, a friendly Python tutor." },
-        { role: "user", content: question }
+        {
+          role: "system",
+          content: "You are a friendly AI mentor. Give clear, simple, and encouraging explanations.",
+        },
+        { role: "user", content: question },
       ],
-      max_tokens: 200
     });
 
-    res.json({
-      reply: response.choices[0].message.content
-    });
-
-  } catch (error) {
-    console.error("Mentor error:", error.message);
-    res.status(500).json({ error: "Mentor unavailable" });
+    const answer = response.choices[0].message.content;
+    res.json({ reply: answer });
+  } catch (err) {
+    console.error("Mentor error:", err);
+    res.status(500).json({ error: "Mentor AI failed. Check logs." });
   }
 });
 
-app.listen(port, () => {
-  console.log(`🚀 Backend running at http://localhost:${port}`);
+// ✅ Start server
+app.listen(PORT, () => {
+  console.log(`🚀 Rix Edugame backend running at http://localhost:${PORT}`);
 });
 
