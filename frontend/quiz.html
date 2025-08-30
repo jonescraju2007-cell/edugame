@@ -1,88 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>EduGame Quiz</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
-    <h1 id="quiz-title">📝 Quiz</h1>
+    <h1 id="quiz-title">Loading Quiz...</h1>
     <nav>
-      <button onclick="goLesson()">📖 Lesson</button>
-      <button onclick="goWorlds()">🌍 Worlds</button>
-      <button onclick="toggleTheme()">🌙 Toggle Theme</button>
+      <button onclick="window.location.href='index.html'">Worlds</button>
+      <button id="theme-toggle">Toggle Theme</button>
     </nav>
   </header>
 
-  <main id="quiz-content">
-    <p>Loading quiz...</p>
+  <main>
+    <section id="quiz-container">
+      <p>Loading questions...</p>
+    </section>
+    <div id="quiz-controls" style="display:none;">
+      <button id="prev-btn">Previous</button>
+      <button id="show-btn">Show Answer</button>
+      <button id="next-btn">Next</button>
+    </div>
   </main>
 
-  <script>
-    let currentQuestion = 0;
-    let questions = [];
+  <!-- Mentor AI -->
+  <div id="mentor-box" class="mentor">
+    <div id="mentor-output">🤖 Hi, I’m your AI Mentor. Ask me anything!</div>
+    <input id="mentor-input" type="text" placeholder="Type your question..."/>
+    <button id="mentor-send">Ask</button>
+  </div>
 
-    async function loadQuiz() {
-      const worldFile = localStorage.getItem("currentWorld") || "world1.json";
-      const res = await fetch(`./worlds/${worldFile}`);
-      const data = await res.json();
+  <footer>
+    <p>EduGame © 2025</p>
+  </footer>
 
-      document.getElementById("quiz-title").innerText = data.meta.title + " - Quiz";
-      questions = data.quiz;
-
-      showQuestion();
-    }
-
-    function showQuestion() {
-      const container = document.getElementById("quiz-content");
-      container.innerHTML = "";
-
-      if (currentQuestion >= questions.length) {
-        container.innerHTML = `<h2>🎉 Quiz Completed!</h2>`;
-        return;
-      }
-
-      const q = questions[currentQuestion];
-      const div = document.createElement("div");
-      div.classList.add("quiz-card");
-      div.innerHTML = `<h3>${q.q}</h3>`;
-
-      q.options.forEach((opt, i) => {
-        const btn = document.createElement("button");
-        btn.innerText = opt;
-        btn.onclick = () => checkAnswer(i, q.answer);
-        div.appendChild(btn);
-      });
-
-      container.appendChild(div);
-    }
-
-    function checkAnswer(selected, correct) {
-      if (selected === correct) {
-        alert("✅ Correct!");
-      } else {
-        alert("❌ Wrong! Try again.");
-        return;
-      }
-      currentQuestion++;
-      showQuestion();
-    }
-
-    function goLesson() {
-      window.location.href = "lesson.html";
-    }
-
-    function goWorlds() {
-      window.location.href = "index.html";
-    }
-
-    function toggleTheme() {
-      document.body.classList.toggle("dark");
-    }
-
-    loadQuiz();
-  </script>
+  <script type="module" src="js/quiz.js"></script>
+  <script type="module" src="js/mentor.js"></script>
 </body>
 </html>
 

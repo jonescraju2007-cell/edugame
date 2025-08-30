@@ -1,63 +1,63 @@
 // quiz.js
-import { BACKEND_URL } from "./config.js";
-import { askMentor } from "./mentor.js";
-
 let questions = [];
-let current = 0;
+let currentIndex = 0;
 
-async function loadWorld() {
+document.addEventListener("DOMContentLoaded", loadQuiz);
+
+async function loadQuiz() {
   const params = new URLSearchParams(window.location.search);
-  const world = params.get("world") || "1";
+  const worldId = params.get("world") || 1;
 
-  const res = await fetch(`worlds/world${world}.json`);
-  questions = await res.json();
+  try {
+    const res = await fetch(`worlds/world${worldId}.json`);
+    if (!res.ok) throw new Error("Quiz not found");
+    const data = await res.json();
 
-  document.getElementById("world-title").textContent = `World ${world}`;
-  showQuestion();
+    questions = data.quiz || [];
+    document.getElementById("quiz-title").innerText = data.meta.title + " - Quiz";
+
+    if (questions.length === 0) {
+      document.getElementById("quiz-container").innerHTML = "<p>No quiz available.</p>";
+      return;
+    }
+    showQuestion();
+  } catch (err) {
+    console.error(err);
+  }
+
+  document.getElementById("next-btn").onclick = () => {
+    if (currentIndex < questions.length - 1) {
+      currentIndex++;
+      showQuestion();
+    }
+  };
+
+  document.getElementById("prev-btn").onclick = () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      showQuestion();
+    }
+  };
+
+  document.getElementById("show-btn").onclick = () => {
+    const q = questions[currentIndex];
+    document.getElementById("feedback").innerHTML =
+      `<p>✅ Correct Answer: <strong>${q.options[q.answer]}</strong></p>`;
+  };
 }
 
 function showQuestion() {
-  const q = questions[current];
-  const container = document.getElementById("quiz-container");
-
-  container.innerHTML = `
-    <p>${q.question}</p>
-    ${q.options.map((opt) => 
-      `<button onclick="checkAnswer('${opt}')">${opt}</button>`).join("")}
-    <br><br>
-    <button onclick="openMentor('${q.question}')">Ask Mentor 🤖</button>
+  const q = questions[currentIndex];
+  document.getElementById("quiz-container").innerHTML = `
+    <h2>${q.question}</h2>
+    <ul>
+      ${q.options.map((opt, i) => `
+        <li><label>
+          <input type="radio" name="opt" value="${i}"/> ${opt}
+        </label></li>
+      `).join("")}
+    </ul>
+    <div id="feedback"></div>
   `;
 }
-
-function checkAnswer(ans) {
-  const correct = questions[current].answer;
-  alert(ans === correct ? "✅ Correct!" : "❌ Wrong! Correct: " + correct);
-}
-
-function nextQuestion() {
-  if (current < questions.length - 1) {
-    current++;
-    showQuestion();
-  }
-}
-
-function prevQuestion() {
-  if (current > 0) {
-    current--;
-    showQuestion();
-  }
-}
-
-async function openMentor(qText) {
-  const context = { question: qText, world: "quiz" };
-  await askMentor(`Explain this: ${qText}`, context);
-}
-
-window.loadWorld = loadWorld;
-window.nextQuestion = nextQuestion;
-window.prevQuestion = prevQuestion;
-window.checkAnswer = checkAnswer;
-window.openMentor = openMentor;
-
-loadWorld();
 

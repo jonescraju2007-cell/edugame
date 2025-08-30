@@ -1,68 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EduGame Worlds</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
     <h1>🌍 EduGame Worlds</h1>
     <nav>
-      <button onclick="toggleTheme()">🌙 Toggle Theme</button>
+      <button id="theme-toggle">Toggle Theme</button>
     </nav>
   </header>
 
-  <main id="world-list">
-    <p>Loading worlds...</p>
+  <main>
+    <section id="world-list">
+      <p>Loading worlds...</p>
+    </section>
   </main>
 
-  <script>
-    // Available worlds (add more JSON files here as you create them)
-    const WORLDS = ["world1.json", "world2.json", "world3.json"];
+  <!-- Mentor AI -->
+  <div id="mentor-box" class="mentor">
+    <div id="mentor-output">🤖 Hi, I’m your AI Mentor. Ask me anything!</div>
+    <input id="mentor-input" type="text" placeholder="Type your question..."/>
+    <button id="mentor-send">Ask</button>
+  </div>
 
-    async function loadWorlds() {
-      const container = document.getElementById("world-list");
-      container.innerHTML = "";
+  <footer>
+    <p>EduGame © 2025</p>
+  </footer>
 
-      for (let file of WORLDS) {
-        try {
-          const res = await fetch(`./worlds/${file}`);
-          const data = await res.json();
-
-          const card = document.createElement("div");
-          card.classList.add("card");
-
-          card.innerHTML = `
-            <h2>${data.meta.title}</h2>
-            <p>${data.meta.intro}</p>
-            <button onclick="startLesson('${file}')">📖 Lesson</button>
-            <button onclick="startQuiz('${file}')">📝 Quiz</button>
-          `;
-
-          container.appendChild(card);
-        } catch (err) {
-          console.error("Error loading world", file, err);
-        }
-      }
-    }
-
-    function startLesson(worldFile) {
-      localStorage.setItem("currentWorld", worldFile);
-      window.location.href = "lesson.html";
-    }
-
-    function startQuiz(worldFile) {
-      localStorage.setItem("currentWorld", worldFile);
-      window.location.href = "quiz.html";
-    }
-
-    function toggleTheme() {
-      document.body.classList.toggle("dark");
-    }
-
-    loadWorlds();
-  </script>
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/mentor.js"></script>
 </body>
 </html>
 
