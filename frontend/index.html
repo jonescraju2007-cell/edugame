@@ -2,37 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EduGame Worlds</title>
   <link rel="stylesheet" href="styles.css" />
+  <script defer src="js/app.js"></script>
+  <script defer src="js/mentor.js"></script>
 </head>
 <body>
   <header>
     <h1>🌍 EduGame Worlds</h1>
     <nav>
-      <button id="theme-toggle">Toggle Theme</button>
+      <button id="toggle-theme">🌙 Toggle Theme</button>
     </nav>
   </header>
 
   <main>
-    <section id="world-list">
+    <div id="worlds-container">
       <p>Loading worlds...</p>
-    </section>
+    </div>
   </main>
 
-  <!-- Mentor AI -->
-  <div id="mentor-box" class="mentor">
-    <div id="mentor-output">🤖 Hi, I’m your AI Mentor. Ask me anything!</div>
-    <input id="mentor-input" type="text" placeholder="Type your question..."/>
-    <button id="mentor-send">Ask</button>
-  </div>
+  <aside id="mentor-box">
+    <h3>🤖 Hi, I’m your AI Mentor</h3>
+    <input type="text" id="mentor-input" placeholder="Ask me anything..." />
+    <button onclick="askMentor()">Ask</button>
+    <div id="mentor-reply"></div>
+  </aside>
 
   <footer>
     <p>EduGame © 2025</p>
   </footer>
-
-  <script type="module" src="js/app.js"></script>
-  <script type="module" src="js/mentor.js"></script>
 </body>
 </html>
 

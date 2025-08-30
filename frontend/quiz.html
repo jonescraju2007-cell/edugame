@@ -2,43 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduGame Quiz</title>
   <link rel="stylesheet" href="styles.css" />
+  <script defer src="js/app.js"></script>
+  <script defer src="js/mentor.js"></script>
 </head>
 <body>
   <header>
-    <h1 id="quiz-title">Loading Quiz...</h1>
+    <h1 id="quiz-title">Quiz</h1>
     <nav>
-      <button onclick="window.location.href='index.html'">Worlds</button>
-      <button id="theme-toggle">Toggle Theme</button>
+      <button onclick="window.location.href='index.html'">🌍 Worlds</button>
+      <button id="to-lesson">📘 Lesson</button>
+      <button id="toggle-theme">🌙 Toggle Theme</button>
     </nav>
   </header>
 
   <main>
-    <section id="quiz-container">
-      <p>Loading questions...</p>
-    </section>
+    <div id="quiz-container"><p>Loading quiz...</p></div>
     <div id="quiz-controls" style="display:none;">
-      <button id="prev-btn">Previous</button>
-      <button id="show-btn">Show Answer</button>
-      <button id="next-btn">Next</button>
+      <button id="prev-btn">⬅ Previous</button>
+      <button id="next-btn">Next ➡</button>
     </div>
   </main>
 
-  <!-- Mentor AI -->
-  <div id="mentor-box" class="mentor">
-    <div id="mentor-output">🤖 Hi, I’m your AI Mentor. Ask me anything!</div>
-    <input id="mentor-input" type="text" placeholder="Type your question..."/>
-    <button id="mentor-send">Ask</button>
-  </div>
+  <aside id="mentor-box">
+    <h3>🤖 Hi, I’m your AI Mentor</h3>
+    <input type="text" id="mentor-input" placeholder="Ask a quiz-related question..." />
+    <button onclick="askMentor()">Ask</button>
+    <div id="mentor-reply"></div>
+  </aside>
 
   <footer>
     <p>EduGame © 2025</p>
   </footer>
 
-  <script type="module" src="js/quiz.js"></script>
-  <script type="module" src="js/mentor.js"></script>
+  <script src="js/quiz.js" defer></script>
 </body>
 </html>
 

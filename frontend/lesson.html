@@ -2,40 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lesson</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduGame Lesson</title>
   <link rel="stylesheet" href="styles.css" />
+  <script defer src="js/app.js"></script>
+  <script defer src="js/mentor.js"></script>
 </head>
 <body>
   <header>
-    <h1 id="lesson-title">Loading...</h1>
+    <h1 id="lesson-title">Lesson</h1>
     <nav>
-      <button onclick="window.location.href='index.html'">Worlds</button>
-      <button id="quiz-btn">Take Quiz</button>
-      <button id="theme-toggle">Toggle Theme</button>
+      <button onclick="window.location.href='index.html'">🌍 Worlds</button>
+      <button id="to-quiz">📝 Quiz</button>
+      <button id="toggle-theme">🌙 Toggle Theme</button>
     </nav>
   </header>
 
   <main>
-    <section id="lesson-container">
-      <p>Loading lesson...</p>
-    </section>
+    <section id="lesson-intro"></section>
+    <section id="lesson-content"></section>
   </main>
 
-  <!-- Mentor AI -->
-  <div id="mentor-box" class="mentor">
-    <div id="mentor-output">🤖 Hi, I’m your AI Mentor. Ask me anything!</div>
-    <input id="mentor-input" type="text" placeholder="Type your question..."/>
-    <button id="mentor-send">Ask</button>
-  </div>
+  <aside id="mentor-box">
+    <h3>🤖 Hi, I’m your AI Mentor</h3>
+    <input type="text" id="mentor-input" placeholder="Type your question..." />
+    <button onclick="askMentor()">Ask</button>
+    <div id="mentor-reply"></div>
+  </aside>
 
   <footer>
     <p>EduGame © 2025</p>
   </footer>
 
-  <script type="module">
+  <script>
     const params = new URLSearchParams(window.location.search);
-    const worldId = params.get("world") || 1;
+    const worldId = params.get("world");
 
     async function loadLesson() {
       try {
@@ -43,36 +44,30 @@
         if (!res.ok) throw new Error("Lesson not found");
         const data = await res.json();
 
-        document.getElementById("lesson-title").textContent = data.meta.title;
-        const lessonContainer = document.getElementById("lesson-container");
-        lessonContainer.innerHTML = `<p>${data.meta.intro}</p>`;
+        document.getElementById("lesson-title").innerText = data.meta.title;
+        document.getElementById("lesson-intro").innerHTML = `<p>${data.meta.intro}</p>`;
 
+        const container = document.getElementById("lesson-content");
+        container.innerHTML = "";
         for (let key in data.lessons) {
-          const lesson = data.lessons[key];
+          const sec = data.lessons[key];
           const div = document.createElement("div");
-          div.className = "lesson-section";
-          div.innerHTML = `
-            <h2>${lesson.title}</h2>
-            ${lesson.html}
-            <button class="ask-mentor-btn" onclick="window.askMentor('${lesson.title}')">💡 Ask Mentor</button>
-          `;
-          lessonContainer.appendChild(div);
+          div.className = "lesson-card";
+          div.innerHTML = `<h2>${sec.title}</h2>${sec.html}`;
+          container.appendChild(div);
         }
 
-        document.getElementById("quiz-btn").onclick = () => {
+        document.getElementById("to-quiz").onclick = () => {
           window.location.href = `quiz.html?world=${worldId}`;
         };
       } catch (err) {
         console.error(err);
-        document.getElementById("lesson-container").innerHTML =
-          "<p style='color:red;'>Could not load lesson.</p>";
+        document.getElementById("lesson-intro").innerHTML = "<p>⚠️ Failed to load lesson.</p>";
       }
     }
 
-    loadLesson();
+    document.addEventListener("DOMContentLoaded", loadLesson);
   </script>
-
-  <script type="module" src="js/mentor.js"></script>
 </body>
 </html>
 
