@@ -1,135 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>EduGame Quiz</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Mentor Bubble Styles */
-    #mentor-fab {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #0077ff;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 28px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-    #mentor-panel {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 300px;
-      max-height: 400px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-      display: none;
-      flex-direction: column;
-    }
-    #mentor-header {
-      background: #0077ff;
-      color: white;
-      padding: 10px;
-      border-radius: 12px 12px 0 0;
-      font-weight: bold;
-      text-align: center;
-    }
-    #mentor-chat {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      font-size: 14px;
-    }
-    .mentor-msg { margin: 5px 0; padding: 6px; border-radius: 8px; }
-    .mentor-msg.user { background: #e0f0ff; align-self: flex-end; }
-    .mentor-msg.ai { background: #f0f0f0; align-self: flex-start; }
-    #mentor-input-box {
-      display: flex;
-      padding: 8px;
-      border-top: 1px solid #ddd;
-    }
-    #mentor-input {
-      flex: 1;
-      padding: 6px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    #mentor-send {
-      margin-left: 6px;
-      padding: 6px 10px;
-      border: none;
-      border-radius: 6px;
-      background: #0077ff;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h2 id="world-title"></h2>
-  <div id="quiz-container"></div>
+  <header>
+    <h1 id="quiz-title">📝 Quiz</h1>
+    <nav>
+      <button onclick="goLesson()">📖 Lesson</button>
+      <button onclick="goWorlds()">🌍 Worlds</button>
+      <button onclick="toggleTheme()">🌙 Toggle Theme</button>
+    </nav>
+  </header>
 
-  <button onclick="prevQuestion()">Previous</button>
-  <button onclick="nextQuestion()">Next</button>
+  <main id="quiz-content">
+    <p>Loading quiz...</p>
+  </main>
 
-  <!-- Mentor Chat Bubble -->
-  <button id="mentor-fab">🤖</button>
-  <div id="mentor-panel">
-    <div id="mentor-header">Rix Mentor</div>
-    <div id="mentor-chat"></div>
-    <div id="mentor-input-box">
-      <input id="mentor-input" placeholder="Ask me anything…" />
-      <button id="mentor-send">Send</button>
-    </div>
-  </div>
+  <script>
+    let currentQuestion = 0;
+    let questions = [];
 
-  <!-- Use ES modules -->
-  <script type="module" src="js/quiz.js"></script>
-  <script type="module">
-    import { askMentor } from "./js/mentor.js";
+    async function loadQuiz() {
+      const worldFile = localStorage.getItem("currentWorld") || "world1.json";
+      const res = await fetch(`./worlds/${worldFile}`);
+      const data = await res.json();
 
-    const fab = document.getElementById("mentor-fab");
-    const panel = document.getElementById("mentor-panel");
-    const chat = document.getElementById("mentor-chat");
-    const input = document.getElementById("mentor-input");
-    const sendBtn = document.getElementById("mentor-send");
+      document.getElementById("quiz-title").innerText = data.meta.title + " - Quiz";
+      questions = data.quiz;
 
-    // Toggle panel
-    fab.addEventListener("click", () => {
-      panel.style.display = panel.style.display === "flex" ? "none" : "flex";
-      panel.style.flexDirection = "column";
-    });
-
-    // Send message
-    async function sendMessage() {
-      const text = input.value.trim();
-      if (!text) return;
-      addMessage("user", text);
-      input.value = "";
-
-      const reply = await askMentor(text, { from: "quiz" });
-      addMessage("ai", reply || "⚠️ Mentor unavailable.");
+      showQuestion();
     }
 
-    sendBtn.addEventListener("click", sendMessage);
-    input.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") sendMessage();
-    });
+    function showQuestion() {
+      const container = document.getElementById("quiz-content");
+      container.innerHTML = "";
 
-    // Helper to add chat messages
-    function addMessage(role, text) {
-      const msg = document.createElement("div");
-      msg.className = `mentor-msg ${role}`;
-      msg.textContent = text;
-      chat.appendChild(msg);
-      chat.scrollTop = chat.scrollHeight;
+      if (currentQuestion >= questions.length) {
+        container.innerHTML = `<h2>🎉 Quiz Completed!</h2>`;
+        return;
+      }
+
+      const q = questions[currentQuestion];
+      const div = document.createElement("div");
+      div.classList.add("quiz-card");
+      div.innerHTML = `<h3>${q.q}</h3>`;
+
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(i, q.answer);
+        div.appendChild(btn);
+      });
+
+      container.appendChild(div);
     }
+
+    function checkAnswer(selected, correct) {
+      if (selected === correct) {
+        alert("✅ Correct!");
+      } else {
+        alert("❌ Wrong! Try again.");
+        return;
+      }
+      currentQuestion++;
+      showQuestion();
+    }
+
+    function goLesson() {
+      window.location.href = "lesson.html";
+    }
+
+    function goWorlds() {
+      window.location.href = "index.html";
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+    }
+
+    loadQuiz();
   </script>
 </body>
 </html>

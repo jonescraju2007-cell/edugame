@@ -1,84 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Lesson • Rix EduGame</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <script type="module">
-    import {
-      getParam, loadWorld, markLessonDone, isWorldUnlocked, qs, toast,
-      applyTheme, toggleTheme, loadTheme, toggleMute, isMuted, loadProgress, calcLevel
-    } from './app.js';
-
-    function updateXP(){
-      const xp=loadProgress().xp||0; const {level,percent}=calcLevel(xp);
-      qs('#xpBox').innerHTML = `
-        <div style="font-size:12px">Lv ${level} • XP ${xp}</div>
-        <div class="progress" style="height:6px"><div style="width:${percent*100}%;background:#7cf;height:100%"></div></div>`;
-    }
-
-    async function boot(){
-      applyTheme(); updateXP();
-      const tbtn = qs('#theme'); const sb=qs('#sound');
-      const setIcon=()=>tbtn.textContent=loadTheme()==='dark'?'🌙':'☀️';
-      setIcon(); tbtn.onclick=()=>{ toggleTheme(); setIcon(); };
-      sb.textContent = isMuted()?'🔇':'🔊'; sb.onclick=()=>{ const on=toggleMute(); sb.textContent=on?'🔊':'🔇'; };
-
-      const wid = getParam('world') || 'w1';
-      if (!isWorldUnlocked(wid)){
-        toast("World is locked. Finish the previous world first.");
-        setTimeout(()=>location.href='index.html', 1200); return;
-      }
-      const world = await loadWorld(wid);
-      qs('#title').textContent = world.meta.title;
-      qs('#intro').textContent = world.meta.intro;
-
-      const list = qs('#lessons');
-      for (const [key, lesson] of Object.entries(world.lessons)){
-        const card = document.createElement('div');
-        card.className = 'lesson-card';
-        card.innerHTML = `
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-            <div><strong>${lesson.title}</strong></div>
-            <span class="small">${key}</span>
-          </div>
-          <div class="small" style="opacity:.9">${lesson.html}</div>
-        `;
-        list.appendChild(card);
-      }
-
-      qs('#start').addEventListener('click', ()=>{
-        markLessonDone(wid);
-        location.href = `quiz.html?world=${wid}`;
-      });
-      qs('#back').addEventListener('click', ()=>location.href='index.html');
-    }
-    window.addEventListener('DOMContentLoaded', boot);
-  </script>
+  <meta charset="UTF-8">
+  <title>EduGame Lesson</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo"></div>
-      <div>
-        <h1 id="title">Lesson</h1>
-        <div id="intro" class="small"></div>
-      </div>
-      <div style="flex:1"></div>
-      <div id="xpBox" style="text-align:right;min-width:200px"></div>
-      <button id="theme" class="icon-btn" title="Toggle theme">🌙</button>
-      <button id="sound" class="icon-btn" title="Toggle sound">🔊</button>
-      <button id="back" class="btn secondary">← Worlds</button>
-    </header>
+  <header>
+    <h1 id="lesson-title">📖 Lesson</h1>
+    <nav>
+      <button onclick="goWorlds()">🌍 Worlds</button>
+      <button onclick="toggleTheme()">🌙 Toggle Theme</button>
+    </nav>
+  </header>
 
-    <div class="panel">
-      <h2>Study Cards</h2>
-      <div id="lessons"></div>
-      <div style="height:12px"></div>
-      <button class="btn" id="start">Start Quiz →</button>
-    </div>
-  </div>
+  <main>
+    <section id="lesson-content">
+      <p>Loading lesson...</p>
+    </section>
+    <button id="quiz-btn" onclick="startQuiz()">Start Quiz</button>
+  </main>
+
+  <script>
+    async function loadLesson() {
+      const worldFile = localStorage.getItem("currentWorld") || "world1.json";
+      const res = await fetch(`./worlds/${worldFile}`);
+      const data = await res.json();
+
+      document.getElementById("lesson-title").innerText = data.meta.title;
+
+      const container = document.getElementById("lesson-content");
+      container.innerHTML = "";
+
+      for (let key in data.lessons) {
+        const lesson = data.lessons[key];
+        const div = document.createElement("div");
+        div.classList.add("lesson-card");
+        div.innerHTML = `<h3>${lesson.title}</h3>${lesson.html}`;
+        container.appendChild(div);
+      }
+    }
+
+    function startQuiz() {
+      window.location.href = "quiz.html";
+    }
+
+    function goWorlds() {
+      window.location.href = "index.html";
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+    }
+
+    loadLesson();
+  </script>
 </body>
 </html>
 
