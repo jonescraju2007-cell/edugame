@@ -8,7 +8,7 @@ if (window.location.hostname === "localhost") {
   BACKEND_URL = "http://localhost:3000";
 } else {
   // Otherwise, use the Railway app URL
-  BACKEND_URL = "https://edugame-production.up.railway.app";
+  BACKEND_URL = "https://edugame-2.onrender.com/";
 }
 
 export { BACKEND_URL };
