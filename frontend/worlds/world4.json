@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "title": "World 4: Functions & Parameters",
+    "intro": "Define functions, returns, parameters, defaults, *args/**kwargs, scope, closures, lambdas, recursion, annotations, docstrings, decorators (intro), and basic higher-order patterns."
+  },
+  "lessons": {
+    "def": {
+      "title": "Defining functions",
+      "html": "<p>Use <code>def name(params):</code> with a colon and an indented body.</p><pre><code>def add(a, b):\n    return a + b</code></pre>"
+    },
+    "return": {
+      "title": "Return values",
+      "html": "<p><code>return</code> ends the function and hands back a value. No return → <code>None</code>.</p><pre><code>def f():\n    pass  # returns None</code></pre>"
+    },
+    "defaults": {
+      "title": "Default parameters",
+      "html": "<p>Put defaults after non-defaults; evaluate at definition time.</p><pre><code>def power(x, p=2):\n    return x ** p</code></pre>"
+    },
+    "args_kwargs": {
+      "title": "*args and **kwargs",
+      "html": "<p><code>*args</code> collects extra positional; <code>**kwargs</code> collects extra keyword arguments.</p><pre><code>def log(*args, **kwargs):\n    print(args, kwargs)</code></pre>"
+    },
+    "keyword_only": {
+      "title": "Keyword-only parameters",
+      "html": "<p>Place <code>*</code> in the signature to force subsequent params to be keyword-only.</p><pre><code>def f(a, *, sep=' '):\n    ...</code></pre>"
+    },
+    "posonly": {
+      "title": "Positional-only (3.8+)",
+      "html": "<p>Use <code>/</code> to mark params that cannot be passed by keyword.</p><pre><code>def f(x, /, y):\n    ...</code></pre>"
+    },
+    "annotations": {
+      "title": "Type annotations",
+      "html": "<p>Optional hints; not enforced at runtime by default.</p><pre><code>def add(a: int, b: int) -> int:\n    return a + b</code></pre>"
+    },
+    "docstring": {
+      "title": "Docstrings",
+      "html": "<p>First string literal in a function is the docstring, available as <code>.__doc__</code>.</p><pre><code>def f():\n    \"\"\"Explain f.\"\"\"\n    return 1</code></pre>"
+    },
+    "scope": {
+      "title": "Scope: local/global/nonlocal",
+      "html": "<p>Assignment makes a name local unless declared <code>global</code> or <code>nonlocal</code>.</p><pre><code>x = 1\n\ndef g():\n    global x\n    x = 2</code></pre>"
+    },
+    "closure": {
+      "title": "Closures",
+      "html": "<p>Inner functions capture variables from enclosing scopes.</p><pre><code>def make_adder(k):\n    def add(x):\n        return x + k\n    return add</code></pre>"
+    },
+    "lambda": {
+      "title": "Lambda",
+      "html": "<p>Small anonymous function: <code>lambda args: expr</code>.</p><pre><code>square = lambda n: n*n</code></pre>"
+    },
+    "hof": {
+      "title": "Higher-order functions",
+      "html": "<p>Functions that accept/return functions (e.g., <code>map</code>, <code>filter</code>, custom factories).</p>"
+    },
+    "decorator": {
+      "title": "Decorator (intro)",
+      "html": "<p>A function that wraps another function to add behavior.</p><pre><code>def deco(f):\n    def wrapped(*a, **k):\n        # before\n        r = f(*a, **k)\n        # after\n        return r\n    return wrapped\n\n@deco\ndef hello():\n    return 'hi'</code></pre>"
+    },
+    "recursion": {
+      "title": "Recursion",
+      "html": "<p>A function calling itself; define a base case and a step that moves toward it.</p><pre><code>def fact(n):\n    if n==0: return 1\n    return n * fact(n-1)</code></pre>"
+    },
+    "packing": {
+      "title": "Argument packing/unpacking",
+      "html": "<p>Use <code>*</code> and <code>**</code> to expand sequences and dicts into arguments.</p><pre><code>args = (1,2)\nd = {'p':3}\nf(*args, **d)</code></pre>"
+    }
+  },
+  "questions": {
+    "simple": [
+      { "id": "w4-s-01", "type": "mcq", "topic": "def", "question": "Valid function header:", "options": ["def f(x):", "function f(x):", "def f x:"], "answer": "def f(x):", "feedback": { "correct": "✅ def name(params):", "wrong": "❌ Needs def, parentheses, colon." } },
+      { "id": "w4-s-02", "type": "truefalse", "topic": "return", "question": "A function with no return statement returns None.", "answer": "True", "feedback": { "correct": "✅ Default return is None.", "wrong": "❌ Python returns None implicitly." } },
+      { "id": "w4-s-03", "type": "fill", "topic": "return", "question": "Return the sum of a and b:", "answer": "return a + b", "feedback": { "correct": "✅ Use return to send value.", "wrong": "❌ Include return keyword." } },
+      { "id": "w4-s-04", "type": "mcq", "topic": "defaults", "question": "Valid placement of defaults:", "options": ["def f(x=1, y):", "def f(x, y=1):", "def f(x=1, y=2, /):"], "answer": "def f(x, y=1):", "feedback": { "correct": "✅ Defaults follow non-defaults.", "wrong": "❌ Non-default argument follows default." } },
+      { "id": "w4-s-05", "type": "fill", "topic": "args_kwargs", "question": "Header that accepts any extra positional and keyword args:", "answer": "def f(*args, **kwargs):", "feedback": { "correct": "✅ *args and **kwargs.", "wrong": "❌ Include both collectors." } },
+      { "id": "w4-s-06", "type": "mcq", "topic": "keyword_only", "question": "Make 'sep' keyword-only:", "options": ["def f(sep*):", "def f(*, sep=' '):", "def f(sep=/):"], "answer": "def f(*, sep=' '):", "feedback": { "correct": "✅ * marks keyword-only boundary.", "wrong": "❌ Use * before keyword-only params." } },
+      { "id": "w4-s-07", "type": "truefalse", "topic": "posonly", "question": "Using '/' makes parameters before it positional-only.", "answer": "True", "feedback": { "correct": "✅ That's the syntax in 3.8+.", "wrong": "❌ '/' denotes positional-only boundary." } },
+      { "id": "w4-s-08", "type": "fill", "topic": "annotations", "question": "Annotate f to take int x and return str:", "answer": "def f(x: int) -> str:", "feedback": { "correct": "✅ def name(x: T) -> R:", "wrong": "❌ Include parameter and return annotations." } },
+      { "id": "w4-s-09", "type": "mcq", "topic": "docstring", "question": "Where does a docstring go?", "options": ["Top of the module only", "First statement inside the function", "After return"], "answer": "First statement inside the function", "feedback": { "correct": "✅ First string literal.", "wrong": "❌ Place it as the first statement." } },
+      { "id": "w4-s-10", "type": "truefalse", "topic": "scope", "question": "Assigning to a name inside a function makes it local by default.", "answer": "True", "feedback": { "correct": "✅ Unless declared global/nonlocal.", "wrong": "❌ Python chooses local scope." } },
+      { "id": "w4-s-11", "type": "mcq", "topic": "closure", "question": "Closures capture:", "options": ["Only globals", "Enclosing (nonlocal) variables", "Only locals"], "answer": "Enclosing (nonlocal) variables", "feedback": { "correct": "✅ Nonlocal capture.", "wrong": "❌ It's not limited to globals." } },
+      { "id": "w4-s-12", "type": "fill", "topic": "lambda", "question": "Lambda that doubles n:", "answer": "lambda n: n*2", "feedback": { "correct": "✅ lambda n: expr", "wrong": "❌ Provide parameter and expression." } },
+      { "id": "w4-s-13", "type": "mcq", "topic": "hof", "question": "map(lambda x: x+1, [1,2]) produces:", "options": ["[2,3]", "map object", "(2,3)"], "answer": "map object", "feedback": { "correct": "✅ In Py3 map returns an iterator.", "wrong": "❌ Wrap with list(...) to realize." } },
+      { "id": "w4-s-14", "type": "truefalse", "topic": "decorator", "question": "@deco f is syntactic sugar for f = deco(f).", "answer": "True", "feedback": { "correct": "✅ That's exactly it.", "wrong": "❌ That's how decorators apply." } },
+      { "id": "w4-s-15", "type": "fill", "topic": "recursion", "question": "Write factorial base case (n==0):", "answer": "if n==0: return 1", "feedback": { "correct": "✅ Stops recursion.", "wrong": "❌ Include condition and return." } },
+      { "id": "w4-s-16", "type": "mcq", "topic": "packing", "question": "Unpack a tuple t into f:", "options": ["f(t*)", "f(*t)", "f(**t)"], "answer": "f(*t)", "feedback": { "correct": "✅ * unpacks sequence into positionals.", "wrong": "❌ ** expects a dict of keywords." } },
+      { "id": "w4-s-17", "type": "truefalse", "topic": "annotations", "question": "Type hints are enforced by Python at runtime by default.", "answer": "False", "feedback": { "correct": "✅ They are hints only.", "wrong": "❌ Enforcement needs tools like mypy." } },
+      { "id": "w4-s-18", "type": "fill", "topic": "defaults", "question": "Provide default y=2: def add(x, y?):", "answer": "def add(x, y=2):", "feedback": { "correct": "✅ Default after non-default.", "wrong": "❌ Place =2 in signature." } },
+      { "id": "w4-s-19", "type": "mcq", "topic": "args_kwargs", "question": "Which call matches def f(a, *b, **c)?", "options": ["f(1, x=2, y=3)", "f(a=1, 2)", "f(1, 2, 3, x=4)"], "answer": "f(1, 2, 3, x=4)", "feedback": { "correct": "✅ 1→a; (2,3)→*b; x=4→**c.", "wrong": "❌ Order and kinds must match." } },
+      { "id": "w4-s-20", "type": "truefalse", "topic": "keyword_only", "question": "After a '*' in the signature, parameters must be passed by keyword.", "answer": "True", "feedback": { "correct": "✅ That's keyword-only.", "wrong": "❌ '*' introduces keyword-only params." } },
+      { "id": "w4-s-21", "type": "fill", "topic": "posonly", "question": "Make x positional-only and y normal:", "answer": "def f(x, /, y):", "feedback": { "correct": "✅ '/' marks positional-only.", "wrong": "❌ Put '/' after x." } },
+      { "id": "w4-s-22", "type": "mcq", "topic": "docstring", "question": "How to read a function's docstring?", "options": ["f.doc()", "f.__doc__", "helpstr(f)"], "answer": "f.__doc__", "feedback": { "correct": "✅ It's the __doc__ attribute.", "wrong": "❌ Use __doc__ or help()." } },
+      { "id": "w4-s-23", "type": "truefalse", "topic": "closure", "question": "Inner functions can access names from the enclosing scope.", "answer": "True", "feedback": { "correct": "✅ That's a closure.", "wrong": "❌ They capture nonlocals." } },
+      { "id": "w4-s-24", "type": "fill", "topic": "lambda", "question": "Lambda adding prefix 'Hi ' to name n:", "answer": "lambda n: 'Hi ' + n", "feedback": { "correct": "✅ Simple expression.", "wrong": "❌ Provide parameter and expression." } },
+      { "id": "w4-s-25", "type": "mcq", "topic": "hof", "question": "filter(lambda x: x%2==0, range(5)) yields:", "options": ["[0,2,4]", "filter object", "(0,2,4)"], "answer": "filter object", "feedback": { "correct": "✅ Returns an iterator.", "wrong": "❌ Wrap with list(...) to realize." } }
+    ],
+    "medium": [
+      { "id": "w4-m-01", "type": "fill", "topic": "def", "question": "Write a function header 'sum3' taking a,b,c and returning a+b+c (2 lines):", "answer": "def sum3(a, b, c):\n    return a+b+c", "feedback": { "correct": "✅ Header + return.", "wrong": "❌ Include colon and indent." } },
+      { "id": "w4-m-02", "type": "mcq", "topic": "defaults", "question": "Mutable default trap: which is safer?", "options": ["def f(x, L=[]): L.append(x); return L", "def f(x, L=None): L = [] if L is None else L; L.append(x); return L", "Both are same"], "answer": "def f(x, L=None): L = [] if L is None else L; L.append(x); return L", "feedback": { "correct": "✅ Avoid shared mutable default.", "wrong": "❌ L=[] evaluated once at definition." } },
+      { "id": "w4-m-03", "type": "debug", "topic": "scope", "question": "What error?\n\nx = 1\n\ndef inc():\n    x = x + 1\n    return x", "options": ["NameError", "UnboundLocalError", "TypeError"], "answer": "UnboundLocalError", "feedback": { "correct": "✅ Local x referenced before assignment.", "wrong": "❌ Declare global/nonlocal or rename." } },
+      { "id": "w4-m-04", "type": "fill", "topic": "args_kwargs", "question": "Call g to pass list items as separate args: g([1,2,3]) → use *", "answer": "g(*[1,2,3])", "feedback": { "correct": "✅ * unpacks a sequence.", "wrong": "❌ Use star to expand." } },
+      { "id": "w4-m-05", "type": "mcq", "topic": "keyword_only", "question": "Given def f(a, *, sep=' '), which call is valid?", "options": ["f(1, ':')", "f(1, sep=':')", "f(a=1, ':')"], "answer": "f(1, sep=':')", "feedback": { "correct": "✅ sep must be keyword.", "wrong": "❌ Can't pass sep positionally." } },
+      { "id": "w4-m-06", "type": "fill", "topic": "posonly", "question": "Given def f(x, /, y): call with x=1 and y=2:", "answer": "f(1, y=2)", "feedback": { "correct": "✅ x positional-only; y can be keyword.", "wrong": "❌ Don't write x=1." } },
+      { "id": "w4-m-07", "type": "mcq", "topic": "annotations", "question": "Annotations are stored where?", "options": ["f.__annotations__", "f.annotations", "typing.get(f)"], "answer": "f.__annotations__", "feedback": { "correct": "✅ Dict of annotations.", "wrong": "❌ Use __annotations__." } },
+      { "id": "w4-m-08", "type": "fill", "topic": "closure", "question": "Factory that adds k: header + return inner name only (2 lines):", "answer": "def make_adder(k):\n    def add(x): return x+k", "feedback": { "correct": "✅ Closure captures k.", "wrong": "❌ Define inner then use k." } },
+      { "id": "w4-m-09", "type": "mcq", "topic": "decorator", "question": "Which applies a decorator 'deco' to f?", "options": ["f = deco(f)", "@deco on def line", "Both"], "answer": "Both", "feedback": { "correct": "✅ Syntactic sugar or assignment.", "wrong": "❌ Either form works." } },
+      { "id": "w4-m-10", "type": "fill", "topic": "hof", "question": "Use map to triple numbers 0..2 into a list:", "answer": "list(map(lambda x: x*3, range(3)))", "feedback": { "correct": "✅ Wrap with list(...) to realize.", "wrong": "❌ map returns iterator." } },
+      { "id": "w4-m-11", "type": "debug", "topic": "defaults", "question": "Why does calling f() twice grow the list?\n\ndef f(L=[]):\n    L.append(1)\n    return L", "options": ["L redefined each call", "Default evaluated once", "Interpreter bug"], "answer": "Default evaluated once", "feedback": { "correct": "✅ Mutable default is shared.", "wrong": "❌ It's not recreated each call." } },
+      { "id": "w4-m-12", "type": "fill", "topic": "packing", "question": "Expand dict d into keyword args when calling h:", "answer": "h(**d)", "feedback": { "correct": "✅ ** unpacks mapping → keywords.", "wrong": "❌ Use double-star for dicts." } },
+      { "id": "w4-m-13", "type": "mcq", "topic": "lambda", "question": "Which is valid lambda?", "options": ["lambda x: x+1", "lambda (x): x+1", "lambda x; x+1"], "answer": "lambda x: x+1", "feedback": { "correct": "✅ lambda args: expr", "wrong": "❌ The others are invalid syntax." } },
+      { "id": "w4-m-14", "type": "fill", "topic": "recursion", "question": "Recursive sum of list L (base for empty list): return ...", "answer": "return 0 if not L else L[0] + rec(L[1:])", "feedback": { "correct": "✅ Base 0, else head+recurse.", "wrong": "❌ Provide base case first." } },
+      { "id": "w4-m-15", "type": "mcq", "topic": "docstring", "question": "Which makes a proper docstring?", "options": ["# docs...", "\"\"\"docs\"\"\"", "'''docs''' after return"], "answer": "\"\"\"docs\"\"\"", "feedback": { "correct": "✅ Triple-quoted string as first statement.", "wrong": "❌ Comment isn't a docstring." } }
+    ],
+    "hard": [
+      { "id": "w4-h-01", "type": "puzzle", "topic": "decorator", "question": "Order lines to make and apply a simple decorator:", "choices": ["def deco(f):", "    def wrap(*a, **k):", "        print('start')", "        r = f(*a, **k)", "        print('end')", "        return r", "    return wrap", "@deco", "def hello():", "    return 'hi'"], "answer": ["def deco(f):", "    def wrap(*a, **k):", "        print('start')", "        r = f(*a, **k)", "        print('end')", "        return r", "    return wrap", "@deco", "def hello():", "    return 'hi'"], "feedback": { "correct": "✅ Define decorator → return wrapper → apply with @deco.", "wrong": "❌ Keep decorator above the function." } },
+      { "id": "w4-h-02", "type": "debug", "topic": "scope", "question": "Why NameError?\n\ncount = 0\n\ndef outer():\n    def inner():\n        count += 1\n        return count\n    return inner", "options": ["count is local to inner", "Need nonlocal count", "Use global count in outer"], "answer": "Need nonlocal count", "feedback": { "correct": "✅ Declare nonlocal to rebind enclosing name.", "wrong": "❌ Assignment makes it local without nonlocal." } },
+      { "id": "w4-h-03", "type": "fill", "topic": "closure", "question": "Make a counter() that returns a function which increments and returns n starting at 0 (use nonlocal):", "answer": "def counter():\n    n = 0\n    def inc():\n        nonlocal n\n        n += 1\n        return n\n    return inc", "feedback": { "correct": "✅ Capture n and rebind with nonlocal.", "wrong": "❌ You must mark n as nonlocal to assign." } },
+      { "id": "w4-h-04", "type": "mcq", "topic": "posonly", "question": "Given def f(x, /, y, *, z), which call is valid?", "options": ["f(x=1, y=2, z=3)", "f(1, 2, z=3)", "f(1, y=2, 3)"], "answer": "f(1, 2, z=3)", "feedback": { "correct": "✅ x positional-only; z keyword-only.", "wrong": "❌ Respect / and * boundaries." } },
+      { "id": "w4-h-05", "type": "fill", "topic": "defaults", "question": "Rewrite f so L doesn't persist between calls (use None trick):\n\ndef f(L=[]):\n    L.append(1)\n    return L", "answer": "def f(L=None):\n    if L is None:\n        L = []\n    L.append(1)\n    return L", "feedback": { "correct": "✅ Avoid mutable default.", "wrong": "❌ Don't use [] as default." } },
+      { "id": "w4-h-06", "type": "puzzle", "topic": "recursion", "question": "Order lines for recursive Fibonacci with base cases (n<=1):", "choices": ["def fib(n):", "    if n <= 1:", "        return n", "    return fib(n-1) + fib(n-2)"], "answer": ["def fib(n):", "    if n <= 1:", "        return n", "    return fib(n-1) + fib(n-2)"], "feedback": { "correct": "✅ Base first, then recurse.", "wrong": "❌ Define base cases before recursion." } },
+      { "id": "w4-h-07", "type": "debug", "topic": "decorator", "question": "What does @timeit change?", "options": ["Rebinds the name to a wrapped function", "Executes function immediately", "Has no effect"], "answer": "Rebinds the name to a wrapped function", "feedback": { "correct": "✅ Name now refers to wrapper.", "wrong": "❌ It doesn't auto-run; it wraps." } },
+      { "id": "w4-h-08", "type": "fill", "topic": "hof", "question": "Write a function make_power(p) returning lambda x: x**p:", "answer": "def make_power(p):\n    return lambda x: x**p", "feedback": { "correct": "✅ Returns a new function.", "wrong": "❌ Return lambda from the factory." } },
+      { "id": "w4-h-09", "type": "mcq", "topic": "annotations", "question": "Which signature is fully annotated?", "options": ["def f(x:int, y)->int:", "def f(x:int, y:int)->int:", "def f(x, y)->int:"], "answer": "def f(x:int, y:int)->int:", "feedback": { "correct": "✅ Both params + return annotated.", "wrong": "❌ Annotate each parameter and return." } },
+      { "id": "w4-h-10", "type": "fill", "topic": "packing", "question": "Call h so that a list nums supplies positional args and dict opts supplies keywords:", "answer": "h(*nums, **opts)", "feedback": { "correct": "✅ Combine * and **.", "wrong": "❌ Expand both sequence and mapping." } }
+    ]
+  }
+}

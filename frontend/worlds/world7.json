@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "title": "World 7: Object-Oriented Python",
+    "intro": "Learn how Python supports object-oriented programming: classes, instances, attributes, methods, constructors, inheritance, method resolution order (MRO), overriding, special methods, properties, dataclasses, and more."
+  },
+  "lessons": {
+    "class": {
+      "title": "Defining classes",
+      "html": "<p>Define with <code>class</code> keyword. Bodies usually include methods and attributes.</p><pre><code>class Dog:\n    species = 'Canis'\n    def __init__(self, name):\n        self.name = name</code></pre>"
+    },
+    "instance": {
+      "title": "Instances",
+      "html": "<p>Create objects by calling the class. Access attributes with dot notation.</p><pre><code>d = Dog('Rex')\nprint(d.name)</code></pre>"
+    },
+    "methods": {
+      "title": "Methods",
+      "html": "<p>Instance methods take <code>self</code> as first parameter.</p><pre><code>class Dog:\n    def bark(self):\n        print('woof')</code></pre>"
+    },
+    "init": {
+      "title": "__init__ constructor",
+      "html": "<p>Called automatically on instance creation to initialize attributes.</p><pre><code>class Dog:\n    def __init__(self, name):\n        self.name = name</code></pre>"
+    },
+    "inheritance": {
+      "title": "Inheritance",
+      "html": "<p>Subclass extends/overrides parent.</p><pre><code>class Animal: pass\nclass Dog(Animal): pass</code></pre>"
+    },
+    "super": {
+      "title": "super()",
+      "html": "<p>Call base class method in overrides.</p><pre><code>class A:\n    def f(self): print('A')\nclass B(A):\n    def f(self):\n        super().f()\n        print('B')</code></pre>"
+    },
+    "mro": {
+      "title": "Method Resolution Order",
+      "html": "<p>Python uses C3 linearization to resolve diamond inheritance.</p><pre><code>print(C.mro())</code></pre>"
+    },
+    "dunder": {
+      "title": "Special (dunder) methods",
+      "html": "<p>Methods like <code>__str__</code>, <code>__len__</code>, <code>__add__</code> customize behavior.</p>"
+    },
+    "repr_str": {
+      "title": "__repr__ vs __str__",
+      "html": "<p><code>__repr__</code> is developer-facing; <code>__str__</code> is user-facing.</p>"
+    },
+    "eq_hash": {
+      "title": "Equality & hashing",
+      "html": "<p>Define <code>__eq__</code> and <code>__hash__</code> for equality & dict/set keys.</p>"
+    },
+    "property": {
+      "title": "property()",
+      "html": "<p>Convert methods into managed attributes with decorators.</p><pre><code>class C:\n    @property\n    def x(self):\n        return 42</code></pre>"
+    },
+    "classmethod": {
+      "title": "classmethod & staticmethod",
+      "html": "<p><code>@classmethod</code> takes <code>cls</code>; <code>@staticmethod</code> takes none.</p>"
+    },
+    "dataclass": {
+      "title": "dataclasses",
+      "html": "<p>From 3.7+: auto-generate __init__, __repr__, etc. for simple classes.</p><pre><code>from dataclasses import dataclass\n@dataclass\nclass Point:\n    x: int\n    y: int</code></pre>"
+    },
+    "slots": {
+      "title": "__slots__",
+      "html": "<p>Restrict allowed attributes and save memory by avoiding dict per instance.</p>"
+    },
+    "abc": {
+      "title": "Abstract Base Classes",
+      "html": "<p>Define required methods with abc.ABC and @abstractmethod.</p><pre><code>from abc import ABC, abstractmethod\nclass Shape(ABC):\n    @abstractmethod\n    def area(self): pass</code></pre>"
+    },
+    "staticmethod": {
+      "title": "staticmethod",
+      "html": "<p>A function stored on a class without implicit <code>self</code> or <code>cls</code>.</p>"
+    }
+  },
+  "questions": {
+    "simple": [
+      { "id": "w7-s-01", "type": "mcq", "topic": "class", "question": "Correct class header:", "options": ["class Dog:", "def Dog:", "Dog class:"], "answer": "class Dog:", "feedback": { "correct": "✅ class Name:", "wrong": "❌ Must use class keyword." } },
+      { "id": "w7-s-02", "type": "truefalse", "topic": "instance", "question": "Dog('Rex') creates an instance of Dog.", "answer": "True", "feedback": { "correct": "✅ Instantiating class returns object.", "wrong": "❌ Class call creates instance." } },
+      { "id": "w7-s-03", "type": "fill", "topic": "methods", "question": "Method header 'bark' taking self:", "answer": "def bark(self):", "feedback": { "correct": "✅ Methods take self as first arg.", "wrong": "❌ Missing self." } },
+      { "id": "w7-s-04", "type": "mcq", "topic": "init", "question": "Which defines a constructor?", "options": ["def construct()", "def __init__(self)", "def init(self)"], "answer": "def __init__(self)", "feedback": { "correct": "✅ __init__ is constructor.", "wrong": "❌ Python looks for __init__." } },
+      { "id": "w7-s-05", "type": "truefalse", "topic": "inheritance", "question": "class Dog(Animal): inherits from Animal.", "answer": "True", "feedback": { "correct": "✅ Subclass extends parent.", "wrong": "❌ That's inheritance." } },
+      { "id": "w7-s-06", "type": "mcq", "topic": "super", "question": "super() inside subclass method calls:", "options": ["Child class method", "Parent class method", "Random method"], "answer": "Parent class method", "feedback": { "correct": "✅ Calls method from superclass.", "wrong": "❌ It's the base class method." } },
+      { "id": "w7-s-07", "type": "fill", "topic": "dunder", "question": "Define __str__ to return name:", "answer": "def __str__(self):\n    return self.name", "feedback": { "correct": "✅ __str__ returns user-facing string.", "wrong": "❌ Must return a string." } },
+      { "id": "w7-s-08", "type": "truefalse", "topic": "repr_str", "question": "__repr__ is meant for developers/debugging.", "answer": "True", "feedback": { "correct": "✅ __repr__ is developer-oriented.", "wrong": "❌ str is user-friendly." } },
+      { "id": "w7-s-09", "type": "mcq", "topic": "eq_hash", "question": "Which pair ensures objects work as dict keys?", "options": ["__eq__ and __hash__", "__init__ and __str__", "__add__ and __len__"], "answer": "__eq__ and __hash__", "feedback": { "correct": "✅ Both equality and hash required.", "wrong": "❌ __str__ doesn't affect hashing." } },
+      { "id": "w7-s-10", "type": "fill", "topic": "property", "question": "Make read-only property x that returns 42:", "answer": "@property\ndef x(self):\n    return 42", "feedback": { "correct": "✅ Decorator property.", "wrong": "❌ Use @property." } },
+      { "id": "w7-s-11", "type": "mcq", "topic": "classmethod", "question": "classmethod receives:", "options": ["self", "cls", "no args"], "answer": "cls", "feedback": { "correct": "✅ cls is class, not instance.", "wrong": "❌ self is for instance methods." } },
+      { "id": "w7-s-12", "type": "truefalse", "topic": "staticmethod", "question": "staticmethod does not get self or cls automatically.", "answer": "True", "feedback": { "correct": "✅ staticmethod is plain function inside class.", "wrong": "❌ It gets no implicit arg." } },
+      { "id": "w7-s-13", "type": "mcq", "topic": "dataclass", "question": "Dataclass auto-generates:", "options": ["__init__, __repr__, __eq__", "Only __str__", "Nothing"], "answer": "__init__, __repr__, __eq__", "feedback": { "correct": "✅ That's the point of dataclasses.", "wrong": "❌ They generate multiple methods." } },
+      { "id": "w7-s-14", "type": "fill", "topic": "slots", "question": "Restrict attributes to 'x' and 'y':", "answer": "__slots__ = ('x','y')", "feedback": { "correct": "✅ __slots__ lists allowed names.", "wrong": "❌ Use tuple of names." } },
+      { "id": "w7-s-15", "type": "truefalse", "topic": "abc", "question": "Abstract Base Classes can define abstract methods requiring override.", "answer": "True", "feedback": { "correct": "✅ ABCs enforce API.", "wrong": "❌ That's their purpose." } },
+      { "id": "w7-s-16", "type": "mcq", "topic": "methods", "question": "What's always the first parameter of instance methods?", "options": ["cls", "self", "this"], "answer": "self", "feedback": { "correct": "✅ self is convention.", "wrong": "❌ It's not this." } },
+      { "id": "w7-s-17", "type": "fill", "topic": "inheritance", "question": "Make class B inherit A:", "answer": "class B(A):", "feedback": { "correct": "✅ class B(A):", "wrong": "❌ Provide parent in parentheses." } },
+      { "id": "w7-s-18", "type": "truefalse", "topic": "super", "question": "super() finds the next class in the MRO.", "answer": "True", "feedback": { "correct": "✅ MRO order is followed.", "wrong": "❌ That's how super works." } },
+      { "id": "w7-s-19", "type": "mcq", "topic": "dunder", "question": "Which makes str(obj) use custom behavior?", "options": ["__repr__", "__str__", "__call__"], "answer": "__str__", "feedback": { "correct": "✅ str() calls __str__.", "wrong": "❌ repr() calls __repr__." } },
+      { "id": "w7-s-20", "type": "fill", "topic": "repr_str", "question": "Return debug string with __repr__:", "answer": "def __repr__(self):\n    return f'Dog({self.name!r})'", "feedback": { "correct": "✅ !r gives repr formatting.", "wrong": "❌ Use repr not str." } },
+      { "id": "w7-s-21", "type": "truefalse", "topic": "dataclass", "question": "Dataclasses require type annotations.", "answer": "True", "feedback": { "correct": "✅ They use annotations to build fields.", "wrong": "❌ Provide annotations." } },
+      { "id": "w7-s-22", "type": "mcq", "topic": "classmethod", "question": "staticmethod vs classmethod difference:", "options": ["staticmethod gets self", "classmethod gets cls", "Both same"], "answer": "classmethod gets cls", "feedback": { "correct": "✅ classmethod gets class object.", "wrong": "❌ staticmethod gets none." } },
+      { "id": "w7-s-23", "type": "fill", "topic": "slots", "question": "Add __slots__ with single attr 'val':", "answer": "__slots__ = ('val',)", "feedback": { "correct": "✅ Comma required for single tuple.", "wrong": "❌ Use tuple." } },
+      { "id": "w7-s-24", "type": "mcq", "topic": "abc", "question": "Which module provides ABC base?", "options": ["abc", "abstract", "oop"], "answer": "abc", "feedback": { "correct": "✅ abc module.", "wrong": "❌ Module is abc." } },
+      { "id": "w7-s-25", "type": "truefalse", "topic": "mro", "question": "MRO order can be seen with C.mro().", "answer": "True", "feedback": { "correct": "✅ C.mro() shows the list.", "wrong": "❌ Use .mro()." } }
+    ],
+    "medium": [
+      { "id": "w7-m-01", "type": "fill", "topic": "class", "question": "Define empty class A:", "answer": "class A:\n    pass", "feedback": { "correct": "✅ class with pass body.", "wrong": "❌ Provide pass inside body." } },
+      { "id": "w7-m-02", "type": "mcq", "topic": "methods", "question": "Which defines classmethod?", "options": ["@classmethod def f(self):", "@classmethod def f(cls):", "@classmethod def f():"], "answer": "@classmethod def f(cls):", "feedback": { "correct": "✅ First param must be cls.", "wrong": "❌ Provide cls param." } },
+      { "id": "w7-m-03", "type": "debug", "topic": "init", "question": "Error?\n\nclass A:\n    def __init__(): pass\na = A()", "options": ["Missing self param", "Constructor must return value", "Use classmethod"], "answer": "Missing self param", "feedback": { "correct": "✅ __init__ must take self.", "wrong": "❌ Provide self parameter." } },
+      { "id": "w7-m-04", "type": "fill", "topic": "inheritance", "question": "Class B extends A and overrides f to return 'hi':", "answer": "class B(A):\n    def f(self):\n        return 'hi'", "feedback": { "correct": "✅ Override by redefining.", "wrong": "❌ Provide self param." } },
+      { "id": "w7-m-05", "type": "mcq", "topic": "super", "question": "When to use super()?", "options": ["To call sibling class", "To call parent implementation", "To make private vars"], "answer": "To call parent implementation", "feedback": { "correct": "✅ super calls base method.", "wrong": "❌ It's not for private vars." } },
+      { "id": "w7-m-06", "type": "fill", "topic": "dunder", "question": "Make __len__ return length of self.data:", "answer": "def __len__(self):\n    return len(self.data)", "feedback": { "correct": "✅ __len__ returns int.", "wrong": "❌ Must return int length." } },
+      { "id": "w7-m-07", "type": "truefalse", "topic": "repr_str", "question": "__str__ falls back to __repr__ if not defined.", "answer": "True", "feedback": { "correct": "✅ If __str__ absent, __repr__ used.", "wrong": "❌ That's Python behavior." } },
+      { "id": "w7-m-08", "type": "mcq", "topic": "eq_hash", "question": "Custom __eq__ without __hash__ means:", "options": ["Object is unhashable", "Hash computed automatically", "Nothing changes"], "answer": "Object is unhashable", "feedback": { "correct": "✅ Python disables __hash__ if __eq__ overridden.", "wrong": "❌ Must define __hash__." } },
+      { "id": "w7-m-09", "type": "fill", "topic": "property", "question": "Writable property x with getter+setter:", "answer": "@property\ndef x(self): return self._x\n@x.setter\ndef x(self, v): self._x = v", "feedback": { "correct": "✅ Define getter and setter.", "wrong": "❌ Provide both decorators." } },
+      { "id": "w7-m-10", "type": "debug", "topic": "classmethod", "question": "Bug?\n\nclass C:\n    @classmethod\n    def f(): pass\nC.f()", "options": ["Missing cls param", "Should be staticmethod", "Use self"], "answer": "Missing cls param", "feedback": { "correct": "✅ classmethod must accept cls.", "wrong": "❌ Provide cls parameter." } },
+      { "id": "w7-m-11", "type": "fill", "topic": "dataclass", "question": "Make dataclass Point with x:int,y:int:", "answer": "from dataclasses import dataclass\n@dataclass\nclass Point:\n    x:int\n    y:int", "feedback": { "correct": "✅ Use @dataclass with annotations.", "wrong": "❌ Add types for fields." } },
+      { "id": "w7-m-12", "type": "mcq", "topic": "staticmethod", "question": "Valid staticmethod definition:", "options": ["@staticmethod\ndef norm(v): return sum(v)", "@staticmethod\ndef norm(self, v): ...", "def norm(v): ... # no decorator"], "answer": "@staticmethod\ndef norm(v): return sum(v)", "feedback": { "correct": "✅ staticmethod takes no implicit args.", "wrong": "❌ No self/cls for staticmethod." } },
+      { "id": "w7-m-13", "type": "fill", "topic": "eq_hash", "question": "Equality based on x,y and a hash from tuple:", "answer": "def __eq__(self, o): return isinstance(o, type(self)) and (self.x, self.y)==(o.x,o.y)\ndef __hash__(self): return hash((self.x, self.y))", "feedback": { "correct": "✅ Pair equality + tuple hash.", "wrong": "❌ Keep __eq__ consistent with __hash__." } },
+      { "id": "w7-m-14", "type": "mcq", "topic": "mro", "question": "In multiple inheritance, Python resolves methods using:", "options": ["Depth-first left-to-right only", "C3 linearization (MRO)", "Random order"], "answer": "C3 linearization (MRO)", "feedback": { "correct": "✅ Python's MRO is C3.", "wrong": "❌ It's deterministic, not random." } },
+      { "id": "w7-m-15", "type": "fill", "topic": "super", "question": "Extend __init__ in subclass and set self.y after calling base:", "answer": "class B(A):\n    def __init__(self, x, y):\n        super().__init__(x)\n        self.y = y", "feedback": { "correct": "✅ Call super().__init__ then add fields.", "wrong": "❌ Don't forget super().__init__." } }
+    ],
+    "hard": [
+      { "id": "w7-h-01", "type": "puzzle", "topic": "init", "question": "Order lines to define class with __init__, __repr__, make instance, print it:", "choices": ["class P:", "    def __init__(self, x):", "        self.x = x", "    def __repr__(self):", "        return f'P(x={self.x})'", "p = P(5)", "print(p)"], "answer": ["class P:", "    def __init__(self, x):", "        self.x = x", "    def __repr__(self):", "        return f'P(x={self.x})'", "p = P(5)", "print(p)"], "feedback": { "correct": "✅ Define class → ctor → repr → create → print.", "wrong": "❌ Keep class body indented and in order." } },
+      { "id": "w7-h-02", "type": "debug", "topic": "mro", "question": "What prints?\n\nclass A:  \n    def f(self): print('A')\nclass B(A):\n    def f(self): print('B')\nclass C(A):\n    def f(self): print('C')\nclass D(B, C):\n    pass\nD().f()", "options": ["A", "B", "C"], "answer": "B", "feedback": { "correct": "✅ MRO for D is D,B,C,A; B.f is first.", "wrong": "❌ Follow D.mro()." } },
+      { "id": "w7-h-03", "type": "fill", "topic": "eq_hash", "question": "Implement Point __eq__/__hash__ so {Point(1,2)} works:", "answer": "def __eq__(self, o): return isinstance(o, type(self)) and (self.x,self.y)==(o.x,o.y)\ndef __hash__(self): return hash((self.x,self.y))", "feedback": { "correct": "✅ Hashable via tuple.", "wrong": "❌ Keep equality and hash consistent." } },
+      { "id": "w7-h-04", "type": "mcq", "topic": "property", "question": "How to add a deleter for property x?", "options": ["@x.deleter\ndef x(self): del self._x", "@property.del\n def x(self): ...", "@delete(x)\n def x(self): ..."], "answer": "@x.deleter\ndef x(self): del self._x", "feedback": { "correct": "✅ Use @x.deleter decorator.", "wrong": "❌ No @property.del." } },
+      { "id": "w7-h-05", "type": "puzzle", "topic": "dataclass", "question": "Order to make an immutable ordered dataclass and create one:", "choices": ["from dataclasses import dataclass", "@dataclass(order=True, frozen=True)", "class Card:", "    rank: int", "    suit: str", "c = Card(10, 'H')"], "answer": ["from dataclasses import dataclass", "@dataclass(order=True, frozen=True)", "class Card:", "    rank: int", "    suit: str", "c = Card(10, 'H')"], "feedback": { "correct": "✅ Decorate before class; fields annotated.", "wrong": "❌ Keep decorator directly above class." } },
+      { "id": "w7-h-06", "type": "debug", "topic": "slots", "question": "Why does this raise AttributeError?\n\nclass S:\n    __slots__ = ('x',)\ns = S(); s.y = 3", "options": ["y is not declared in __slots__", "y must be private", "Need @property first"], "answer": "y is not declared in __slots__", "feedback": { "correct": "✅ Only declared names allowed.", "wrong": "❌ __slots__ restricts attributes." } },
+      { "id": "w7-h-07", "type": "fill", "topic": "abc", "question": "Create abstract Shape with area() and subclass Circle that implements it:", "answer": "from abc import ABC, abstractmethod\nclass Shape(ABC):\n    @abstractmethod\n    def area(self): ...\nclass Circle(Shape):\n    def __init__(self, r): self.r = r\n    def area(self): return 3.14159*self.r*self.r", "feedback": { "correct": "✅ ABC + concrete subclass.", "wrong": "❌ Implement area() in Circle." } },
+      { "id": "w7-h-08", "type": "mcq", "topic": "dunder", "question": "Which pair makes an object usable in 'with' statement?", "options": ["__enter__ / __exit__", "__get__ / __set__", "__iter__ / __next__"], "answer": "__enter__ / __exit__", "feedback": { "correct": "✅ Context manager protocol.", "wrong": "❌ Others are descriptors/iterators." } },
+      { "id": "w7-h-09", "type": "fill", "topic": "dunder", "question": "Overload + to add two Points by components:", "answer": "def __add__(self, o):\n    if not isinstance(o, type(self)): return NotImplemented\n    return type(self)(self.x+o.x, self.y+o.y)", "feedback": { "correct": "✅ Return new Point; handle NotImplemented.", "wrong": "❌ Validate type and build new object." } },
+      { "id": "w7-h-10", "type": "truefalse", "topic": "super", "question": "In multiple inheritance, super() follows MRO rather than directly calling the named parent.", "answer": "True", "feedback": { "correct": "✅ super follows MRO chain.", "wrong": "❌ It's not a hard-coded parent call." } }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "World 3: Control Flow",
+    "intro": "Master Python control flow: if/elif/else, for/while loops, range, loop else blocks, break/continue, pass, enumerate, zip, nesting, basic comprehensions used with loops, and the new match/case."
+  },
+  "lessons": {
+    "if": {
+      "title": "if / elif / else",
+      "html": "<p>Blocks use a colon and indentation.</p><pre><code>x = 3\nif x > 0:\n    print('pos')\nelif x == 0:\n    print('zero')\nelse:\n    print('neg')</code></pre>"
+    },
+    "comparison": {
+      "title": "Comparisons",
+      "html": "<p>Use <code>&lt; &lt;= &gt; &gt;= == !=</code>. Chain like <code>0 &lt; x &lt; 10</code>.</p>"
+    },
+    "for": {
+      "title": "for loops",
+      "html": "<p>Iterate over an iterable.</p><pre><code>for ch in 'abc':\n    print(ch)</code></pre>"
+    },
+    "while": {
+      "title": "while loops",
+      "html": "<p>Repeat while condition is True.</p><pre><code>i = 0\nwhile i &lt; 3:\n    print(i)\n    i += 1</code></pre>"
+    },
+    "range": {
+      "title": "range()",
+      "html": "<p><code>range(stop)</code> or <code>range(start, stop, step)</code>. Stop is exclusive.</p><pre><code>list(range(2,7,2))  # [2,4,6]</code></pre>"
+    },
+    "break_continue": {
+      "title": "break / continue",
+      "html": "<p><code>break</code> exits the loop; <code>continue</code> skips to next iteration.</p>"
+    },
+    "loop_else": {
+      "title": "Loop else",
+      "html": "<p><code>else</code> on loops runs only if the loop finishes without <code>break</code>.</p><pre><code>for x in [1,2,3]:\n    if x==2: break\nelse:\n    print('no break')  # not printed</code></pre>"
+    },
+    "pass": {
+      "title": "pass",
+      "html": "<p>A no-op placeholder to satisfy syntax.</p><pre><code>if cond:\n    pass  # TODO</code></pre>"
+    },
+    "enumerate": {
+      "title": "enumerate",
+      "html": "<p>Get index and value while looping.</p><pre><code>for i, ch in enumerate('abc'):\n    print(i, ch)</code></pre>"
+    },
+    "zip": {
+      "title": "zip",
+      "html": "<p>Iterate pairs from multiple iterables.</p><pre><code>for a,b in zip([1,2],[10,20]):\n    print(a,b)</code></pre>"
+    },
+    "nested": {
+      "title": "Nested loops",
+      "html": "<p>Loops can be inside loops. Mind indentation and complexity.</p><pre><code>for i in range(2):\n    for j in range(3):\n        print(i,j)</code></pre>"
+    },
+    "comprehension": {
+      "title": "Loop + comprehension",
+      "html": "<p>Often a loop task can be written as a comprehension.</p><pre><code>evens = [i for i in range(10) if i%2==0]</code></pre>"
+    },
+    "flags": {
+      "title": "Loop flags",
+      "html": "<p>Use a boolean flag when you need to remember something found during iteration.</p><pre><code>found = False\nfor x in items:\n    if x == target:\n        found = True\n        break</code></pre>"
+    },
+    "match": {
+      "title": "match / case (3.10+)",
+      "html": "<p>Structural pattern matching.</p><pre><code>match cmd:\n    case 'start':\n        run()\n    case 'stop':\n        halt()\n    case _:\n        print('unknown')</code></pre>"
+    }
+  },
+  "questions": {
+    "simple": [
+      { "id": "w3-s-01", "type": "mcq", "topic": "if", "question": "Choose valid header for an if block.", "options": ["if x > 0:", "if (x > 0)", "if x > 0 then"], "answer": "if x > 0:", "feedback": { "correct": "✅ Colon + indent form a block.", "wrong": "❌ Python needs a trailing colon and indentation." } },
+      { "id": "w3-s-02", "type": "truefalse", "topic": "comparison", "question": "You can chain comparisons like 0 < x < 10.", "answer": "True", "feedback": { "correct": "✅ Chaining is built in.", "wrong": "❌ It's valid Python." } },
+      { "id": "w3-s-03", "type": "mcq", "topic": "for", "question": "Loop over list L correctly:", "options": ["for i in L:", "foreach i in L:", "for (i : L):"], "answer": "for i in L:", "feedback": { "correct": "✅ Use 'for ... in ...'.", "wrong": "❌ That's not Python syntax." } },
+      { "id": "w3-s-04", "type": "fill", "topic": "while", "question": "While loop printing 0 then 1 (exact):", "answer": "i = 0\nwhile i < 2:\n    print(i)\n    i += 1", "feedback": { "correct": "✅ Initialize, test, update.", "wrong": "❌ Include colon and indentation." } },
+      { "id": "w3-s-05", "type": "truefalse", "topic": "range", "question": "range(3) yields 0,1,2.", "answer": "True", "feedback": { "correct": "✅ Stop is exclusive.", "wrong": "❌ It stops before 3." } },
+      { "id": "w3-s-06", "type": "fill", "topic": "range", "question": "Write a range that gives 2,4,6:", "answer": "range(2,7,2)", "feedback": { "correct": "✅ start=2, stop=7, step=2.", "wrong": "❌ Stop must be one past the last value." } },
+      { "id": "w3-s-07", "type": "mcq", "topic": "break_continue", "question": "Which exits the loop immediately?", "options": ["break", "continue", "pass"], "answer": "break", "feedback": { "correct": "✅ break stops the loop.", "wrong": "❌ continue skips one iteration; pass does nothing." } },
+      { "id": "w3-s-08", "type": "mcq", "topic": "break_continue", "question": "Which skips to the next iteration?", "options": ["break", "continue", "return"], "answer": "continue", "feedback": { "correct": "✅ continue jumps to next iteration.", "wrong": "❌ break exits; return leaves the function." } },
+      { "id": "w3-s-09", "type": "truefalse", "topic": "loop_else", "question": "The else of a loop runs only if the loop didn’t break.", "answer": "True", "feedback": { "correct": "✅ That's the rule.", "wrong": "❌ else runs only without break." } },
+      { "id": "w3-s-10", "type": "fill", "topic": "pass", "question": "Use a no-op body for TODO under if:", "answer": "if cond:\n    pass", "feedback": { "correct": "✅ pass is a placeholder.", "wrong": "❌ Use pass to keep syntax valid." } },
+      { "id": "w3-s-11", "type": "mcq", "topic": "enumerate", "question": "Get index and value while iterating s:", "options": ["for i, ch in enumerate(s):", "for i:ch in s:", "for (i,ch) of s:"], "answer": "for i, ch in enumerate(s):", "feedback": { "correct": "✅ enumerate gives index+item.", "wrong": "❌ Only enumerate works in Python." } },
+      { "id": "w3-s-12", "type": "mcq", "topic": "zip", "question": "Iterate two lists a,b together:", "options": ["for x,y in zip(a,b):", "for x,y in (a,b):", "for x in a zip b:"], "answer": "for x,y in zip(a,b):", "feedback": { "correct": "✅ zip pairs items.", "wrong": "❌ Use zip(a,b)." } },
+      { "id": "w3-s-13", "type": "fill", "topic": "nested", "question": "Nested loop header (2 outer, 3 inner):", "answer": "for i in range(2):\n    for j in range(3):", "feedback": { "correct": "✅ Two loops with indent.", "wrong": "❌ Watch indentation and colons." } },
+      { "id": "w3-s-14", "type": "truefalse", "topic": "comprehension", "question": "[i for i in range(3)] equals [0,1,2].", "answer": "True", "feedback": { "correct": "✅ Same values.", "wrong": "❌ It's exactly [0,1,2]." } },
+      { "id": "w3-s-15", "type": "mcq", "topic": "if", "question": "Choose the correct else line.", "options": ["else:", "else", "else then:"], "answer": "else:", "feedback": { "correct": "✅ Must end with colon.", "wrong": "❌ Use colon." } },
+      { "id": "w3-s-16", "type": "fill", "topic": "comparison", "question": "Chained comparison: 1 <= x < 5", "answer": "1 <= x < 5", "feedback": { "correct": "✅ Native chaining.", "wrong": "❌ Don't duplicate x." } },
+      { "id": "w3-s-17", "type": "truefalse", "topic": "enumerate", "question": "enumerate(s, start=1) starts counting at 1.", "answer": "True", "feedback": { "correct": "✅ start parameter exists.", "wrong": "❌ You can set a start index." } },
+      { "id": "w3-s-18", "type": "mcq", "topic": "zip", "question": "zip([1,2],[10]) iterates how many pairs?", "options": ["1","2","3"], "answer": "1", "feedback": { "correct": "✅ Stops at shortest.", "wrong": "❌ zip truncates to shortest iterable." } },
+      { "id": "w3-s-19", "type": "fill", "topic": "for", "question": "Print each char in s on one line (two lines):", "answer": "for ch in s:\n    print(ch)", "feedback": { "correct": "✅ Header + body.", "wrong": "❌ Put print indented." } },
+      { "id": "w3-s-20", "type": "truefalse", "topic": "while", "question": "A while loop may never run.", "answer": "True", "feedback": { "correct": "✅ If the condition is False initially.", "wrong": "❌ It runs only while condition is True." } },
+      { "id": "w3-s-21", "type": "mcq", "topic": "break_continue", "question": "What does 'pass' do inside a loop?", "options": ["Nothing", "Skips iteration", "Exits loop"], "answer": "Nothing", "feedback": { "correct": "✅ pass is a no-op.", "wrong": "❌ continue skips; break exits." } },
+      { "id": "w3-s-22", "type": "fill", "topic": "loop_else", "question": "Add else to run when no break (two headers only):", "answer": "for x in xs:\n    ...\nelse:\n    ...", "feedback": { "correct": "✅ else after loop.", "wrong": "❌ else aligns with for/while." } },
+      { "id": "w3-s-23", "type": "truefalse", "topic": "match", "question": "match/case is available in Python 3.10+.", "answer": "True", "feedback": { "correct": "✅ Introduced in 3.10.", "wrong": "❌ It's new in 3.10." } },
+      { "id": "w3-s-24", "type": "mcq", "topic": "match", "question": "Default case in match is written:", "options": ["case default:", "case _:", "else:"], "answer": "case _:", "feedback": { "correct": "✅ Underscore is wildcard.", "wrong": "❌ Use case _." } },
+      { "id": "w3-s-25", "type": "fill", "topic": "flags", "question": "Set found True if x == 7 then break (3 lines):", "answer": "found = False\nfor x in xs:\n    if x == 7:\n        found = True\n        break", "feedback": { "correct": "✅ Flag then break.", "wrong": "❌ Remember to set flag before break." } }
+    ],
+    "medium": [
+      { "id": "w3-m-01", "type": "debug", "topic": "if", "question": "Fix the bug:", "code": "x = 5\nif x > 3\n    print('yes')", "options": ["Add colon after condition", "Indent less", "Replace if with for"], "answer": "Add colon after condition", "feedback": { "correct": "✅ Need ':' after condition.", "wrong": "❌ Syntax requires a colon." } },
+      { "id": "w3-m-02", "type": "fill", "topic": "for", "question": "Sum numbers in L into s (init+loop+add):", "answer": "s = 0\nfor n in L:\n    s += n", "feedback": { "correct": "✅ Accumulator pattern.", "wrong": "❌ Initialize s and add inside loop." } },
+      { "id": "w3-m-03", "type": "mcq", "topic": "while", "question": "Which can cause an infinite loop?", "options": ["while True:", "for i in range(3):", "while i < 0:"], "answer": "while True:", "feedback": { "correct": "✅ Needs break inside.", "wrong": "❌ range loop has a fixed end." } },
+      { "id": "w3-m-04", "type": "fill", "topic": "break_continue", "question": "Skip odd numbers; print evens up to 6:", "answer": "for i in range(7):\n    if i % 2 == 1:\n        continue\n    print(i)", "feedback": { "correct": "✅ continue skips odds.", "wrong": "❌ Use continue to skip to next iteration." } },
+      { "id": "w3-m-05", "type": "mcq", "topic": "loop_else", "question": "When does loop 'else' execute?", "options": ["Always", "Only when no break occurs", "Only when break occurs"], "answer": "Only when no break occurs", "feedback": { "correct": "✅ That's the rule.", "wrong": "❌ else is skipped if break happens." } },
+      { "id": "w3-m-06", "type": "fill", "topic": "enumerate", "question": "Use enumerate starting at 1 to print '1:a' style:", "answer": "for i, ch in enumerate(s, start=1):\n    print(f'{i}:{ch}')", "feedback": { "correct": "✅ enumerate(..., start=1).", "wrong": "❌ Pass start=1 to enumerate." } },
+      { "id": "w3-m-07", "type": "debug", "topic": "zip", "question": "Find the issue:", "code": "for a, b, c in zip([1,2],[10,20]):\n    print(a,b,c)", "options": ["zip gives only two values", "Use enumerate", "Add pass"], "answer": "zip gives only two values", "feedback": { "correct": "✅ zip of two lists yields pairs.", "wrong": "❌ Unpacking requires 2 names." } },
+      { "id": "w3-m-08", "type": "fill", "topic": "nested", "question": "Print i,j for i in 0..1 and j in 0..1:", "answer": "for i in range(2):\n    for j in range(2):\n        print(i, j)", "feedback": { "correct": "✅ Nested loops.", "wrong": "❌ Include both loops and print." } },
+      { "id": "w3-m-09", "type": "mcq", "topic": "comprehension", "question": "Which equals: squares of evens under 10?", "options": ["[i*i for i in range(10) if i%2==0]", "[i*i for i in range(10) where even]", "[i^2 for even i < 10]"], "answer": "[i*i for i in range(10) if i%2==0]", "feedback": { "correct": "✅ Correct comprehension syntax.", "wrong": "❌ Only the first is valid Python." } },
+      { "id": "w3-m-10", "type": "fill", "topic": "flags", "question": "Use a flag to detect if 0 appears in L (print 'found' or 'none'):", "answer": "found = False\nfor x in L:\n    if x == 0:\n        found = True\n        break\nprint('found' if found else 'none')", "feedback": { "correct": "✅ Classic flag pattern.", "wrong": "❌ Set the flag and break." } },
+      { "id": "w3-m-11", "type": "truefalse", "topic": "match", "question": "match/case can destructure tuples.", "answer": "True", "feedback": { "correct": "✅ Pattern matching can unpack.", "wrong": "❌ It can destructure common shapes." } },
+      { "id": "w3-m-12", "type": "mcq", "topic": "match", "question": "Default branch in match:", "options": ["case default:", "case _:", "else:"], "answer": "case _:", "feedback": { "correct": "✅ Wildcard underscore.", "wrong": "❌ Use case _." } },
+      { "id": "w3-m-13", "type": "fill", "topic": "range", "question": "Create descending range: 5,4,3,2:", "answer": "range(5,1,-1)", "feedback": { "correct": "✅ step=-1, stop=1.", "wrong": "❌ Stop is exclusive; need 1." } },
+      { "id": "w3-m-14", "type": "debug", "topic": "while", "question": "Why does this loop never run?\n\nx = 10\nwhile x < 0:\n    print(x)", "options": ["Condition false initially", "Missing colon", "Need continue"], "answer": "Condition false initially", "feedback": { "correct": "✅ x<0 is False for x=10.", "wrong": "❌ The condition blocks entry." } },
+      { "id": "w3-m-15", "type": "mcq", "topic": "break_continue", "question": "Where would you put break to stop after the first match?", "options": ["Inside the if block", "At loop top", "After the loop"], "answer": "Inside the if block", "feedback": { "correct": "✅ Break only when condition met.", "wrong": "❌ Place it inside the matching branch." } }
+    ],
+    "hard": [
+      { "id": "w3-h-01", "type": "puzzle", "topic": "loop_else", "question": "Order lines to print 'prime' if no divisor found:", "choices": ["for d in range(2, n):", "    if n % d == 0:", "        break", "else:", "    print('prime')"], "answer": ["for d in range(2, n):", "    if n % d == 0:", "        break", "else:", "    print('prime')"], "feedback": { "correct": "✅ else executes only if loop didn't break.", "wrong": "❌ Keep else aligned with for." } },
+      { "id": "w3-h-02", "type": "puzzle", "topic": "enumerate", "question": "Arrange to print '1:a', '2:b', '3:c' for s='abc':", "choices": ["for i, ch in enumerate(s, start=1):", "    print(f'{i}:{ch}')"], "answer": ["for i, ch in enumerate(s, start=1):", "    print(f'{i}:{ch}')"], "feedback": { "correct": "✅ enumerate with start=1.", "wrong": "❌ Index must start at 1 here." } },
+      { "id": "w3-h-03", "type": "debug", "topic": "nested", "question": "What is printed?\n\nfor i in range(2):\n    for j in range(2):\n        if j==1:\n            break\n        print(i,j)", "options": ["(0,0),(0,1),(1,0),(1,1)", "(0,0),(1,0)", "(0,0),(0,1)"], "answer": "(0,0),(1,0)", "feedback": { "correct": "✅ break exits inner loop at j==1.", "wrong": "❌ Only j==0 prints for each i." } },
+      { "id": "w3-h-04", "type": "fill", "topic": "zip", "question": "Build pairs (a,b) from A=[1,2], B=['x','y'] in a list literal:", "answer": "[(a,b) for a,b in zip(A,B)]", "feedback": { "correct": "✅ zip + list comp.", "wrong": "❌ Use zip to pair corresponding items." } },
+      { "id": "w3-h-05", "type": "mcq", "topic": "match", "question": "Which case matches a 2-tuple whose second item is 0?", "options": ["case (_, 0):", "case (0, _):", "case (x == 0):"], "answer": "case (_, 0):", "feedback": { "correct": "✅ Underscore ignores the first item.", "wrong": "❌ Pattern needs a tuple shape." } },
+      { "id": "w3-h-06", "type": "fill", "topic": "for", "question": "Flatten nested lists L=[[1,2],[3]] with a nested loop comp:", "answer": "[x for sub in L for x in sub]", "feedback": { "correct": "✅ for sub ... for x in sub", "wrong": "❌ Order matters in nested comps." } },
+      { "id": "w3-h-07", "type": "debug", "topic": "break_continue", "question": "What does this print?\n\nfor i in range(3):\n    if i==1:\n        continue\n    print(i)", "options": ["0,1,2", "0,2", "1,2"], "answer": "0,2", "feedback": { "correct": "✅ i==1 is skipped.", "wrong": "❌ continue skips just that iteration." } },
+      { "id": "w3-h-08", "type": "puzzle", "topic": "for", "question": "Order to compute factorial n using a loop (assume n>=1):", "choices": ["ans = 1", "for i in range(1, n+1):", "    ans *= i", "print(ans)"], "answer": ["ans = 1", "for i in range(1, n+1):", "    ans *= i", "print(ans)"], "feedback": { "correct": "✅ Accumulator then multiply in loop.", "wrong": "❌ Keep the order." } },
+      { "id": "w3-h-09", "type": "fill", "topic": "while", "question": "While loop that reads items from Q until Q.pop() returns None:", "answer": "x = Q.pop()\nwhile x is not None:\n    process(x)\n    x = Q.pop()", "feedback": { "correct": "✅ Update x each iteration.", "wrong": "❌ Recompute the condition inside the loop." } },
+      { "id": "w3-h-10", "type": "truefalse", "topic": "loop_else", "question": "Using 'return' inside a loop also prevents the loop's else from running.", "answer": "True", "feedback": { "correct": "✅ else runs only when the loop terminates normally.", "wrong": "❌ Early exits skip the else." } }
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Rix EduGame • Worlds</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo="/>
+  <script type="module">
+    import {
+      WORLD_ORDER, loadWorld, loadProgress, isWorldUnlocked, qs,
+      applyTheme, toggleTheme, loadTheme, toggleMute, isMuted, calcLevel
+    } from './app.js';
+
+    function updateXP(){
+      const xp=loadProgress().xp||0; const {level,percent}=calcLevel(xp);
+      qs('#xpBox').innerHTML = `
+        <div style="font-size:12px">Lv ${level} • XP ${xp}</div>
+        <div class="progress" style="height:6px"><div style="width:${percent*100}%;background:#7cf;height:100%"></div></div>`;
+    }
+
+    async function boot(){
+      applyTheme(); updateXP();
+      const tbtn = qs('#theme'); const sb=qs('#sound');
+      const setIcon = () => tbtn.textContent = loadTheme()==='dark' ? '🌙' : '☀️';
+      setIcon();
+      tbtn.addEventListener('click', ()=>{ toggleTheme(); setIcon(); });
+      sb.textContent = isMuted()?'🔇':'🔊';
+      sb.onclick = ()=>{ const on=toggleMute(); sb.textContent=on?'🔊':'🔇'; };
+
+      const grid = qs('#worlds'); const progress = loadProgress();
+      for (const wid of WORLD_ORDER){
+        let title = wid.toUpperCase();
+        try { title = (await loadWorld(wid)).meta.title || title; } catch {}
+        const unlocked = isWorldUnlocked(wid);
+        const done = !!(progress[wid]?.quizDone);
+        const score = progress[wid]?.scorePct ?? null;
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="title">${title}</div>
+          <div class="meta">${unlocked ? (done ? 'Completed' : 'Ready') : 'Locked until previous world is completed'}</div>
+          <div style="height:10px"></div>
+          <button class="btn" ${!unlocked?'disabled':''} data-go="${wid}">${done?'Review':'Start'}</button>
+          <span class="badge ${!unlocked?'lock': (done?'done':'')}">
+            ${!unlocked ? 'Locked' : (done ? (Math.round((score??0))+'%') : 'Open')}
+          </span>
+        `;
+        card.querySelector('button')?.addEventListener('click', ()=>location.href=`lesson.html?world=${wid}`);
+        grid.appendChild(card);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', boot);
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo"></div>
+      <div>
+        <h1>Rix EduGame</h1>
+        <div class="small">Master Python in 7 Worlds — unlock each by passing the previous.</div>
+      </div>
+      <div style="flex:1"></div>
+      <div id="xpBox" style="text-align:right;min-width:200px"></div>
+      <button id="theme" class="icon-btn" title="Toggle theme">🌙</button>
+      <button id="sound" class="icon-btn" title="Toggle sound">🔊</button>
+    </header>
+
+    <div class="panel">
+      <h2>Your Worlds</h2>
+      <div id="worlds" class="grid"></div>
+    </div>
+
+    <div class="footer">Progress is saved in your browser (localStorage). Use the theme and sound toggles anytime.</div>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Quiz • Rix EduGame</title>
+  <link rel="stylesheet" href="styles.css"/>
+ <script type="module">
+  import { BACKEND_URL } from './js/config.js';
+  import {
+    getParam, loadWorld, qs, qsa, clamp,
+    markQuizDone, confettiBurst, toast, blip,
+    applyTheme, toggleTheme, loadTheme,
+    saveAttempt, getAttempt, loadProgress, toggleMute, isMuted, calcLevel
+  } from './app.js';
+
+  let state = { wid:'w1', world:null, deck:[], i:0, correct:0, answers:{} };
+
+  // Updated mentor function uses BACKEND_URL from config.js
+  async function askMentor(question, context) {
+    try {
+      const res = await fetch(`${BACKEND_URL}/mentor`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ question, context })
+      });
+      if (!res.ok) throw new Error("Mentor API " + res.status);
+      const data = await res.json();
+      return { text: data.reply || "I'm thinking…" };
+    } catch (err) {
+      return { text: "Mentor is offline. Check backend." };
+    }
+  }
+
+  /* ... rest of your existing quiz.js logic stays unchanged ... */
+</script>
+</head>
+<body>
+  <!-- ✅ Everything else stays exactly the same (your header, progress bar, card, mentor bubble, etc.) -->
+
+  <div class="container">
+    <header>
+      <div class="logo"></div>
+      <div>
+        <h1 id="title">Quiz</h1>
+        <div class="small">Answer carefully. Use the mentor bubble for hints.</div>
+      </div>
+      <div style="flex:1"></div>
+      <div id="xpBox" style="min-width:200px"></div>
+      <div style="min-width:240px">
+        <div class="progress"><div id="progressInner" style="width:0%"></div></div>
+        <div class="small" style="display:flex;justify-content:space-between;margin-top:6px">
+          <span id="counter">0/0</span><span id="score">0 correct</span>
+        </div>
+      </div>
+      <button id="theme" class="icon-btn" title="Toggle theme">🌙</button>
+      <button id="sound" class="icon-btn" title="Toggle sound">🔊</button>
+      <button id="back" class="btn secondary">← Worlds</button>
+    </header>
+
+    <div class="panel" id="card">Loading…</div>
+
+    <div style="height:10px"></div>
+    <div style="display:flex; gap:8px; justify-content:flex-end">
+      <button id="prev" class="btn secondary">← Previous</button>
+      <button id="next" class="btn">Next →</button>
+    </div>
+  </div>
+
+  <!-- Mentor UI -->
+  <button id="fab" class="mentor-fab" title="Ask Rix Mentor">🤖</button>
+  <div id="mentor" class="mentor-panel">
+    <div class="chat" id="chat"></div>
+    <form id="mentorForm" class="panel" style="padding:8px; display:flex; gap:8px">
+      <input id="m_in" class="inline-input" placeholder="Ask the mentor…"/>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </div>
+</body>
+</html>
+

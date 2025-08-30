@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "title": "World 2: Operators & Expressions",
+    "intro": "Master arithmetic, comparison, logical, augmented assignment, bitwise operators, membership/identity tests, expression chaining, and precedence in Python."
+  },
+  "lessons": {
+    "arithmetic": {
+      "title": "Arithmetic operators",
+      "html": "<p>Python supports <code>+ - * / // % **</code>. <code>//</code> is floor division; <code>**</code> is power; <code>%</code> is remainder.</p><pre><code>7/2  # 3.5\n7//2 # 3\n7%2  # 1\n2**3 # 8</code></pre>"
+    },
+    "precedence": {
+      "title": "Operator precedence",
+      "html": "<p>Order (high→low): <code>**</code> → <code>+x -x ~x</code> → <code>* / // %</code> → <code>+ -</code> → <code>&lt;&lt; &gt;&gt;</code> → <code>&amp;</code> → <code>^</code> → <code>|</code> → <code>&lt; &gt; ==</code> → <code>not</code> → <code>and</code> → <code>or</code>. Use parentheses to be explicit.</p>"
+    },
+    "comparison": {
+      "title": "Comparison operators & chaining",
+      "html": "<p>Use <code>&lt; &lt;= &gt; &gt;= == !=</code>. You can chain: <code>a &lt; b &lt; c</code> is equivalent to <code>a&lt;b and b&lt;c</code>.</p>"
+    },
+    "logical": {
+      "title": "Logical operators & truthiness",
+      "html": "<p><code>and</code>, <code>or</code>, <code>not</code>. Falsy values: <code>0</code>, <code>0.0</code>, <code>''</code>, <code>[]</code>, <code>{}</code>, <code>set()</code>, <code>None</code>. Others are truthy.</p><pre><code>not 0   # True\n1 and 2 # 2 (last truthy)</code></pre>"
+    },
+    "short_circuit": {
+      "title": "Short-circuit evaluation",
+      "html": "<p><code>and</code>/<code>or</code> stop early. <code>a and b</code> returns <em>first falsy</em> or last value; <code>a or b</code> returns <em>first truthy</em> or last value.</p><pre><code>'' or 'hi'   # 'hi'\n0 and 99     # 0</code></pre>"
+    },
+    "assignment": {
+      "title": "Assignment & multiple assignment",
+      "html": "<p>Use <code>=</code>. Multiple assignment unpacks from iterables.</p><pre><code>x = 1\na,b = 2,3\nx,y = y,x  # swap</code></pre>"
+    },
+    "augmented": {
+      "title": "Augmented assignment",
+      "html": "<p>Shorthand updates: <code>+= -= *= /= //= %= **=</code> etc.</p><pre><code>x = 3\nx += 2  # 5</code></pre>"
+    },
+    "membership": {
+      "title": "Membership: in / not in",
+      "html": "<p>Check containment in sequences, sets, dict keys.</p><pre><code>'a' in 'cat'   # True\n2 in {1,2,3}   # True\n'k' in {'k':1} # True (keys)</code></pre>"
+    },
+    "identity": {
+      "title": "Identity: is / is not",
+      "html": "<p><code>is</code> checks object identity (same object), not equality. Use <code>==</code> for value equality.</p><pre><code>a = [1]; b = [1]\na == b  # True\na is b  # False</code></pre>"
+    },
+    "bitwise": {
+      "title": "Bitwise operators",
+      "html": "<p>Operate on integer bits: <code>&amp;</code> AND, <code>|</code> OR, <code>^</code> XOR, <code>~</code> NOT, <code>&lt;&lt; &gt;&gt;</code> shifts.</p><pre><code>5 & 3  # 1\n5 | 2  # 7\n5 ^ 1  # 4\n5 << 1 # 10</code></pre>"
+    },
+    "shift": {
+      "title": "Bit shifts",
+      "html": "<p><code>n &lt;&lt; k</code> multiplies by 2^k; <code>n &gt;&gt; k</code> floors divide by 2^k (for non-negative n).</p><pre><code>3<<2  # 12\n13>>2 # 3</code></pre>"
+    },
+    "rounding": {
+      "title": "Rounding & division modes",
+      "html": "<p><code>/</code> true division returns float; <code>//</code> floor division; <code>round(x,n)</code> rounds to n digits (banker's rounding).</p>"
+    },
+    "numeric_types": {
+      "title": "Numeric types",
+      "html": "<p>Python has <code>int</code>, <code>float</code>, <code>complex</code>. Mixed-type arithmetic upcasts.</p>"
+    },
+    "ternary": {
+      "title": "Conditional expression",
+      "html": "<p>Use <code>X if cond else Y</code> to choose a value inline.</p><pre><code>size = 'big' if n>10 else 'small'</code></pre>"
+    },
+    "unary": {
+      "title": "Unary operators",
+      "html": "<p><code>+x</code> identity, <code>-x</code> negation, <code>~x</code> bitwise NOT.</p>"
+    }
+  },
+  "questions": {
+    "simple": [
+      { "id": "w2-s-01", "type": "mcq", "topic": "arithmetic", "question": "Result of 7/2 ?", "options": ["3", "3.5", "4"], "answer": "3.5", "feedback": { "correct": "✅ '/' is true division → 3.5.", "wrong": "❌ '/' returns float; use '//' for floor." } },
+      { "id": "w2-s-02", "type": "mcq", "topic": "arithmetic", "question": "Result of 7//2 ?", "options": ["3", "3.5", "4"], "answer": "3", "feedback": { "correct": "✅ '//' floors to 3.", "wrong": "❌ Floor division truncates toward -∞." } },
+      { "id": "w2-s-03", "type": "fill", "topic": "arithmetic", "question": "Remainder of 17 % 4:", "answer": "1", "feedback": { "correct": "✅ 17 = 4*4 + 1.", "wrong": "❌ Compute 4*4=16; remainder 1." } },
+      { "id": "w2-s-04", "type": "mcq", "topic": "arithmetic", "question": "2 ** 5 equals:", "options": ["7", "32", "25"], "answer": "32", "feedback": { "correct": "✅ ** is exponentiation.", "wrong": "❌ It's power, not XOR." } },
+      { "id": "w2-s-05", "type": "truefalse", "topic": "comparison", "question": "3 == 3.0 evaluates to True.", "answer": "True", "feedback": { "correct": "✅ Values equal though types differ.", "wrong": "❌ Equality compares value, not type." } },
+      { "id": "w2-s-06", "type": "truefalse", "topic": "identity", "question": "3 is 3.0 evaluates to True.", "answer": "False", "feedback": { "correct": "✅ Different objects/types.", "wrong": "❌ 'is' checks identity, not value." } },
+      { "id": "w2-s-07", "type": "mcq", "topic": "logical", "question": "not False is:", "options": ["True","False"], "answer": "True", "feedback": { "correct": "✅ 'not' negates.", "wrong": "❌ Flip the boolean." } },
+      { "id": "w2-s-08", "type": "mcq", "topic": "logical", "question": "True and 0 evaluates to:", "options": ["True","0","False"], "answer": "0", "feedback": { "correct": "✅ 'and' returns first falsy or last value.", "wrong": "❌ It returns the value 0." } },
+      { "id": "w2-s-09", "type": "mcq", "topic": "logical", "question": "'' or 'hi' evaluates to:", "options": ["''","'hi'","None"], "answer": "'hi'", "feedback": { "correct": "✅ 'or' returns first truthy.", "wrong": "❌ Empty string is falsy." } },
+      { "id": "w2-s-10", "type": "truefalse", "topic": "membership", "question": "'x' in {'x': 1} is True.", "answer": "True", "feedback": { "correct": "✅ 'in' checks keys in dict.", "wrong": "❌ Membership on dict → keys." } },
+      { "id": "w2-s-11", "type": "mcq", "topic": "membership", "question": "2 in [1,2,3] returns:", "options": ["True","False"], "answer": "True", "feedback": { "correct": "✅ 2 is in the list.", "wrong": "❌ Check the elements." } },
+      { "id": "w2-s-12", "type": "truefalse", "topic": "identity", "question": "None is None is True.", "answer": "True", "feedback": { "correct": "✅ Singleton identity holds.", "wrong": "❌ None is a single shared object." } },
+      { "id": "w2-s-13", "type": "mcq", "topic": "comparison", "question": "Which is valid comparison chaining?", "options": ["a < b < c", "a < b > < c", "a < > b < c"], "answer": "a < b < c", "feedback": { "correct": "✅ Python supports chaining.", "wrong": "❌ The others are invalid." } },
+      { "id": "w2-s-14", "type": "fill", "topic": "augmented", "question": "Increase x by 3 (shorthand):", "answer": "x += 3", "feedback": { "correct": "✅ Augmented assignment.", "wrong": "❌ Use x += 3." } },
+      { "id": "w2-s-15", "type": "fill", "topic": "assignment", "question": "Swap x and y in one statement:", "answer": "x, y = y, x", "feedback": { "correct": "✅ Tuple unpacking swap.", "wrong": "❌ Use x, y = y, x." } },
+      { "id": "w2-s-16", "type": "mcq", "topic": "bitwise", "question": "5 & 3 equals:", "options": ["1","7","6"], "answer": "1", "feedback": { "correct": "✅ 0101 & 0011 → 0001.", "wrong": "❌ Compute bitwise AND." } },
+      { "id": "w2-s-17", "type": "mcq", "topic": "bitwise", "question": "5 | 2 equals:", "options": ["7","3","4"], "answer": "7", "feedback": { "correct": "✅ 0101 | 0010 → 0111.", "wrong": "❌ That's OR, not AND." } },
+      { "id": "w2-s-18", "type": "mcq", "topic": "bitwise", "question": "5 ^ 1 equals:", "options": ["4","6","0"], "answer": "4", "feedback": { "correct": "✅ XOR flips differing bits.", "wrong": "❌ 0101 ^ 0001 → 0100." } },
+      { "id": "w2-s-19", "type": "fill", "topic": "shift", "question": "3 << 2 equals:", "answer": "12", "feedback": { "correct": "✅ 3 * 2^2 = 12.", "wrong": "❌ Left shift multiplies by 2^k." } },
+      { "id": "w2-s-20", "type": "fill", "topic": "shift", "question": "13 >> 1 equals:", "answer": "6", "feedback": { "correct": "✅ Floor divide by 2 → 6.", "wrong": "❌ 13 // 2 = 6." } },
+      { "id": "w2-s-21", "type": "truefalse", "topic": "precedence", "question": "Exponentiation has higher precedence than multiplication.", "answer": "True", "feedback": { "correct": "✅ ** binds tighter than *.", "wrong": "❌ ** happens before *." } },
+      { "id": "w2-s-22", "type": "mcq", "topic": "precedence", "question": "7 + 3 * 2 evaluates to:", "options": ["20","13","17"], "answer": "13", "feedback": { "correct": "✅ * before + → 7 + 6.", "wrong": "❌ Respect precedence." } },
+      { "id": "w2-s-23", "type": "truefalse", "topic": "unary", "question": "~1 equals -2.", "answer": "True", "feedback": { "correct": "✅ Bitwise ~n = -(n+1).", "wrong": "❌ It's bitwise NOT, not arithmetic negation." } },
+      { "id": "w2-s-24", "type": "mcq", "topic": "ternary", "question": "Choose 'big' if n>10 else 'small':", "options": ["n>10 ? 'big' : 'small'", "'big' if n>10 else 'small'", "if n>10 then 'big' else 'small'"], "answer": "'big' if n>10 else 'small'", "feedback": { "correct": "✅ Python's conditional expression.", "wrong": "❌ That's other-language syntax." } },
+      { "id": "w2-s-25", "type": "fill", "topic": "rounding", "question": "round(2.675, 2) equals:", "answer": "2.67", "feedback": { "correct": "✅ Banker's rounding + binary float.", "wrong": "❌ Python rounds to even; 2.675 not exact in binary." } }
+    ],
+    "medium": [
+      { "id": "w2-m-01", "type": "mcq", "topic": "precedence", "question": "Select the expression that forces addition before multiplication:", "options": ["7 + 3 * 2", "(7 + 3) * 2", "7 + (3 * 2)"], "answer": "(7 + 3) * 2", "feedback": { "correct": "✅ Parentheses override precedence.", "wrong": "❌ Use () to change order." } },
+      { "id": "w2-m-02", "type": "fill", "topic": "comparison", "question": "Write a chained comparison to test 0 < x < 10:", "answer": "0 < x < 10", "feedback": { "correct": "✅ Native chaining.", "wrong": "❌ Don't write 0<x and x<10 separately." } },
+      { "id": "w2-m-03", "type": "mcq", "topic": "short_circuit", "question": "Which call will NOT evaluate the right side?", "options": ["True or f()", "False and f()", "True and f()"], "answer": "True or f()", "feedback": { "correct": "✅ 'or' stops at True.", "wrong": "❌ Think: first truthy wins." } },
+      { "id": "w2-m-04", "type": "mcq", "topic": "short_circuit", "question": "Which returns the right operand?", "options": ["0 or 7", "1 and 5", "'' and 9"], "answer": "1 and 5", "feedback": { "correct": "✅ and returns last value when all truthy.", "wrong": "❌ Check truthiness." } },
+      { "id": "w2-m-05", "type": "fill", "topic": "augmented", "question": "Replace x = x * 4 with shorthand:", "answer": "x *= 4", "feedback": { "correct": "✅ Augmented assignment.", "wrong": "❌ Use *=." } },
+      { "id": "w2-m-06", "type": "truefalse", "topic": "identity", "question": "Use 'is' to compare to None.", "answer": "True", "feedback": { "correct": "✅ PEP 8 recommends 'is None'.", "wrong": "❌ Prefer 'is None' over '== None'." } },
+      { "id": "w2-m-07", "type": "fill", "topic": "membership", "question": "Test key 'k' exists in dict d:", "answer": "'k' in d", "feedback": { "correct": "✅ 'in' checks keys.", "wrong": "❌ Use 'in' on dict." } },
+      { "id": "w2-m-08", "type": "mcq", "topic": "bitwise", "question": "Which clears the lowest set bit of n?", "options": ["n & (n-1)", "n | 1", "n ^ 1"], "answer": "n & (n-1)", "feedback": { "correct": "✅ Classic bit trick.", "wrong": "❌ Only n&(n-1) clears LSB." } },
+      { "id": "w2-m-09", "type": "fill", "topic": "shift", "question": "Multiply n by 8 using shift:", "answer": "n << 3", "feedback": { "correct": "✅ 2^3 = 8.", "wrong": "❌ Left shift by 3." } },
+      { "id": "w2-m-10", "type": "mcq", "topic": "arithmetic", "question": "Which gives a float?", "options": ["7/2", "7//2", "7%2"], "answer": "7/2", "feedback": { "correct": "✅ '/' returns float.", "wrong": "❌ // and % return ints (for ints)." } },
+      { "id": "w2-m-11", "type": "debug", "topic": "comparison", "question": "Bug? a = 1; if a is 1: ...", "options": ["Fine", "Use == for numbers", "Use ==="], "answer": "Use == for numbers", "feedback": { "correct": "✅ 'is' checks identity; use '==' for numeric equality.", "wrong": "❌ Don't rely on interning." } },
+      { "id": "w2-m-12", "type": "fill", "topic": "precedence", "question": "Add parentheses so sum happens first: 5 + 2 * 10 → 70", "answer": "(5 + 2) * 10", "feedback": { "correct": "✅ () forces order.", "wrong": "❌ Put 5+2 in parentheses." } },
+      { "id": "w2-m-13", "type": "truefalse", "topic": "numeric_types", "question": "1 + 2.5 results in a float.", "answer": "True", "feedback": { "correct": "✅ Upcasts to float.", "wrong": "❌ Mixed arithmetic → float." } },
+      { "id": "w2-m-14", "type": "mcq", "topic": "unary", "question": "Which is bitwise NOT of x?", "options": ["-x", "~x", "not x"], "answer": "~x", "feedback": { "correct": "✅ ~ flips bits.", "wrong": "❌ -x negates; not x is boolean." } },
+      { "id": "w2-m-15", "type": "mcq", "topic": "ternary", "question": "Pick the correct Python ternary syntax:", "options": ["cond ? A : B", "A if cond else B", "if cond then A else B"], "answer": "A if cond else B", "feedback": { "correct": "✅ That's Python.", "wrong": "❌ Others are from C/JS or pseudocode." } }
+    ],
+    "hard": [
+      { "id": "w2-h-01", "type": "puzzle", "topic": "short_circuit", "question": "Order to safely call f only if obj is not None:", "choices": ["obj is not None and", "obj.f()"], "answer": ["obj is not None and", "obj.f()"], "feedback": { "correct": "✅ Short-circuit guards the call.", "wrong": "❌ Call only after the check." } },
+      { "id": "w2-h-02", "type": "puzzle", "topic": "comparison", "question": "Build a chained comparison for a<b<c<=d:", "choices": ["a < b", "<= d", "< c"], "answer": ["a < b", "< c", "<= d"], "feedback": { "correct": "✅ a < b < c <= d", "wrong": "❌ Keep order and operators." } },
+      { "id": "w2-h-03", "type": "debug", "topic": "identity", "question": "Why can 'x is 256' be True sometimes and 'x is 257' be False?", "options": ["Optimization/interning", "Bug in Python", "Because 257 is odd"], "answer": "Optimization/interning", "feedback": { "correct": "✅ Small ints may be interned; don't rely on 'is' for numbers.", "wrong": "❌ Use '==' for value." } },
+      { "id": "w2-h-04", "type": "fill", "topic": "bitwise", "question": "Compute mask that sets bit k: (1 shifted left by k)", "answer": "1 << k", "feedback": { "correct": "✅ That's a bit mask.", "wrong": "❌ Use 1 << k." } },
+      { "id": "w2-h-05", "type": "mcq", "topic": "precedence", "question": "Which equals (a+b) * c?", "options": ["a + b * c", "a * c + b", "(a + b) * c"], "answer": "(a + b) * c", "feedback": { "correct": "✅ Parentheses change order.", "wrong": "❌ Respect precedence." } },
+      { "id": "w2-h-06", "type": "fill", "topic": "short_circuit", "question": "Return default 'guest' when name may be '': expression using or", "answer": "name or 'guest'", "feedback": { "correct": "✅ or returns first truthy.", "wrong": "❌ '' is falsy so default applies." } },
+      { "id": "w2-h-07", "type": "mcq", "topic": "logical", "question": "Which expression is always True?", "options": ["x==x", "x is x", "x != x"], "answer": "x==x", "feedback": { "correct": "✅ Reflexive equality.", "wrong": "❌ x is x may fail for some proxies; x!=x only for NaN." } },
+      { "id": "w2-h-08", "type": "fill", "topic": "arithmetic", "question": "Make an integer divide rounding up positive n,m: using //", "answer": "(n + m - 1) // m", "feedback": { "correct": "✅ Classic ceil division for positives.", "wrong": "❌ Add m-1 before //." } },
+      { "id": "w2-h-09", "type": "puzzle", "topic": "augmented", "question": "Order to double x using shorthand then add 3:", "choices": ["x += 3", "x *= 2"], "answer": ["x *= 2", "x += 3"], "feedback": { "correct": "✅ Multiply then add.", "wrong": "❌ Follow the order requested." } },
+      { "id": "w2-h-10", "type": "debug", "topic": "rounding", "question": "Why is round(2.5) == 2?", "options": ["Banker's rounding to even", "Bug in Python", "Always floors"], "answer": "Banker's rounding to even", "feedback": { "correct": "✅ Ties go to even: 2.5 → 2, 3.5 → 4.", "wrong": "❌ It's by design." } }
+    ]
+  }
+}
