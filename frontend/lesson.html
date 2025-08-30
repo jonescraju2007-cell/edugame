@@ -2,58 +2,220 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>EduGame Lesson</title>
+  <title>Lesson</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="js/app.js" defer></script>
+  <style>
+    /* Mentor Bubble Styles */
+    #mentor-fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0077ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+    #mentor-panel {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    #mentor-header {
+      background: #0077ff;
+      color: white;
+      padding: 10px;
+      border-radius: 12px 12px 0 0;
+      font-weight: bold;
+      text-align: center;
+    }
+    #mentor-chat {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+    .mentor-msg { margin: 5px 0; padding: 6px; border-radius: 8px; }
+    .mentor-msg.user { background: #e0f0ff; align-self: flex-end; }
+    .mentor-msg.ai { background: #f0f0f0; align-self: flex-start; }
+    #mentor-input-box {
+      display: flex;
+      padding: 8px;
+      border-top: 1px solid #ddd;
+    }
+    #mentor-input {
+      flex: 1;
+      padding: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    #mentor-send {
+      margin-left: 6px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      background: #0077ff;
+      color: white;
+      cursor: pointer;
+    }
+    .ask-mentor-btn {
+      margin-top: 10px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      background: #ffa500;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body>
+<body class="dark-theme">
   <header>
-    <h1 id="lesson-title">📖 Lesson</h1>
+    <h1 id="lessonTitle">📖 Lesson</h1>
     <nav>
-      <button onclick="goWorlds()">🌍 Worlds</button>
-      <button onclick="toggleTheme()">🌙 Toggle Theme</button>
+      <a href="index.html">🌍 Worlds</a>
+      <button id="toggleThemeBtn">🌙 Toggle Theme</button>
     </nav>
   </header>
 
   <main>
-    <section id="lesson-content">
+    <section id="lessonContent">
       <p>Loading lesson...</p>
     </section>
-    <button id="quiz-btn" onclick="startQuiz()">Start Quiz</button>
+    <div style="margin-top:20px; text-align:center;">
+      <button id="startQuizBtn">Start Quiz 📝</button>
+    </div>
   </main>
 
-  <script>
+  <!-- Mentor Chat Bubble -->
+  <button id="mentor-fab">🤖</button>
+  <div id="mentor-panel">
+    <div id="mentor-header">Rix Mentor</div>
+    <div id="mentor-chat"></div>
+    <div id="mentor-input-box">
+      <input id="mentor-input" placeholder="Ask me anything…" />
+      <button id="mentor-send">Send</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { BACKEND_URL } from "./js/config.js";
+
+    const params = new URLSearchParams(window.location.search);
+    const worldNum = params.get("world") || localStorage.getItem("currentWorld") || 1;
+
     async function loadLesson() {
-      const worldFile = localStorage.getItem("currentWorld") || "world1.json";
-      const res = await fetch(`./worlds/${worldFile}`);
-      const data = await res.json();
+      try {
+        const res = await fetch(`worlds/world${worldNum}.json`);
+        if (!res.ok) throw new Error("Lesson not found");
+        const data = await res.json();
 
-      document.getElementById("lesson-title").innerText = data.meta.title;
+        document.getElementById("lessonTitle").innerText = data.meta.title;
 
-      const container = document.getElementById("lesson-content");
-      container.innerHTML = "";
+        const lessonContent = document.getElementById("lessonContent");
+        lessonContent.innerHTML = `<p><strong>Intro:</strong> ${data.meta.intro}</p>`;
 
-      for (let key in data.lessons) {
-        const lesson = data.lessons[key];
-        const div = document.createElement("div");
-        div.classList.add("lesson-card");
-        div.innerHTML = `<h3>${lesson.title}</h3>${lesson.html}`;
-        container.appendChild(div);
+        Object.keys(data.lessons).forEach(key => {
+          const lesson = data.lessons[key];
+          const div = document.createElement("div");
+          div.className = "lesson-card";
+          div.innerHTML = `
+            <h3>${lesson.title}</h3>
+            ${lesson.html}
+            <button class="ask-mentor-btn" onclick="askMentorTopic('${lesson.title}')">💡 Ask Mentor</button>
+          `;
+          lessonContent.appendChild(div);
+        });
+
+        document.getElementById("startQuizBtn").onclick = () => {
+          window.location.href = `quiz.html?world=${worldNum}`;
+        };
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById("lessonContent").innerHTML =
+          `<p style="color:red;">⚠ Failed to load lesson content.</p>`;
       }
     }
 
-    function startQuiz() {
-      window.location.href = "quiz.html";
-    }
-
-    function goWorlds() {
-      window.location.href = "index.html";
-    }
-
-    function toggleTheme() {
-      document.body.classList.toggle("dark");
-    }
-
     loadLesson();
+
+    // -------- Mentor AI Logic --------
+    const fab = document.getElementById("mentor-fab");
+    const panel = document.getElementById("mentor-panel");
+    const chat = document.getElementById("mentor-chat");
+    const input = document.getElementById("mentor-input");
+    const sendBtn = document.getElementById("mentor-send");
+
+    fab.addEventListener("click", () => {
+      panel.style.display = panel.style.display === "flex" ? "none" : "flex";
+      panel.style.flexDirection = "column";
+    });
+
+    async function sendMessage(text) {
+      if (!text) return;
+      addMessage("user", text);
+
+      try {
+        const res = await fetch(`${BACKEND_URL}/mentor`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: text }),
+        });
+
+        const data = await res.json();
+        addMessage("ai", data.reply || "⚠️ Mentor is offline.");
+      } catch (err) {
+        console.error(err);
+        addMessage("ai", "⚠️ Mentor request failed.");
+      }
+    }
+
+    sendBtn.addEventListener("click", () => {
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = "";
+      sendMessage(text);
+    });
+
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        const text = input.value.trim();
+        if (!text) return;
+        input.value = "";
+        sendMessage(text);
+      }
+    });
+
+    function addMessage(role, text) {
+      const msg = document.createElement("div");
+      msg.className = `mentor-msg ${role}`;
+      msg.textContent = text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    // -------- Auto-mentor help for each lesson --------
+    window.askMentorTopic = function(title) {
+      sendMessage(`Explain the lesson topic: "${title}" with an example.`);
+      if (panel.style.display !== "flex") {
+        panel.style.display = "flex";
+        panel.style.flexDirection = "column";
+      }
+    };
   </script>
 </body>
 </html>
