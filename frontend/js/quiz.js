@@ -1,3 +1,7 @@
+// quiz.js
+import { BACKEND_URL } from "./config.js";
+import { askMentor } from "./mentor.js";
+
 let questions = [];
 let current = 0;
 
@@ -18,8 +22,10 @@ function showQuestion() {
 
   container.innerHTML = `
     <p>${q.question}</p>
-    ${q.options.map((opt, i) => 
+    ${q.options.map((opt) => 
       `<button onclick="checkAnswer('${opt}')">${opt}</button>`).join("")}
+    <br><br>
+    <button onclick="openMentor('${q.question}')">Ask Mentor 🤖</button>
   `;
 }
 
@@ -41,6 +47,17 @@ function prevQuestion() {
     showQuestion();
   }
 }
+
+async function openMentor(qText) {
+  const context = { question: qText, world: "quiz" };
+  await askMentor(`Explain this: ${qText}`, context);
+}
+
+window.loadWorld = loadWorld;
+window.nextQuestion = nextQuestion;
+window.prevQuestion = prevQuestion;
+window.checkAnswer = checkAnswer;
+window.openMentor = openMentor;
 
 loadWorld();
 

@@ -1,81 +1,136 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Quiz • Rix EduGame</title>
-  <link rel="stylesheet" href="styles.css"/>
- <script type="module">
-  import { BACKEND_URL } from './js/config.js';
-  import {
-    getParam, loadWorld, qs, qsa, clamp,
-    markQuizDone, confettiBurst, toast, blip,
-    applyTheme, toggleTheme, loadTheme,
-    saveAttempt, getAttempt, loadProgress, toggleMute, isMuted, calcLevel
-  } from './app.js';
-
-  let state = { wid:'w1', world:null, deck:[], i:0, correct:0, answers:{} };
-
-  // Updated mentor function uses BACKEND_URL from config.js
-  async function askMentor(question, context) {
-    try {
-      const res = await fetch(`${BACKEND_URL}/mentor`, {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ question, context })
-      });
-      if (!res.ok) throw new Error("Mentor API " + res.status);
-      const data = await res.json();
-      return { text: data.reply || "I'm thinking…" };
-    } catch (err) {
-      return { text: "Mentor is offline. Check backend." };
+  <meta charset="UTF-8" />
+  <title>EduGame Quiz</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Mentor Bubble Styles */
+    #mentor-fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0077ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
-  }
-
-  /* ... rest of your existing quiz.js logic stays unchanged ... */
-</script>
+    #mentor-panel {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      display: none;
+      flex-direction: column;
+    }
+    #mentor-header {
+      background: #0077ff;
+      color: white;
+      padding: 10px;
+      border-radius: 12px 12px 0 0;
+      font-weight: bold;
+      text-align: center;
+    }
+    #mentor-chat {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+    .mentor-msg { margin: 5px 0; padding: 6px; border-radius: 8px; }
+    .mentor-msg.user { background: #e0f0ff; align-self: flex-end; }
+    .mentor-msg.ai { background: #f0f0f0; align-self: flex-start; }
+    #mentor-input-box {
+      display: flex;
+      padding: 8px;
+      border-top: 1px solid #ddd;
+    }
+    #mentor-input {
+      flex: 1;
+      padding: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    #mentor-send {
+      margin-left: 6px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      background: #0077ff;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <!-- ✅ Everything else stays exactly the same (your header, progress bar, card, mentor bubble, etc.) -->
+  <h2 id="world-title"></h2>
+  <div id="quiz-container"></div>
 
-  <div class="container">
-    <header>
-      <div class="logo"></div>
-      <div>
-        <h1 id="title">Quiz</h1>
-        <div class="small">Answer carefully. Use the mentor bubble for hints.</div>
-      </div>
-      <div style="flex:1"></div>
-      <div id="xpBox" style="min-width:200px"></div>
-      <div style="min-width:240px">
-        <div class="progress"><div id="progressInner" style="width:0%"></div></div>
-        <div class="small" style="display:flex;justify-content:space-between;margin-top:6px">
-          <span id="counter">0/0</span><span id="score">0 correct</span>
-        </div>
-      </div>
-      <button id="theme" class="icon-btn" title="Toggle theme">🌙</button>
-      <button id="sound" class="icon-btn" title="Toggle sound">🔊</button>
-      <button id="back" class="btn secondary">← Worlds</button>
-    </header>
+  <button onclick="prevQuestion()">Previous</button>
+  <button onclick="nextQuestion()">Next</button>
 
-    <div class="panel" id="card">Loading…</div>
-
-    <div style="height:10px"></div>
-    <div style="display:flex; gap:8px; justify-content:flex-end">
-      <button id="prev" class="btn secondary">← Previous</button>
-      <button id="next" class="btn">Next →</button>
+  <!-- Mentor Chat Bubble -->
+  <button id="mentor-fab">🤖</button>
+  <div id="mentor-panel">
+    <div id="mentor-header">Rix Mentor</div>
+    <div id="mentor-chat"></div>
+    <div id="mentor-input-box">
+      <input id="mentor-input" placeholder="Ask me anything…" />
+      <button id="mentor-send">Send</button>
     </div>
   </div>
 
-  <!-- Mentor UI -->
-  <button id="fab" class="mentor-fab" title="Ask Rix Mentor">🤖</button>
-  <div id="mentor" class="mentor-panel">
-    <div class="chat" id="chat"></div>
-    <form id="mentorForm" class="panel" style="padding:8px; display:flex; gap:8px">
-      <input id="m_in" class="inline-input" placeholder="Ask the mentor…"/>
-      <button class="btn" type="submit">Send</button>
-    </form>
-  </div>
+  <!-- Use ES modules -->
+  <script type="module" src="js/quiz.js"></script>
+  <script type="module">
+    import { askMentor } from "./js/mentor.js";
+
+    const fab = document.getElementById("mentor-fab");
+    const panel = document.getElementById("mentor-panel");
+    const chat = document.getElementById("mentor-chat");
+    const input = document.getElementById("mentor-input");
+    const sendBtn = document.getElementById("mentor-send");
+
+    // Toggle panel
+    fab.addEventListener("click", () => {
+      panel.style.display = panel.style.display === "flex" ? "none" : "flex";
+      panel.style.flexDirection = "column";
+    });
+
+    // Send message
+    async function sendMessage() {
+      const text = input.value.trim();
+      if (!text) return;
+      addMessage("user", text);
+      input.value = "";
+
+      const reply = await askMentor(text, { from: "quiz" });
+      addMessage("ai", reply || "⚠️ Mentor unavailable.");
+    }
+
+    sendBtn.addEventListener("click", sendMessage);
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    // Helper to add chat messages
+    function addMessage(role, text) {
+      const msg = document.createElement("div");
+      msg.className = `mentor-msg ${role}`;
+      msg.textContent = text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
 </body>
 </html>
 
