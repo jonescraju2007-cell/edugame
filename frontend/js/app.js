@@ -1,6 +1,6 @@
 // app.js - Worlds page
 
-const TOTAL_WORLDS = 1; // update later when you add more
+const TOTAL_WORLDS = 7; // update later when you add more
 
 async function loadWorlds() {
   const container = document.getElementById("worlds-container");
