@@ -1,58 +1,107 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f5f5f5;
-  color: #222;
+/* Lesson Cards */
+.lesson-container {
+  padding: 2rem;
 }
-body.dark {
-  background: #121212;
-  color: #eee;
-}
-.navbar {
-  background: #0077cc;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-}
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
-}
-.footer {
-  text-align: center;
-  padding: 10px;
-  font-size: 0.9em;
-  color: #555;
-}
-.world-card, .lesson-card, .question-card {
+.lesson-card {
   background: white;
+  border-radius: 16px;
+  margin: 15px 0;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.lesson-card h2 {
+  margin-top: 0;
+}
+.lesson-card pre {
+  background: #222;
+  color: #eee;
+  padding: 10px;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+/* Quiz Cards */
+.quiz-container {
+  padding: 2rem;
+}
+.quiz-card {
+  background: white;
+  border-radius: 16px;
   padding: 20px;
   margin: 15px 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
-body.dark .world-card,
-body.dark .lesson-card,
-body.dark .question-card {
-  background: #1e1e1e;
+.quiz-card h3 {
+  margin-top: 0;
 }
-button {
-  cursor: pointer;
-  padding: 8px 12px;
-  margin: 5px;
+.quiz-options button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
   border: none;
-  border-radius: 5px;
-  background: #0077cc;
+  border-radius: 10px;
+  background: #00c853;
   color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
-button:hover {
-  background: #005fa3;
+.quiz-options button:hover {
+  background: #009624;
 }
-.nav-buttons {
+
+/* Mentor Popup */
+.mentor-popup {
+  display: none;
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  flex-direction: column;
+}
+.mentor-header {
+  background: #00c853;
+  color: white;
+  padding: 10px;
+  border-radius: 12px 12px 0 0;
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
+  align-items: center;
+}
+.mentor-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+.mentor-input {
+  display: flex;
+}
+.mentor-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+.mentor-input button {
+  background: #00c853;
+  border: none;
+  padding: 8px;
+  color: white;
+  cursor: pointer;
+}
+.mentor-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #00c853;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
 }
 

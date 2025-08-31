@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EduGame Lessons</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson - Python Adventure</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="navbar">
-    <h1 id="lesson-title">📘 Lesson</h1>
-    <a href="index.html">⬅ Back</a>
+  <header>
+    <h1>📘 Lesson</h1>
     <button id="toggle-theme">🌙</button>
   </header>
 
-  <main class="container">
-    <section id="lesson-intro"></section>
-    <section id="lesson-content"></section>
+  <main id="lesson-container" class="lesson-container">
+    <p>Loading lesson...</p>
   </main>
 
-  <footer class="footer">
-    <p>EduGame © 2025</p>
+  <footer>
+    <button onclick="window.history.back()">⬅️ Back</button>
   </footer>
 
-  <script src="js/lesson.js"></script>
+  <!-- Mentor Popup -->
+  <div id="mentor-chat" class="mentor-popup">
+    <div class="mentor-header">🤖 Rix Mentor <span id="close-mentor">✖️</span></div>
+    <div id="mentor-messages" class="mentor-messages"></div>
+    <div class="mentor-input">
+      <input type="text" id="mentor-question" placeholder="Ask me anything...">
+      <button id="mentor-send">Send</button>
+    </div>
+  </div>
+  <button id="mentor-toggle" class="mentor-toggle">💬</button>
+
+  <script src="lesson.js"></script>
+  <script src="mentor.js"></script>
 </body>
 </html>
 

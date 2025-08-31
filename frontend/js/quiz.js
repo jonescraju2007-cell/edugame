@@ -1,100 +1,121 @@
-// quiz.js - Load quizzes from worldXquiz.json
-
-let questions = [];
+// quiz.js
+let quizzes = [];
 let currentIndex = 0;
-let currentPuzzle = null;
 
 async function loadQuiz() {
+  const container = document.getElementById("quiz-container");
+  container.innerHTML = "<p>Loading quiz...</p>";
+
   const params = new URLSearchParams(window.location.search);
-  const worldId = params.get("world") || "1";
+  const world = params.get("world") || "1";
 
   try {
-    const res = await fetch(`worlds/world${worldId}quiz.json`);
-    if (!res.ok) throw new Error("Quiz file not found");
-
-    const data = await res.json();
-    document.getElementById("quiz-title").innerText = data.meta.title;
-
-    Object.keys(data.quizzes).forEach(k => {
-      if (k === "puzzle") currentPuzzle = data.quizzes.puzzle;
-      else if (Array.isArray(data.quizzes[k])) questions.push(...data.quizzes[k]);
-    });
-
-    if (questions.length === 0) {
-      document.getElementById("quiz-container").innerHTML = "<p>No quiz available.</p>";
+    const res = await fetch(`worlds/world${world}quiz.json`);
+    if (!res.ok) {
+      container.innerHTML = "<p>⚠️ Quiz not found.</p>";
       return;
     }
-    renderQuestion();
+
+    const data = await res.json();
+
+    // Flatten quizzes (so all sections appear in one list)
+    quizzes = [];
+    Object.keys(data.quizzes).forEach(section => {
+      if (Array.isArray(data.quizzes[section])) {
+        quizzes.push(...data.quizzes[section]);
+      } else {
+        quizzes.push(data.quizzes[section]);
+      }
+    });
+
+    currentIndex = 0;
+    renderQuiz();
   } catch (err) {
-    document.getElementById("quiz-container").innerHTML = `<p>⚠️ ${err.message}</p>`;
+    console.error(err);
+    container.innerHTML = "<p>⚠️ Error loading quiz.</p>";
   }
 }
 
-function renderQuestion() {
-  const q = questions[currentIndex];
-  let optionsHtml = "";
+function renderQuiz() {
+  const container = document.getElementById("quiz-container");
+  container.innerHTML = "";
 
-  if (q.type === "mcq") {
-    optionsHtml = q.options.map(opt =>
-      `<button onclick="checkAnswer('${opt}','${q.answer}')">${opt}</button>`
-    ).join("");
+  if (currentIndex < 0) currentIndex = 0;
+  if (currentIndex >= quizzes.length) currentIndex = quizzes.length - 1;
+
+  const q = quizzes[currentIndex];
+  const card = document.createElement("div");
+  card.className = "quiz-card";
+
+  card.innerHTML = `<h3>Q${currentIndex + 1}: ${q.question}</h3>`;
+
+  if (q.type === "mcq" && q.options) {
+    const optionsDiv = document.createElement("div");
+    optionsDiv.className = "quiz-options";
+    q.options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.onclick = () => checkAnswer(q, opt);
+      optionsDiv.appendChild(btn);
+    });
+    card.appendChild(optionsDiv);
   } else if (q.type === "truefalse") {
-    optionsHtml = `
-      <button onclick="checkAnswer('True','${q.answer}')">True</button>
-      <button onclick="checkAnswer('False','${q.answer}')">False</button>
-    `;
+    const optionsDiv = document.createElement("div");
+    optionsDiv.className = "quiz-options";
+    ["True", "False"].forEach(opt => {
+      const btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.onclick = () => checkAnswer(q, opt);
+      optionsDiv.appendChild(btn);
+    });
+    card.appendChild(optionsDiv);
   } else if (q.type === "fill") {
-    optionsHtml = `
-      <input type="text" id="fill-answer" placeholder="Type your answer...">
-      <button onclick="checkAnswer(document.getElementById('fill-answer').value,'${q.answer}')">Submit</button>
-    `;
+    const input = document.createElement("input");
+    input.placeholder = "Type your answer...";
+    const btn = document.createElement("button");
+    btn.textContent = "Submit";
+    btn.onclick = () => checkAnswer(q, input.value.trim());
+    card.appendChild(input);
+    card.appendChild(btn);
+  } else if (q.type === "puzzle") {
+    card.innerHTML += `<p>${q.description}</p><pre>${q.broken_code}</pre>`;
+    const btn = document.createElement("button");
+    btn.textContent = "Show Solution";
+    btn.onclick = () => {
+      card.innerHTML += `<pre><strong>Solution:</strong>\n${q.solution}</pre>`;
+    };
+    card.appendChild(btn);
   }
 
-  document.getElementById("quiz-container").innerHTML = `
-    <div class="question-card">
-      <h3>Q${currentIndex + 1}: ${q.question}</h3>
-      <div class="options">${optionsHtml}</div>
-      <p id="feedback"></p>
-    </div>
-  `;
+  container.appendChild(card);
 }
 
-function checkAnswer(selected, correct) {
-  const fb = document.getElementById("feedback");
-  if (selected.trim().toLowerCase() === correct.trim().toLowerCase()) {
-    fb.innerHTML = `<span class="correct">✅ Correct!</span>`;
-  } else {
-    fb.innerHTML = `<span class="wrong">❌ Wrong! Correct Answer: ${correct}</span>`;
-  }
+function checkAnswer(q, answer) {
+  const correct = q.answer.toString().toLowerCase() === answer.toString().toLowerCase();
+  alert(correct ? "✅ Correct!" : `❌ Wrong! Correct answer: ${q.answer}`);
 }
 
+// Navigation
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("prev-btn").addEventListener("click", () => {
-    if (currentIndex > 0) { currentIndex--; renderQuestion(); }
-  });
   document.getElementById("next-btn").addEventListener("click", () => {
-    if (currentIndex < questions.length - 1) { currentIndex++; renderQuestion(); }
-    else if (currentPuzzle) {
-      document.getElementById("quiz-container").innerHTML = `
-        <div class="question-card">
-          <h3>🧩 Puzzle: ${currentPuzzle.title}</h3>
-          <p>${currentPuzzle.description}</p>
-          <pre><code>${currentPuzzle.broken_code}</code></pre>
-          <details><summary>Show Solution</summary><pre><code>${currentPuzzle.solution}</code></pre></details>
-        </div>
-      `;
-    }
+    currentIndex++;
+    renderQuiz();
   });
-  document.getElementById("show-answer-btn").addEventListener("click", () => {
-    const q = questions[currentIndex];
-    document.getElementById("feedback").innerHTML = `💡 Correct Answer: ${q.answer}`;
+  document.getElementById("prev-btn").addEventListener("click", () => {
+    currentIndex--;
+    renderQuiz();
+  });
+  document.getElementById("show-answer").addEventListener("click", () => {
+    const q = quizzes[currentIndex];
+    alert(`💡 Correct answer: ${q.answer || "See puzzle solution"}`);
   });
 
-  if (localStorage.getItem("theme") === "dark") document.body.classList.add("dark");
-  document.getElementById("toggle-theme").addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-  });
+  const themeBtn = document.getElementById("toggle-theme");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+  }
 
   loadQuiz();
 });

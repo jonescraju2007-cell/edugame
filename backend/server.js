@@ -1,94 +1,72 @@
+// server.js
 import express from "express";
-import cors from "cors";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import fetch from "node-fetch";
 import dotenv from "dotenv";
-import OpenAI from "openai";
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Middlewares
-app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 
-// OpenAI setup
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+// Context map for each world
+const worldContexts = {
+  "1": "Python Basics: structure, print(), variables, input(), comments, type casting",
+  "2": "Operators and Expressions: arithmetic, comparison, logical operators, precedence",
+  "3": "Control Flow: if, elif, else, for loops, while loops, break, continue",
+  "4": "Data Structures I: strings, lists, tuples, sets, dictionaries",
+  "5": "Functions & Modules: defining functions, parameters, return, scope, importing modules",
+  "6": "Advanced Data Handling: file handling, exceptions, list comprehensions, lambdas",
+  "7": "OOP & Beyond: classes, objects, inheritance, encapsulation, polymorphism"
+};
 
-// ✅ Serve static world files
-app.get("/api/world/:id", (req, res) => {
-  const filePath = path.join(__dirname, "public", "worlds", `world${req.params.id}.json`);
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ error: "World not found" });
-  }
-  res.sendFile(filePath);
-});
-
-// ✅ AI Mentor Chat
+// Mentor API endpoint
 app.post("/api/mentor", async (req, res) => {
-  try {
-    const { question } = req.body;
-    if (!question) return res.status(400).json({ error: "No question provided" });
+  const { question, world } = req.body;
+  const context = worldContexts[world] || "General Python programming";
 
-    const response = await client.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        { role: "system", content: "You are an AI mentor helping with Python learning." },
-        { role: "user", content: question }
-      ],
-      max_tokens: 200
+  try {
+    const response = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4.1-mini",
+        input: [
+          {
+            role: "system",
+            content: `You are Rix Mentor, a friendly Python tutor. The learner is currently studying: ${context}. 
+Keep answers simple, under 120 words, and structured with:
+1. Hint (short guiding clue),
+2. Explanation (clear beginner-friendly),
+3. Example (tiny code snippet if relevant).`
+          },
+          { role: "user", content: question }
+        ]
+      })
     });
 
-    const answer = response.choices[0].message.content;
-    res.json({ reply: answer });
+    const data = await response.json();
+
+    const text = data.output?.[0]?.content?.[0]?.text || "Sorry, no response.";
+
+    // Extract simple structure
+    const exampleMatch = text.match(/```([\s\S]*?)```/);
+    res.json({
+      hint: text.split("\n")[0] || "Think carefully.",
+      explanation: text,
+      example: exampleMatch ? exampleMatch[1] : null
+    });
   } catch (err) {
-    console.error("Mentor error:", err);
+    console.error("Mentor API error:", err);
     res.status(500).json({ error: "Mentor unavailable" });
   }
 });
 
-// ✅ AI-generated Question (Practice More)
-app.post("/api/generate-question", async (req, res) => {
-  try {
-    const { topic, difficulty } = req.body;
-
-    const response = await client.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content: `Generate 1 Python question for topic "${topic}" at ${difficulty} level. 
-          Return strict JSON with fields: 
-          { "type":"mcq|truefalse|fill", "question":string, "options":string[]|null, "answer":string, "feedback":{ "correct":string, "wrong":string } }`
-        }
-      ],
-      max_tokens: 300
-    });
-
-    const text = response.choices[0].message.content;
-
-    let questionJson;
-    try {
-      questionJson = JSON.parse(text);
-    } catch {
-      return res.status(500).json({ error: "Invalid JSON from AI", raw: text });
-    }
-
-    res.json(questionJson);
-  } catch (err) {
-    console.error("Generate-question error:", err);
-    res.status(500).json({ error: "Could not generate question" });
-  }
-});
-
-// Start server
 app.listen(PORT, () => {
-  console.log(`🚀 EduGame backend running at http://localhost:${PORT}`);
+  console.log(`Rix running at http://localhost:${PORT}`);
 });
 
