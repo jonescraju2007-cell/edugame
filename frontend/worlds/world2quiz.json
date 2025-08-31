@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "title": "World 2: Operators & Expressions - Quiz",
+    "intro": "Test your knowledge of arithmetic, comparison, and logical operators."
+  },
+  "quizzes": {
+    "arithmetic": [
+      { "type": "mcq", "question": "What is 7 % 3?", "options": ["1", "2", "3"], "answer": "1" },
+      { "type": "truefalse", "question": "2 ** 4 equals 8.", "answer": "False" },
+      { "type": "fill", "question": "Fill the blank: 5 ___ 2 = 25 (power)", "answer": "**" }
+    ],
+    "comparison": [
+      { "type": "mcq", "question": "Which operator checks if two values are equal?", "options": ["=", "==", "==="], "answer": "==" },
+      { "type": "truefalse", "question": "x != y means x equals y.", "answer": "False" }
+    ],
+    "logical": [
+      { "type": "truefalse", "question": "True and False gives True.", "answer": "False" },
+      { "type": "mcq", "question": "Which operator inverts a condition?", "options": ["reverse", "not", "flip"], "answer": "not" }
+    ],
+    "precedence": [
+      { "type": "fill", "question": "Result of 2 + 3 * 4 is ___", "answer": "14" },
+      { "type": "mcq", "question": "Which operation is done first: 2 + 3 * 4?", "options": ["Addition", "Multiplication", "Both"], "answer": "Multiplication" }
+    ],
+    "final_quiz": [
+      { "type": "mcq", "question": "Which operator is used for exponent (power)?", "options": ["^", "**", "pow"], "answer": "**" },
+      { "type": "truefalse", "question": "Logical OR is true if at least one condition is true.", "answer": "True" },
+      { "type": "fill", "question": "Symbol for 'not equal to' is ___", "answer": "!=" },
+      { "type": "mcq", "question": "Which result is correct: 10 / 4?", "options": ["2.5", "2", "2.0"], "answer": "2.5" }
+    ],
+    "puzzle": {
+      "title": "Calculator Puzzle",
+      "description": "Fix this calculator code so it adds correctly.",
+      "broken_code": "a = 10\nb = 5\nprint(a add b)",
+      "solution": "a = 10\nb = 5\nprint(a + b)"
+    }
+  }
+}
+

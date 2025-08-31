@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "World 7: OOP & Beyond - Lessons",
+    "intro": "In this world, you’ll learn how Python uses Object-Oriented Programming (OOP) concepts like classes, objects, inheritance, encapsulation, and polymorphism."
+  },
+  "lessons": [
+    {
+      "title": "Classes and Objects",
+      "html": "<p>A class is a blueprint for creating objects. Objects are specific instances of that class.</p><pre><code>class Person:\n    def __init__(self, name):\n        self.name = name\n\np = Person(\"Alice\")\nprint(p.name)  # Alice</code></pre><p><strong>Explanation:</strong> <code>__init__</code> initializes objects with properties. <code>self</code> refers to the object itself.</p><p><strong>Analogy:</strong> A class is like a cookie cutter, and objects are the cookies made from it.</p>"
+    },
+    {
+      "title": "Inheritance",
+      "html": "<p>Inheritance lets one class (child) get features from another (parent).</p><pre><code>class Animal:\n    def speak(self):\n        print(\"Sound\")\n\nclass Dog(Animal):\n    def speak(self):\n        print(\"Bark\")\n\nd = Dog()\nd.speak()  # Bark</code></pre><p><strong>Explanation:</strong> <code>Dog</code> inherits from <code>Animal</code>, but also overrides <code>speak()</code>.</p><p><strong>Analogy:</strong> Like family traits: children inherit features from parents, but can have their own traits too.</p>"
+    },
+    {
+      "title": "Encapsulation",
+      "html": "<p>Encapsulation hides internal details. Use <code>_</code> or <code>__</code> to mark private attributes.</p><pre><code>class Bank:\n    def __init__(self):\n        self.__balance = 0\n\n    def deposit(self, amount):\n        self.__balance += amount\n        print(\"Balance:\", self.__balance)</code></pre><p><strong>Analogy:</strong> A bank account hides your balance details—only safe operations are allowed.</p>"
+    },
+    {
+      "title": "Polymorphism",
+      "html": "<p>Polymorphism means different classes can share the same method name but behave differently.</p><pre><code>class Cat:\n    def sound(self):\n        print(\"Meow\")\n\nclass Dog:\n    def sound(self):\n        print(\"Bark\")\n\nfor animal in [Cat(), Dog()]:\n    animal.sound()</code></pre><p><strong>Explanation:</strong> Both classes use <code>sound()</code>, but the output depends on the object.</p><p><strong>Analogy:</strong> Think of the word “drive” — it means different things if you drive a car, bus, or bike.</p>"
+    }
+  ]
+}
+

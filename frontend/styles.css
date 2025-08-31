@@ -1,75 +1,58 @@
-/* Base */
-* { margin:0; padding:0; box-sizing:border-box; }
 body {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  margin: 0;
   background: #f5f5f5;
   color: #222;
-  transition: background 0.3s, color 0.3s;
 }
-body.dark { background:#121212; color:#eee; }
-
-/* Navbar */
+body.dark {
+  background: #121212;
+  color: #eee;
+}
 .navbar {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:10px 20px; background:#0077cc; color:white;
-  position:sticky; top:0; z-index:1000;
+  background: #0077cc;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
 }
-.navbar h1 { font-size:20px; }
-.hamburger { display:none; background:none; border:none; font-size:1.5rem; color:white; }
-.nav-links { display:flex; gap:10px; }
-.nav-links a, .nav-links button {
-  padding:6px 10px; background:white; color:#0077cc;
-  border:none; border-radius:5px; cursor:pointer;
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
 }
-.nav-links a:hover, .nav-links button:hover { background:#ddd; }
-@media(max-width:700px) {
-  .hamburger{display:block;}
-  .nav-links{display:none;flex-direction:column;position:absolute;top:50px;right:20px;background:#0077cc;padding:10px;border-radius:8px;}
-  .nav-links.show{display:flex;}
-  .nav-links a,.nav-links button{background:white;color:#0077cc;margin:5px 0;}
+.footer {
+  text-align: center;
+  padding: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
+.world-card, .lesson-card, .question-card {
+  background: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+body.dark .world-card,
+body.dark .lesson-card,
+body.dark .question-card {
+  background: #1e1e1e;
+}
+button {
+  cursor: pointer;
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background: #0077cc;
+  color: white;
+}
+button:hover {
+  background: #005fa3;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
 }
 
-/* Containers */
-.container{max-width:1000px;margin:auto;padding:20px;}
-
-/* Worlds */
-#worlds-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
-.world-card{
-  background:white;padding:20px;border-radius:10px;
-  box-shadow:0 4px 8px rgba(0,0,0,0.1);
-  transition:transform 0.2s,box-shadow 0.2s;
-}
-body.dark .world-card{background:#1e1e1e;}
-.world-card:hover{transform:translateY(-5px);box-shadow:0 6px 14px rgba(0,0,0,0.15);}
-.world-card button{margin:5px 5px 0 0;padding:8px 12px;background:#0077cc;color:white;border:none;border-radius:5px;cursor:pointer;}
-.world-card button:hover{background:#005fa3;}
-
-/* Lessons */
-.lesson-card{background:white;padding:15px;margin:15px 0;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-body.dark .lesson-card{background:#1e1e1e;}
-
-/* Quiz */
-.question-card{background:white;padding:20px;margin-bottom:20px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-body.dark .question-card{background:#1e1e1e;}
-.options button{display:block;width:100%;margin:8px 0;padding:10px;border:none;border-radius:6px;background:#eee;cursor:pointer;}
-.options button:hover{background:#0077cc;color:white;}
-.correct{color:green;font-weight:bold;}
-.wrong{color:red;font-weight:bold;}
-.nav-buttons{display:flex;justify-content:space-between;margin-top:20px;}
-.nav-buttons button{flex:1;margin:0 5px;padding:10px;background:#0077cc;color:white;border:none;border-radius:6px;cursor:pointer;}
-.nav-buttons button:hover{background:#005fa3;}
-
-/* Mentor */
-#mentor-box{
-  background:#fafafa;border-top:1px solid #ccc;padding:10px;
-  position:fixed;bottom:0;left:0;right:0;
-  display:flex;flex-direction:column;gap:8px;
-}
-body.dark #mentor-box{background:#222;border-color:#444;}
-#mentor-box input{padding:8px;border-radius:6px;border:1px solid #ccc;}
-#mentor-box button{padding:8px;border:none;border-radius:6px;background:#0077cc;color:white;cursor:pointer;}
-#mentor-box button:hover{background:#005fa3;}
-
-/* Footer */
-.footer{text-align:center;padding:15px;font-size:14px;color:#666;}
-body.dark .footer{color:#aaa;}

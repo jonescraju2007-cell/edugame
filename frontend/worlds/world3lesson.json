@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "title": "World 3: Control Flow - Lessons",
+    "intro": "In this world, you’ll learn how to control the flow of your Python programs using conditions (if/else) and loops (for, while)."
+  },
+  "lessons": [
+    {
+      "title": "if and else",
+      "html": "<p><code>if</code> statements let Python choose actions based on conditions. You can also add <code>else</code> for the opposite case.</p><pre><code>age = 18\nif age >= 18:\n    print(\"Adult\")\nelse:\n    print(\"Minor\")</code></pre><p><strong>Explanation:</strong> If the condition is true, Python runs the indented code. Otherwise, it goes to <code>else</code>.</p><p><strong>Analogy:</strong> It’s like a traffic guard: if the light is green, cars go; else, they stop.</p>"
+    },
+    {
+      "title": "elif (else if)",
+      "html": "<p><code>elif</code> lets you check multiple conditions in order.</p><pre><code>x = 0\nif x > 0:\n    print(\"Positive\")\nelif x == 0:\n    print(\"Zero\")\nelse:\n    print(\"Negative\")</code></pre><p><strong>Explanation:</strong> Python checks each condition top to bottom. The first true one runs, and the rest are skipped.</p>"
+    },
+    {
+      "title": "for loop",
+      "html": "<p><code>for</code> loops repeat code for a sequence or range.</p><pre><code>for i in range(3):\n    print(i)</code></pre><p><strong>Output:</strong> 0, 1, 2</p><p><strong>Analogy:</strong> Imagine counting chairs in a row. The loop goes through each one.</p>"
+    },
+    {
+      "title": "while loop",
+      "html": "<p><code>while</code> repeats until the condition becomes false.</p><pre><code>x = 0\nwhile x < 3:\n    print(x)\n    x += 1</code></pre><p><strong>Explanation:</strong> As long as <code>x < 3</code>, the loop runs. Don’t forget to update variables, or it will loop forever!</p>"
+    },
+    {
+      "title": "break and continue",
+      "html": "<p><code>break</code> stops a loop completely. <code>continue</code> skips the rest of the current loop and jumps to the next.</p><pre><code>for i in range(5):\n    if i == 3:\n        break\n    print(i)\n\nfor j in range(5):\n    if j == 2:\n        continue\n    print(j)</code></pre><p><strong>Output:</strong> First loop prints 0,1,2. Second loop prints 0,1,3,4 (skips 2).</p>"
+    }
+  ]
+}
+

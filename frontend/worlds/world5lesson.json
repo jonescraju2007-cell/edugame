@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "World 5: Functions & Modules - Lessons",
+    "intro": "In this world, you’ll learn how to write reusable blocks of code using functions, and how to import extra functionality using modules."
+  },
+  "lessons": [
+    {
+      "title": "Defining Functions",
+      "html": "<p>A function is a reusable block of code. Define one using the <code>def</code> keyword.</p><pre><code>def greet():\n    print(\"Hello, World!\")\n\ngreet()</code></pre><p><strong>Explanation:</strong> <code>def greet():</code> creates the function, and <code>greet()</code> calls it.</p><p><strong>Analogy:</strong> A function is like a recipe: write it once, cook it anytime.</p>"
+    },
+    {
+      "title": "Parameters and Return",
+      "html": "<p>Functions can take inputs (parameters) and return outputs using <code>return</code>.</p><pre><code>def add(a, b):\n    return a + b\n\nprint(add(3, 4))  # 7</code></pre><p><strong>Explanation:</strong> Inputs <code>a</code> and <code>b</code> are used inside the function, and the result is returned.</p><p><strong>Analogy:</strong> Like a blender: put fruits in (inputs), get juice out (output).</p>"
+    },
+    {
+      "title": "Variable Scope",
+      "html": "<p>Variables inside functions are <strong>local</strong> (they only exist inside). Outside variables are <strong>global</strong>.</p><pre><code>x = 10\n\ndef f():\n    x = 5\n    print(x)  # prints 5\n\nf()\nprint(x)  # prints 10</code></pre><p><strong>Explanation:</strong> Local <code>x</code> inside function does not affect global <code>x</code>.</p>"
+    },
+    {
+      "title": "Modules",
+      "html": "<p>Modules are files with Python code you can reuse by importing.</p><pre><code>import math\nprint(math.sqrt(16))  # 4.0</code></pre><p><strong>Explanation:</strong> <code>import math</code> gives access to math functions like <code>sqrt()</code>.</p><p><strong>Analogy:</strong> Modules are like toolboxes: instead of building a hammer, you open the box and use it.</p>"
+    }
+  ]
+}
+

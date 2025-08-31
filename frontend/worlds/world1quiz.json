@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "World 1: Python Basics - Quiz",
+    "intro": "Check your understanding of Python basics with these questions and a final puzzle."
+  },
+  "quizzes": {
+    "structure_and_print": [
+      { "type": "mcq", "question": "Which keyword defines a function in Python?", "options": ["func", "def", "function"], "answer": "def" },
+      { "type": "truefalse", "question": "Python uses braces { } to group code blocks.", "answer": "False" },
+      { "type": "fill", "question": "Fill the blank: ___(\"Hello\")", "answer": "print" },
+      { "type": "mcq", "question": "Which of these is correct syntax?", "options": ["print('Hello')", "say('Hello')", "echo('Hello')"], "answer": "print('Hello')" }
+    ],
+    "variables_and_input": [
+      { "type": "mcq", "question": "Which is a valid variable name?", "options": ["2x", "my_name", "x-y"], "answer": "my_name" },
+      { "type": "truefalse", "question": "input() always returns a string.", "answer": "True" },
+      { "type": "fill", "question": "Fill the blank: age = ___(\"Enter age: \")", "answer": "input" },
+      { "type": "mcq", "question": "Which symbol assigns a value?", "options": ["=", "==", "==="], "answer": "=" }
+    ],
+    "comments_and_casting": [
+      { "type": "mcq", "question": "Which symbol starts a comment in Python?", "options": ["//", "#", "/*"], "answer": "#" },
+      { "type": "fill", "question": "Convert '7' into integer: ___('7')", "answer": "int" },
+      { "type": "truefalse", "question": "Comments affect how Python runs.", "answer": "False" },
+      { "type": "mcq", "question": "Which function converts number 10 to text '10'?", "options": ["toString()", "str()", "string()"], "answer": "str()" }
+    ],
+    "final_quiz": [
+      { "type": "mcq", "question": "Which function prints output to the screen?", "options": ["say()", "print()", "echo()"], "answer": "print()" },
+      { "type": "truefalse", "question": "Variables can change their values in Python.", "answer": "True" },
+      { "type": "fill", "question": "Keyword to define a function: ___", "answer": "def" },
+      { "type": "mcq", "question": "Which is NOT a valid variable name?", "options": ["_x", "myVar", "2value"], "answer": "2value" },
+      { "type": "truefalse", "question": "Python is case-sensitive.", "answer": "True" },
+      { "type": "fill", "question": "Convert '10' to integer: ___('10')", "answer": "int" },
+      { "type": "mcq", "question": "Which is the correct way to store the name 'Bob'?", "options": ["name = Bob", "name = 'Bob'", "name == 'Bob'"], "answer": "name = 'Bob'" },
+      { "type": "truefalse", "question": "Python files usually end with .py extension.", "answer": "True" }
+    ],
+    "puzzle": {
+      "title": "Fix the Broken Program",
+      "description": "The program below is broken. Fix it so it prints 'Hello, Python!'.",
+      "broken_code": "prnt(\"Hello, Python!\"\n# missing bracket and wrong spelling",
+      "solution": "print(\"Hello, Python!\")"
+    }
+  }
+}
+

@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "World 6: Advanced Data Handling - Quiz",
+    "intro": "Test your knowledge of files, exceptions, comprehensions, and lambdas."
+  },
+  "quizzes": {
+    "files": [
+      { "type": "mcq", "question": "Which mode opens a file for writing (overwriting)?", "options": ["r", "w", "a"], "answer": "w" },
+      { "type": "truefalse", "question": "open('file.txt', 'a') adds new data to the file without erasing.", "answer": "True" }
+    ],
+    "exceptions": [
+      { "type": "truefalse", "question": "try/except is used to handle errors.", "answer": "True" },
+      { "type": "mcq", "question": "What happens without try/except if an error occurs?", "options": ["Ignored", "Program crashes", "Skipped"], "answer": "Program crashes" }
+    ],
+    "comprehensions": [
+      { "type": "fill", "question": "Fill the blank: [x*2 for x in range(3)] makes [0, ___, 4]", "answer": "2" },
+      { "type": "truefalse", "question": "List comprehensions can replace simple for loops.", "answer": "True" }
+    ],
+    "lambdas": [
+      { "type": "mcq", "question": "Which defines a lambda function correctly?", "options": ["function x: x+1", "lambda x: x+1", "def lambda(x): x+1"], "answer": "lambda x: x+1" },
+      { "type": "truefalse", "question": "Lambdas can only contain a single expression.", "answer": "True" }
+    ],
+    "final_quiz": [
+      { "type": "mcq", "question": "Which comprehension gives squares of numbers 0–4?", "options": ["[x**2 for x in range(5)]", "[square(x) for x in range(5)]", "[pow(2,x) for x in range(5)]"], "answer": "[x**2 for x in range(5)]" },
+      { "type": "fill", "question": "Complete: try: x=1/0 ___: print('Error')", "answer": "except" }
+    ],
+    "puzzle": {
+      "title": "Word Counter",
+      "description": "Fix this program to count words in a file correctly.",
+      "broken_code": "f = open(\"data.txt\")\nprint(len(f))",
+      "solution": "f = open(\"data.txt\")\nwords = f.read().split()\nprint(len(words))\nf.close()"
+    }
+  }
+}
+

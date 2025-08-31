@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "title": "World 4: Data Structures I - Lessons",
+    "intro": "In this world, you’ll learn how to work with Python’s main data structures: strings, lists, tuples, sets, and dictionaries."
+  },
+  "lessons": [
+    {
+      "title": "Strings",
+      "html": "<p>Strings are text enclosed in quotes. You can use single or double quotes.</p><pre><code>name = \"Alice\"\ngreeting = 'Hello'\nprint(name.upper())  # ALICE\nprint(len(greeting))  # 5</code></pre><p><strong>Analogy:</strong> A string is like a necklace made of characters linked together.</p>"
+    },
+    {
+      "title": "Lists",
+      "html": "<p>Lists store multiple items in order, inside square brackets <code>[]</code>.</p><pre><code>nums = [1, 2, 3]\nnums.append(4)\nprint(nums)  # [1, 2, 3, 4]\nprint(nums[0])  # 1</code></pre><p><strong>Analogy:</strong> A list is like a shopping list: items are ordered and you can add/remove them.</p>"
+    },
+    {
+      "title": "Tuples",
+      "html": "<p>Tuples are like lists but cannot be changed (immutable). Written with <code>()</code>.</p><pre><code>point = (3, 4)\nprint(point[0])  # 3</code></pre><p><strong>Analogy:</strong> A tuple is like your birthdate—once set, it never changes.</p>"
+    },
+    {
+      "title": "Sets",
+      "html": "<p>Sets store unique values, unordered, written with <code>{}</code>.</p><pre><code>fruits = {\"apple\", \"banana\", \"apple\"}\nprint(fruits)  # {'banana', 'apple'}</code></pre><p><strong>Analogy:</strong> A set is like a basket of fruits: duplicates don’t matter, you only keep one of each.</p>"
+    },
+    {
+      "title": "Dictionaries",
+      "html": "<p>Dictionaries map keys to values using <code>{}</code> with <code>key: value</code> pairs.</p><pre><code>student = {\"name\": \"Alice\", \"age\": 20}\nprint(student[\"name\"])  # Alice</code></pre><p><strong>Analogy:</strong> A dictionary is like a phonebook: names (keys) map to phone numbers (values).</p>"
+    }
+  ]
+}
+

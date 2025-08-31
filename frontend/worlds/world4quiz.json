@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "World 4: Data Structures I - Quiz",
+    "intro": "Test your knowledge of strings, lists, tuples, sets, and dictionaries."
+  },
+  "quizzes": {
+    "strings": [
+      { "type": "mcq", "question": "Which method makes text uppercase?", "options": ["text.upper()", "text.UP()", "upper(text)"], "answer": "text.upper()" },
+      { "type": "truefalse", "question": "Strings are enclosed only with double quotes.", "answer": "False" }
+    ],
+    "lists": [
+      { "type": "truefalse", "question": "Lists can be changed after creation.", "answer": "True" },
+      { "type": "fill", "question": "Fill the blank: nums = [1, 2, 3]; nums.___(4) adds 4.", "answer": "append" }
+    ],
+    "tuples": [
+      { "type": "fill", "question": "A tuple uses ___ brackets.", "answer": "()" },
+      { "type": "truefalse", "question": "Tuples can be modified after creation.", "answer": "False" }
+    ],
+    "sets": [
+      { "type": "mcq", "question": "Which structure stores unique items?", "options": ["list", "set", "dict"], "answer": "set" },
+      { "type": "truefalse", "question": "A set keeps items in order.", "answer": "False" }
+    ],
+    "dicts": [
+      { "type": "truefalse", "question": "Dictionaries use key-value pairs.", "answer": "True" },
+      { "type": "mcq", "question": "How do you get the value of key 'age'?", "options": ["student.age", "student['age']", "student(age)"], "answer": "student['age']" }
+    ],
+    "final_quiz": [
+      { "type": "mcq", "question": "Which is valid list syntax?", "options": ["[1,2,3]", "(1,2,3)", "{1,2,3}"], "answer": "[1,2,3]" },
+      { "type": "fill", "question": "Dictionary values are accessed using their ___", "answer": "keys" }
+    ],
+    "puzzle": {
+      "title": "Phonebook Fix",
+      "description": "Fix this program so it stores and prints a phone number correctly.",
+      "broken_code": "phonebook = [\"Alice\": 123]\nprint(phonebook[\"Alice\"])",
+      "solution": "phonebook = {\"Alice\": 123}\nprint(phonebook[\"Alice\"])"
+    }
+  }
+}
+

@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "World 3: Control Flow - Quiz",
+    "intro": "Practice using if/else, loops, and control statements."
+  },
+  "quizzes": {
+    "if_else": [
+      { "type": "mcq", "question": "Which keyword starts a condition in Python?", "options": ["when", "if", "case"], "answer": "if" },
+      { "type": "truefalse", "question": "The else block is optional in Python.", "answer": "True" },
+      { "type": "fill", "question": "Fill the blank: if x > 5: ___(\"Big\")", "answer": "print" }
+    ],
+    "elif": [
+      { "type": "mcq", "question": "Which keyword allows multiple conditions?", "options": ["elseif", "elif", "else if"], "answer": "elif" }
+    ],
+    "loops": [
+      { "type": "truefalse", "question": "for loops are often used with range().", "answer": "True" },
+      { "type": "mcq", "question": "Which loop repeats until a condition is false?", "options": ["for", "while", "loop"], "answer": "while" }
+    ],
+    "control": [
+      { "type": "fill", "question": "Keyword to stop a loop immediately: ___", "answer": "break" },
+      { "type": "fill", "question": "Keyword to skip to next loop iteration: ___", "answer": "continue" }
+    ],
+    "final_quiz": [
+      { "type": "truefalse", "question": "A while loop can run forever if not updated properly.", "answer": "True" },
+      { "type": "mcq", "question": "Which will print numbers 0,1,2?", "options": ["for i in range(3): print(i)", "while i < 3: print(i)", "loop i 3"], "answer": "for i in range(3): print(i)" }
+    ],
+    "puzzle": {
+      "title": "Guess the Number",
+      "description": "Fix this guessing game so it stops when the user guesses 5.",
+      "broken_code": "while True:\n    n = input(\"Guess: \")\n    if n == 5:\n        print(\"Correct!\")\n        ???",
+      "solution": "while True:\n    n = int(input(\"Guess: \"))\n    if n == 5:\n        print(\"Correct!\")\n        break"
+    }
+  }
+}
+

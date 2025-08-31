@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "World 6: Advanced Data Handling - Lessons",
+    "intro": "In this world, you’ll learn how to handle files, deal with errors, and use Python’s shortcuts like list comprehensions and lambda functions."
+  },
+  "lessons": [
+    {
+      "title": "File Handling",
+      "html": "<p>Python can read and write files using <code>open()</code>. Modes: <code>\"r\"</code> (read), <code>\"w\"</code> (write), <code>\"a\"</code> (append).</p><pre><code># Writing to a file\nf = open(\"data.txt\", \"w\")\nf.write(\"Hello\")\nf.close()\n\n# Reading from a file\nf = open(\"data.txt\", \"r\")\nprint(f.read())\nf.close()</code></pre><p><strong>Analogy:</strong> Think of a file like a notebook: <code>w</code> is erasing & writing fresh, <code>a</code> is adding to the end, <code>r</code> is reading the pages.</p>"
+    },
+    {
+      "title": "Exceptions",
+      "html": "<p>Errors (like dividing by zero) crash programs. Use <code>try/except</code> to handle them.</p><pre><code>try:\n    x = 1 / 0\nexcept:\n    print(\"Error!\")</code></pre><p><strong>Analogy:</strong> Exceptions are like airbags: they catch crashes so your program doesn’t break completely.</p>"
+    },
+    {
+      "title": "List Comprehensions",
+      "html": "<p>A quick way to build lists using one line.</p><pre><code>nums = [x*x for x in range(5)]\nprint(nums)  # [0,1,4,9,16]</code></pre><p><strong>Analogy:</strong> A comprehension is like a factory line: each item is processed quickly into a new list.</p>"
+    },
+    {
+      "title": "Lambda Functions",
+      "html": "<p>Lambdas are small anonymous (nameless) functions written in one line.</p><pre><code>square = lambda x: x*x\nprint(square(5))  # 25</code></pre><p><strong>Analogy:</strong> A lambda is like a sticky note: quick, small, and useful when you don’t need a full notebook (function).</p>"
+    }
+  ]
+}
+

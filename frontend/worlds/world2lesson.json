@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "World 2: Operators & Expressions - Lessons",
+    "intro": "In this world, you’ll learn how Python performs math, compares values, and uses logic to make decisions."
+  },
+  "lessons": [
+    {
+      "title": "Arithmetic Operators",
+      "html": "<p>Python can do basic math easily using arithmetic operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, and <code>**</code>.</p><pre><code>print(5 + 3)   # 8 (addition)\nprint(7 - 2)   # 5 (subtraction)\nprint(4 * 2)   # 8 (multiplication)\nprint(9 / 2)   # 4.5 (division)\nprint(9 % 2)   # 1 (remainder)\nprint(2 ** 3)  # 8 (power)</code></pre><p><strong>Analogy:</strong> Think of these like buttons on a calculator. Python is your calculator brain!</p>"
+    },
+    {
+      "title": "Comparison Operators",
+      "html": "<p>Comparison operators check how values relate: <code>==</code> (equal), <code>!=</code> (not equal), <code>&gt;</code> (greater), <code>&lt;</code> (less), <code>&gt;=</code>, <code>&lt;=</code>.</p><pre><code>x = 5\ny = 8\nprint(x == y)  # False\nprint(x < y)   # True\nprint(x != y)  # True</code></pre><p><strong>Analogy:</strong> It’s like asking questions: \"Is x equal to y?\" Python answers True or False.</p>"
+    },
+    {
+      "title": "Logical Operators",
+      "html": "<p>Logical operators combine conditions: <code>and</code>, <code>or</code>, <code>not</code>.</p><pre><code>age = 18\nprint(age &gt;= 10 and age &lt; 20)  # True\nprint(age &lt; 10 or age &gt; 20)   # False\nprint(not(age == 18))         # False</code></pre><p><strong>Analogy:</strong> Imagine traffic lights: <code>and</code> is like needing both green lights, <code>or</code> is okay if any is green, <code>not</code> flips the result.</p>"
+    },
+    {
+      "title": "Operator Precedence",
+      "html": "<p>Python follows the order of operations (PEMDAS: Parentheses, Exponents, Multiplication/Division, Addition/Subtraction).</p><pre><code>print(2 + 3 * 4)    # 14\nprint((2 + 3) * 4)  # 20</code></pre><p><strong>Analogy:</strong> Like math class: multiplication before addition, unless you use brackets.</p>"
+    }
+  ]
+}
+

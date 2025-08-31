@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "World 5: Functions & Modules - Quiz",
+    "intro": "Test your understanding of writing and using functions, and importing modules."
+  },
+  "quizzes": {
+    "functions": [
+      { "type": "mcq", "question": "Which keyword defines a function?", "options": ["func", "def", "define"], "answer": "def" },
+      { "type": "truefalse", "question": "Functions can be reused multiple times.", "answer": "True" }
+    ],
+    "params": [
+      { "type": "fill", "question": "Fill the blank: def add(a, b): return a ___ b", "answer": "+" },
+      { "type": "mcq", "question": "Which keyword sends a value back from a function?", "options": ["return", "send", "give"], "answer": "return" }
+    ],
+    "scope": [
+      { "type": "truefalse", "question": "A local variable inside a function is visible outside the function.", "answer": "False" },
+      { "type": "fill", "question": "Variables defined inside a function are called ___ variables.", "answer": "local" }
+    ],
+    "modules": [
+      { "type": "mcq", "question": "Which statement imports a module?", "options": ["use math", "import math", "load math"], "answer": "import math" },
+      { "type": "truefalse", "question": "Modules allow us to reuse code written by others.", "answer": "True" }
+    ],
+    "final_quiz": [
+      { "type": "mcq", "question": "Which function calculates square root?", "options": ["sqrt()", "root()", "pow()"], "answer": "sqrt()" },
+      { "type": "truefalse", "question": "A module is always built-in, you cannot create your own.", "answer": "False" }
+    ],
+    "puzzle": {
+      "title": "Square Root Fix",
+      "description": "Fix this program to correctly calculate the square root of 25.",
+      "broken_code": "print(sqrt(25))",
+      "solution": "import math\nprint(math.sqrt(25))"
+    }
+  }
+}
+

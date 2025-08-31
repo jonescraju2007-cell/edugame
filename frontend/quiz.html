@@ -3,25 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="EduGame Quizzes - Practice with interactive quizzes and instant feedback." />
-  <title>Quiz - EduGame</title>
+  <title>EduGame Quiz</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Header / Navbar -->
   <header class="navbar">
     <h1 id="quiz-title">📝 Quiz</h1>
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
-    <nav class="nav-links">
-      <a href="index.html">🌍 Worlds</a>
-      <a href="#" id="back-to-lesson">📘 Lesson</a>
-      <button id="toggle-theme">🌙 Toggle Theme</button>
-    </nav>
+    <a href="index.html">⬅ Worlds</a>
+    <button id="toggle-theme">🌙</button>
   </header>
 
-  <!-- Main Content -->
   <main class="container">
-    <div id="quiz-container">Loading quiz...</div>
+    <div id="quiz-container">Loading...</div>
     <div class="nav-buttons">
       <button id="prev-btn">⬅ Previous</button>
       <button id="show-answer-btn">💡 Show Answer</button>
@@ -29,22 +22,11 @@
     </div>
   </main>
 
-  <!-- Mentor -->
-  <aside id="mentor-box">
-    <h3>🤖 AI Mentor</h3>
-    <input type="text" id="mentor-input" placeholder="Ask about this quiz..." />
-    <button onclick="askMentor()">Ask</button>
-    <div id="mentor-reply"></div>
-  </aside>
-
-  <!-- Footer -->
   <footer class="footer">
-    <p>EduGame © 2025 | Quizzes with AI Mentor Support</p>
+    <p>EduGame © 2025</p>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/config.js"></script>
   <script src="js/quiz.js"></script>
-  <script src="js/mentor.js"></script>
 </body>
 </html>
+

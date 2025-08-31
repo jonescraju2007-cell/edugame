@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "title": "World 1: Python Basics - Lessons",
+    "intro": "Welcome! This world will teach you the very basics of Python: how a program is structured, how to print, use variables, get input, add comments, and convert data types."
+  },
+  "lessons": [
+    {
+      "title": "Structure of a Python Program",
+      "html": "<p>A Python program is like giving step-by-step instructions to a computer. Python is strict about <strong>indentation</strong> (spaces at the start of a line) instead of curly braces { }.</p><pre><code># Simple program\ndef main():\n    print(\"Hello, World!\")\n\nif __name__ == \"__main__\":\n    main()</code></pre><p><strong>Explanation:</strong> The function <code>main()</code> contains one line of code: <code>print()</code>. Indentation (the spaces before <code>print()</code>) tells Python that it belongs to the function. The last line checks if this file is the main program, then runs <code>main()</code>.</p><p><strong>Analogy:</strong> Indentation is like keeping books on a shelf. Without shelves, they are all on the floor (Python errors!).</p>"
+    },
+    {
+      "title": "Printing with print()",
+      "html": "<p><code>print()</code> shows output on the screen. It’s the simplest way to make Python talk.</p><pre><code>print(\"Hello, Python!\")\nprint(2 + 3)\nprint(\"My age is\", 15)</code></pre><p><strong>Explanation:</strong> <code>print()</code> can display text (inside quotes), numbers, or even results of math. Each <code>print()</code> goes to a new line.</p><p><strong>Analogy:</strong> <code>print()</code> is a loudspeaker: it says whatever you give it.</p>"
+    },
+    {
+      "title": "Variables",
+      "html": "<p>Variables are names that store values. They are like containers you label.</p><pre><code>x = 10\nname = \"Alice\"\nprint(x, name)</code></pre><p><strong>Explanation:</strong> Here, <code>x</code> holds 10, and <code>name</code> holds 'Alice'. You can reuse or change them later.</p><p><strong>Analogy:</strong> Variables are jars with labels. One jar named 'x' has 10 chocolates, another named 'name' has 'Alice'.</p>"
+    },
+    {
+      "title": "Input and Output",
+      "html": "<p><code>input()</code> lets the user type something. It always returns text (string).</p><pre><code>age = input(\"Enter your age: \")\nprint(\"You are\", age, \"years old\")</code></pre><p><strong>Explanation:</strong> If the user types 15, <code>age</code> stores '15'. It is still text, not a number.</p><p><strong>Analogy:</strong> <code>input()</code> is like a microphone (you speak into it). <code>print()</code> is like a speaker (Python speaks out).</p>"
+    },
+    {
+      "title": "Comments",
+      "html": "<p>Comments are notes for humans, ignored by Python. Start with <code>#</code>.</p><pre><code># This is a comment\nprint(\"Hello\")  # This prints Hello</code></pre><p><strong>Explanation:</strong> Use comments to explain your code. They do not affect execution.</p><p><strong>Analogy:</strong> Comments are sticky notes on your code. Python ignores them, but they help humans understand.</p>"
+    },
+    {
+      "title": "Type Casting",
+      "html": "<p>Convert data types using <code>int()</code>, <code>float()</code>, and <code>str()</code>.</p><pre><code>age = input(\"Enter age: \")  # user types '15'\nage = int(age)  # convert to number\nprint(age + 1)</code></pre><p><strong>Explanation:</strong> Without conversion, adding 1 to '15' (text) gives an error. With <code>int()</code>, it becomes 15 (number).</p><p><strong>Analogy:</strong> Type casting is like changing the label on a box so you can use it differently.</p>"
+    }
+  ]
+}
+
