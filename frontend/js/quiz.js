@@ -1,121 +1,67 @@
-// quiz.js
-let quizzes = [];
-let currentIndex = 0;
-
 async function loadQuiz() {
-  const container = document.getElementById("quiz-container");
-  container.innerHTML = "<p>Loading quiz...</p>";
-
   const params = new URLSearchParams(window.location.search);
-  const world = params.get("world") || "1";
+  const worldId = params.get("world");
+  if (!worldId) return;
+
+  const quizBox = document.getElementById("quiz-container");
+  const title = document.getElementById("quiz-title");
+  const lessonLink = document.getElementById("lesson-link");
+
+  lessonLink.href = `lesson.html?world=${worldId}`;
 
   try {
-    const res = await fetch(`worlds/world${world}quiz.json`);
-    if (!res.ok) {
-      container.innerHTML = "<p>⚠️ Quiz not found.</p>";
-      return;
-    }
-
+    const res = await fetch(`worlds/world${worldId}quiz.json`);
     const data = await res.json();
 
-    // Flatten quizzes (so all sections appear in one list)
-    quizzes = [];
-    Object.keys(data.quizzes).forEach(section => {
-      if (Array.isArray(data.quizzes[section])) {
-        quizzes.push(...data.quizzes[section]);
-      } else {
-        quizzes.push(data.quizzes[section]);
+    title.textContent = `${data.meta.title} - Quiz`;
+    quizBox.innerHTML = "";
+
+    data.questions.simple.forEach((q, idx) => {
+      const qDiv = document.createElement("div");
+      qDiv.className = "quiz-question";
+      qDiv.innerHTML = `
+        <h3>Q${idx + 1}. ${q.question}</h3>
+      `;
+
+      if (q.type === "mcq") {
+        q.options.forEach(opt => {
+          const btn = document.createElement("button");
+          btn.textContent = opt;
+          btn.onclick = () => {
+            if (opt === q.answer) {
+              btn.classList.add("correct");
+            } else {
+              btn.classList.add("wrong");
+            }
+          };
+          qDiv.appendChild(btn);
+        });
+      } else if (q.type === "truefalse") {
+        ["True", "False"].forEach(opt => {
+          const btn = document.createElement("button");
+          btn.textContent = opt;
+          btn.onclick = () => {
+            if (opt === String(q.answer)) {
+              btn.classList.add("correct");
+            } else {
+              btn.classList.add("wrong");
+            }
+          };
+          qDiv.appendChild(btn);
+        });
       }
-    });
 
-    currentIndex = 0;
-    renderQuiz();
+      quizBox.appendChild(qDiv);
+    });
   } catch (err) {
-    console.error(err);
-    container.innerHTML = "<p>⚠️ Error loading quiz.</p>";
+    quizBox.textContent = "No quiz available.";
   }
 }
 
-function renderQuiz() {
-  const container = document.getElementById("quiz-container");
-  container.innerHTML = "";
-
-  if (currentIndex < 0) currentIndex = 0;
-  if (currentIndex >= quizzes.length) currentIndex = quizzes.length - 1;
-
-  const q = quizzes[currentIndex];
-  const card = document.createElement("div");
-  card.className = "quiz-card";
-
-  card.innerHTML = `<h3>Q${currentIndex + 1}: ${q.question}</h3>`;
-
-  if (q.type === "mcq" && q.options) {
-    const optionsDiv = document.createElement("div");
-    optionsDiv.className = "quiz-options";
-    q.options.forEach(opt => {
-      const btn = document.createElement("button");
-      btn.textContent = opt;
-      btn.onclick = () => checkAnswer(q, opt);
-      optionsDiv.appendChild(btn);
-    });
-    card.appendChild(optionsDiv);
-  } else if (q.type === "truefalse") {
-    const optionsDiv = document.createElement("div");
-    optionsDiv.className = "quiz-options";
-    ["True", "False"].forEach(opt => {
-      const btn = document.createElement("button");
-      btn.textContent = opt;
-      btn.onclick = () => checkAnswer(q, opt);
-      optionsDiv.appendChild(btn);
-    });
-    card.appendChild(optionsDiv);
-  } else if (q.type === "fill") {
-    const input = document.createElement("input");
-    input.placeholder = "Type your answer...";
-    const btn = document.createElement("button");
-    btn.textContent = "Submit";
-    btn.onclick = () => checkAnswer(q, input.value.trim());
-    card.appendChild(input);
-    card.appendChild(btn);
-  } else if (q.type === "puzzle") {
-    card.innerHTML += `<p>${q.description}</p><pre>${q.broken_code}</pre>`;
-    const btn = document.createElement("button");
-    btn.textContent = "Show Solution";
-    btn.onclick = () => {
-      card.innerHTML += `<pre><strong>Solution:</strong>\n${q.solution}</pre>`;
-    };
-    card.appendChild(btn);
-  }
-
-  container.appendChild(card);
-}
-
-function checkAnswer(q, answer) {
-  const correct = q.answer.toString().toLowerCase() === answer.toString().toLowerCase();
-  alert(correct ? "✅ Correct!" : `❌ Wrong! Correct answer: ${q.answer}`);
-}
-
-// Navigation
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("next-btn").addEventListener("click", () => {
-    currentIndex++;
-    renderQuiz();
+  document.getElementById("toggle-theme")?.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
   });
-  document.getElementById("prev-btn").addEventListener("click", () => {
-    currentIndex--;
-    renderQuiz();
-  });
-  document.getElementById("show-answer").addEventListener("click", () => {
-    const q = quizzes[currentIndex];
-    alert(`💡 Correct answer: ${q.answer || "See puzzle solution"}`);
-  });
-
-  const themeBtn = document.getElementById("toggle-theme");
-  if (themeBtn) {
-    themeBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-    });
-  }
 
   loadQuiz();
 });

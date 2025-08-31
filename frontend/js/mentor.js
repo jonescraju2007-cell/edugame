@@ -1,96 +1,32 @@
-// mentor.js (context-aware)
-async function askMentor(question) {
-  const messagesDiv = document.getElementById("mentor-messages");
-  if (!question.trim()) return;
+const mentorToggle = document.getElementById("mentor-toggle");
+const mentorChat = document.getElementById("mentor-chat");
+const mentorSend = document.getElementById("mentor-send");
+const mentorInput = document.getElementById("mentor-input");
+const chatBody = document.getElementById("chat-body");
 
-  // Show user question
-  const userMsg = document.createElement("div");
-  userMsg.className = "mentor-user";
-  userMsg.textContent = "🧑 You: " + question;
-  messagesDiv.appendChild(userMsg);
+mentorToggle.addEventListener("click", () => {
+  mentorChat.classList.toggle("open");
+});
 
-  // Show loading bubble
-  const loading = document.createElement("div");
-  loading.className = "mentor-bot";
-  loading.textContent = "🤖 Thinking...";
-  messagesDiv.appendChild(loading);
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+mentorSend.addEventListener("click", async () => {
+  const question = mentorInput.value.trim();
+  if (!question) return;
+
+  chatBody.innerHTML += `<p><b>You:</b> ${question}</p>`;
+  mentorInput.value = "";
 
   try {
-    // Get current world from URL (lesson.html?world=2 or quiz.html?world=3)
-    const params = new URLSearchParams(window.location.search);
-    const world = params.get("world") || "1";
-
-    const res = await fetch("/api/mentor", {
+    const res = await fetch("http://localhost:10000/mentor", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question, world })
+      body: JSON.stringify({ question })
     });
 
-    if (!res.ok) throw new Error("Network error");
-
     const data = await res.json();
-    messagesDiv.removeChild(loading);
-
-    // Mentor response
-    const botMsg = document.createElement("div");
-    botMsg.className = "mentor-bot";
-
-    if (data.hint || data.explanation) {
-      botMsg.innerHTML = `
-        <p><strong>Hint:</strong> ${data.hint || "Think carefully."}</p>
-        <p><strong>Explanation:</strong> ${data.explanation || "No details."}</p>
-        ${
-          data.example
-            ? `<pre><code>${data.example}</code></pre>`
-            : ""
-        }
-      `;
-    } else {
-      botMsg.textContent = "🤖 Sorry, I couldn't generate a response.";
-    }
-
-    messagesDiv.appendChild(botMsg);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  } catch (err) {
-    console.error("Mentor error:", err);
-    messagesDiv.removeChild(loading);
-
-    const botMsg = document.createElement("div");
-    botMsg.className = "mentor-bot";
-    botMsg.textContent = "⚠️ Mentor not available right now.";
-    messagesDiv.appendChild(botMsg);
+    chatBody.innerHTML += `<p><b>Mentor:</b> ${data.answer}</p>`;
+    chatBody.scrollTop = chatBody.scrollHeight;
+  } catch {
+    chatBody.innerHTML += `<p><b>Mentor:</b> (No response)</p>`;
   }
-}
-
-// UI handling
-document.addEventListener("DOMContentLoaded", () => {
-  const mentorToggle = document.getElementById("mentor-toggle");
-  const mentorChat = document.getElementById("mentor-chat");
-  const closeMentor = document.getElementById("close-mentor");
-  const sendBtn = document.getElementById("mentor-send");
-  const input = document.getElementById("mentor-question");
-
-  mentorToggle.addEventListener("click", () => {
-    mentorChat.style.display =
-      mentorChat.style.display === "flex" ? "none" : "flex";
-    mentorChat.style.flexDirection = "column";
-  });
-
-  closeMentor.addEventListener("click", () => {
-    mentorChat.style.display = "none";
-  });
-
-  sendBtn.addEventListener("click", () => {
-    askMentor(input.value);
-    input.value = "";
-  });
-
-  input.addEventListener("keypress", e => {
-    if (e.key === "Enter") {
-      askMentor(input.value);
-      input.value = "";
-    }
-  });
 });
 

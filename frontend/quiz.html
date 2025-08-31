@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz - Python Adventure</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduGame Quiz</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
 </head>
 <body>
-  <header>
-    <h1>📝 Quiz</h1>
-    <button id="toggle-theme">🌙</button>
+  <header class="navbar">
+    <div class="logo">📝 Quiz</div>
+    <nav>
+      <a href="index.html" class="nav-btn">🌍 Worlds</a>
+      <a id="lesson-link" class="nav-btn">📘 Lesson</a>
+      <button id="toggle-theme">🌙 Toggle Theme</button>
+    </nav>
   </header>
 
-  <main id="quiz-container" class="quiz-container">
-    <p>Loading quiz...</p>
+  <main class="container">
+    <h1 id="quiz-title">Quiz</h1>
+    <div id="quiz-container" class="quiz-box">Loading quiz...</div>
   </main>
 
   <footer>
-    <button id="prev-btn">⬅️ Previous</button>
-    <button id="show-answer">💡 Show Answer</button>
-    <button id="next-btn">➡️ Next</button>
+    <p>EduGame © 2025</p>
   </footer>
 
-  <!-- Mentor Popup -->
-  <div id="mentor-chat" class="mentor-popup">
-    <div class="mentor-header">🤖 Rix Mentor <span id="close-mentor">✖️</span></div>
-    <div id="mentor-messages" class="mentor-messages"></div>
-    <div class="mentor-input">
-      <input type="text" id="mentor-question" placeholder="Ask me anything...">
-      <button id="mentor-send">Send</button>
+  <!-- Mentor Chatbot -->
+  <div id="mentor-chat" class="chat-popup">
+    <div class="chat-header">🤖 AI Mentor</div>
+    <div class="chat-body" id="chat-body">
+      <p>Hi, I can help with quiz answers. Try me!</p>
+    </div>
+    <div class="chat-footer">
+      <input id="mentor-input" type="text" placeholder="Ask about the quiz..." />
+      <button id="mentor-send">Ask</button>
     </div>
   </div>
-  <button id="mentor-toggle" class="mentor-toggle">💬</button>
+  <button id="mentor-toggle" class="chat-toggle">💬</button>
 
-  <script src="quiz.js"></script>
-  <script src="mentor.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/mentor.js"></script>
 </body>
 </html>
 
