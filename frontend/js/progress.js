@@ -1,22 +1,15 @@
-export function markLessonComplete(world) {
-  let progress = JSON.parse(localStorage.getItem("progress")) || {};
-  if (!progress[world]) progress[world] = {};
-  progress[world].lesson = true;
-  localStorage.setItem("progress", JSON.stringify(progress));
+// progress.js
+// Track user progress locally
+
+function saveProgress(world, score) {
+  localStorage.setItem(`world${world}_score`, score);
 }
 
-export function markQuizComplete(world) {
-  let progress = JSON.parse(localStorage.getItem("progress")) || {};
-  if (!progress[world]) progress[world] = {};
-  progress[world].quiz = true;
-  localStorage.setItem("progress", JSON.stringify(progress));
+function getProgress(world) {
+  return localStorage.getItem(`world${world}_score`) || 0;
 }
 
-export function getProgress() {
-  return JSON.parse(localStorage.getItem("progress")) || {};
-}
-
-export function resetProgress() {
-  localStorage.removeItem("progress");
+function resetProgress() {
+  localStorage.clear();
 }
 

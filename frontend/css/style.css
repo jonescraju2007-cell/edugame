@@ -1,6 +1,6 @@
-/* =========================
-   RESET + BASE STYLES
-========================= */
+/* =====================
+   Global Styles
+===================== */
 * {
   margin: 0;
   padding: 0;
@@ -9,302 +9,249 @@
 }
 
 body {
-  background: #f9f9f9;
+  background: #f5f7fa;
   color: #222;
   line-height: 1.6;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   transition: background 0.3s, color 0.3s;
 }
 
-/* Dark mode */
 body.dark {
-  background: #1e1e2f;
-  color: #f1f1f1;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-.navbar {
-  background: linear-gradient(90deg, #0077ff, #00c6ff);
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-}
-
-.navbar .logo {
-  font-size: 1.3rem;
-}
-
-.navbar .nav-btn,
-.navbar button {
-  background: white;
-  color: #0077ff;
-  border: none;
-  padding: 8px 14px;
-  margin-left: 8px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.navbar .nav-btn:hover,
-.navbar button:hover {
-  background: #0077ff;
-  color: white;
-}
-
-/* Dark navbar buttons */
-body.dark .navbar button,
-body.dark .navbar .nav-btn {
-  background: #333;
-  color: #f1f1f1;
-}
-body.dark .navbar button:hover,
-body.dark .navbar .nav-btn:hover {
-  background: #00c6ff;
-  color: white;
-}
-
-/* =========================
-   CONTAINER + FOOTER
-========================= */
-.container {
-  flex: 1;
-  padding: 20px;
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
-}
-
-footer {
-  background: #f1f1f1;
-  color: #555;
-  padding: 15px;
-  text-align: center;
-}
-body.dark footer {
-  background: #111;
-  color: #bbb;
-}
-
-/* =========================
-   WORLDS PAGE (index.html)
-========================= */
-.worlds-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.world-card {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-align: left;
-}
-
-.world-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
-}
-
-.world-card h3 {
-  color: #0077ff;
-  margin-bottom: 8px;
-}
-
-.world-card p {
-  margin-bottom: 15px;
-  font-size: 0.95rem;
-}
-
-.world-buttons button {
-  background: #0077ff;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.world-buttons button:hover {
-  background: #0055cc;
-}
-
-body.dark .world-card {
-  background: #2c2c3e;
+  background: #121212;
   color: #eee;
 }
 
-/* =========================
-   LESSON PAGE
-========================= */
-.lesson-box {
-  margin-top: 20px;
-  text-align: left;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.lesson-section {
-  background: white;
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.lesson-section h2 {
-  color: #0077ff;
-  margin-bottom: 10px;
-}
-
-body.dark .lesson-section {
-  background: #2c2c3e;
-  color: #ddd;
-}
-
-/* =========================
-   QUIZ PAGE
-========================= */
-.quiz-box {
-  margin-top: 20px;
-  text-align: left;
-}
-
-.quiz-question {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.quiz-question h3 {
-  margin-bottom: 10px;
-}
-
-.quiz-question button {
-  display: inline-block;
-  background: #e6f0ff;
+button {
+  padding: 0.6em 1.2em;
+  margin: 0.3em;
   border: none;
-  padding: 8px 12px;
-  margin: 5px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.quiz-question button:hover {
-  background: #cce0ff;
-}
-
-.quiz-question button.correct {
-  background: #4caf50;
+  border-radius: 8px;
+  background: #1e90ff;
   color: white;
-}
-
-.quiz-question button.wrong {
-  background: #e74c3c;
-  color: white;
-}
-
-body.dark .quiz-question {
-  background: #2c2c3e;
-  color: #ddd;
-}
-
-/* =========================
-   CHATBOT POPUP
-========================= */
-.chat-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #0077ff;
-  color: white;
-  border: none;
-  padding: 15px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 20px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-}
-
-.chat-popup {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 280px;
-  max-height: 400px;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  display: none;
-  flex-direction: column;
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.2);
-}
-
-.chat-popup.open {
-  display: flex;
-}
-
-.chat-header {
-  background: #0077ff;
-  color: white;
-  padding: 10px;
-  border-radius: 12px 12px 0 0;
   font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.chat-body {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
+button:hover {
+  background: #0f70d1;
+}
+
+header,
+footer {
+  background: linear-gradient(90deg, #1e90ff, #00c6ff);
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 0.5em;
+}
+
+header nav {
+  margin-top: 0.5em;
+}
+
+header nav a,
+header nav button {
+  margin: 0 0.3em;
   font-size: 0.9rem;
 }
 
-.chat-footer {
-  display: flex;
-  border-top: 1px solid #ddd;
-}
-
-.chat-footer input {
+/* =====================
+   Main Layout
+===================== */
+main {
   flex: 1;
-  border: none;
-  padding: 10px;
-  border-radius: 0 0 0 12px;
+  padding: 1.5em;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.chat-footer button {
-  background: #0077ff;
-  border: none;
+h2 {
+  margin-bottom: 1em;
+  font-size: 1.5rem;
+}
+
+#worlds-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+}
+
+/* =====================
+   World Cards
+===================== */
+.world-card {
+  background: white;
+  padding: 1em;
+  border-radius: 12px;
+  width: 260px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, background 0.3s;
+}
+
+body.dark .world-card {
+  background: #1f1f1f;
+}
+
+.world-card:hover {
+  transform: scale(1.05);
+}
+
+.world-card h3 {
+  margin-bottom: 0.5em;
+}
+
+.world-card p {
+  font-size: 0.9rem;
+  margin-bottom: 1em;
+}
+
+/* =====================
+   Lesson & Quiz Pages
+===================== */
+#lesson-content,
+#quiz-container {
+  margin-top: 1.5em;
+  background: white;
+  padding: 1em;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark #lesson-content,
+body.dark #quiz-container {
+  background: #1f1f1f;
+}
+
+/* Lesson topics */
+.topic {
+  margin-bottom: 1.5em;
+}
+
+.topic h3 {
+  color: #1e90ff;
+  margin-bottom: 0.5em;
+}
+
+/* Quiz */
+.quiz-question {
+  margin-bottom: 1.5em;
+}
+
+.quiz-options button {
+  display: block;
+  width: 100%;
+  margin: 0.3em 0;
+  text-align: left;
+  border-radius: 6px;
+}
+
+.quiz-feedback {
+  margin-top: 0.8em;
+  font-weight: bold;
+}
+
+.correct {
+  color: green;
+}
+
+.wrong {
+  color: red;
+}
+
+/* =====================
+   Mentor Chatbot
+===================== */
+#mentor-chat {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  max-height: 450px;
+  background: white;
+  border: 2px solid #1e90ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+
+body.dark #mentor-chat {
+  background: #1f1f1f;
+  border-color: #00c6ff;
+}
+
+#mentor-header {
+  background: #1e90ff;
   color: white;
-  padding: 10px;
-  border-radius: 0 0 12px 0;
+  padding: 0.6em;
+  text-align: center;
   cursor: pointer;
 }
 
-/* Dark mode for chat */
-body.dark .chat-popup {
-  background: #2c2c3e;
-  border: 1px solid #444;
+#mentor-messages {
+  flex: 1;
+  padding: 0.8em;
+  overflow-y: auto;
 }
-body.dark .chat-footer input {
-  background: #444;
-  color: white;
+
+#mentor-input {
+  display: flex;
+  border-top: 1px solid #ccc;
 }
-body.dark .chat-footer button {
-  background: #00c6ff;
+
+#mentor-input input {
+  flex: 1;
+  padding: 0.6em;
+  border: none;
+  outline: none;
+}
+
+#mentor-input button {
+  border-radius: 0;
+  border-left: 1px solid #ccc;
+}
+
+/* Minimized state */
+#mentor-chat.minimized {
+  height: 40px;
+  max-height: 40px;
+}
+
+/* =====================
+   Footer
+===================== */
+footer {
+  margin-top: auto;
+}
+
+/* =====================
+   Responsive
+===================== */
+@media (max-width: 600px) {
+  #worlds-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #mentor-chat {
+    width: 95%;
+    right: 2.5%;
+  }
 }
 

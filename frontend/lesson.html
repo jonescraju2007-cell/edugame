@@ -4,23 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EduGame Lesson</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
 </head>
 <body>
   <header>
-    <div class="logo">EduGame</div>
+    <h1 id="lesson-title">Lesson</h1>
     <nav>
-      <a id="worlds-link" href="index.html">🌍 Worlds</a>
-      <a id="quiz-link" href="#">📝 Quiz</a>
+      <a href="index.html">🏠 Worlds</a>
       <button id="toggle-theme">🌙 Toggle Theme</button>
     </nav>
   </header>
 
   <main>
-    <h1 id="lesson-title">Loading Lesson...</h1>
-    <div id="lesson-container">
-      <!-- lesson content will be injected here by lesson.js -->
-    </div>
+    <p id="lesson-intro"></p>
+    <div id="lesson-content">Loading lesson...</div>
   </main>
 
   <footer>
@@ -28,9 +26,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/theme.js"></script>
-  <script src="js/lesson.js"></script>
-  <script src="js/mentor.js"></script>
+  <script src="theme.js"></script>
+  <script src="lesson.js"></script>
+  <script src="mentor.js"></script>
 </body>
 </html>
 
