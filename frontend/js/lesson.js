@@ -1,38 +1,31 @@
-async function loadLesson() {
-  const params = new URLSearchParams(window.location.search);
-  const worldId = params.get("world");
-  if (!worldId) return;
+import { markLessonComplete } from "./progress.js";
 
-  const lessonBox = document.getElementById("lesson-content");
+document.addEventListener("DOMContentLoaded", async () => {
+  const params = new URLSearchParams(window.location.search);
+  const world = params.get("world") || 1;
+
   const title = document.getElementById("lesson-title");
+  const container = document.getElementById("lesson-container");
 
   try {
-    const res = await fetch(`worlds/world${worldId}.json`);
+    const res = await fetch(`worlds/world${world}lesson.json`);
+    if (!res.ok) throw new Error("Lesson not found");
+
     const data = await res.json();
-
     title.textContent = data.meta.title;
-    lessonBox.innerHTML = "";
 
-    for (const key in data.lessons) {
-      const lesson = data.lessons[key];
-      const section = document.createElement("section");
-      section.className = "lesson-section";
-      section.innerHTML = `
-        <h2>${lesson.title}</h2>
+    container.innerHTML = `<p>${data.meta.intro}</p>`;
+
+    data.lessons.forEach(lesson => {
+      container.innerHTML += `
+        <h3>${lesson.title}</h3>
         <div>${lesson.html}</div>
       `;
-      lessonBox.appendChild(section);
-    }
+    });
+
+    markLessonComplete(world);
   } catch (err) {
-    lessonBox.textContent = "Error loading lesson.";
+    container.innerHTML = `<p>Error: ${err.message}</p>`;
   }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("toggle-theme")?.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-  });
-
-  loadLesson();
 });
 

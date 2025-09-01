@@ -5,41 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EduGame Lesson</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" type="image/png" href="images/favicon.png" />
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">📘 Lesson</div>
-    <nav>
-      <a href="index.html" class="nav-btn">🌍 Worlds</a>
-      <button id="toggle-theme">🌙 Toggle Theme</button>
-    </nav>
-  </header>
-
-  <main class="container">
-    <h1 id="lesson-title">Lesson</h1>
-    <div id="lesson-content" class="lesson-box">Loading lesson...</div>
-  </main>
-
-  <footer>
-    <p>EduGame © 2025</p>
-  </footer>
+  <h1 id="lesson-title">Lesson</h1>
+  <button id="theme-toggle">🌙 Toggle Theme</button>
+  <div id="lesson-container">Loading...</div>
 
   <!-- Mentor Chatbot -->
   <div id="mentor-chat" class="chat-popup">
     <div class="chat-header">🤖 AI Mentor</div>
-    <div class="chat-body" id="chat-body">
-      <p>Hi, I can explain lessons step by step. Ask me!</p>
-    </div>
+    <div class="chat-body" id="chat-body"></div>
     <div class="chat-footer">
-      <input id="mentor-input" type="text" placeholder="Ask your question..." />
+      <input id="mentor-input" type="text" placeholder="Ask me about this lesson..." />
       <button id="mentor-send">Ask</button>
     </div>
   </div>
   <button id="mentor-toggle" class="chat-toggle">💬</button>
 
-  <script src="js/lesson.js"></script>
-  <script src="js/mentor.js"></script>
+  <script type="module" src="js/lesson.js"></script>
+  <script type="module" src="js/mentor.js"></script>
+  <script src="js/theme.js"></script>
 </body>
 </html>
 

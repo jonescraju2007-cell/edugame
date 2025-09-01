@@ -1,4 +1,3 @@
-// server.js
 import express from "express";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
@@ -8,9 +7,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static("public"));
 
-// Context map for each world
+// World context mapping
 const worldContexts = {
   "1": "Python Basics: structure, print(), variables, input(), comments, type casting",
   "2": "Operators and Expressions: arithmetic, comparison, logical operators, precedence",
@@ -18,13 +16,14 @@ const worldContexts = {
   "4": "Data Structures I: strings, lists, tuples, sets, dictionaries",
   "5": "Functions & Modules: defining functions, parameters, return, scope, importing modules",
   "6": "Advanced Data Handling: file handling, exceptions, list comprehensions, lambdas",
-  "7": "OOP & Beyond: classes, objects, inheritance, encapsulation, polymorphism"
+  "7": "OOP & Beyond: classes, objects, inheritance, encapsulation, polymorphism",
+  "general": "General Python programming"
 };
 
-// Mentor API endpoint
+// Mentor API
 app.post("/api/mentor", async (req, res) => {
   const { question, world } = req.body;
-  const context = worldContexts[world] || "General Python programming";
+  const context = worldContexts[world] || worldContexts["general"];
 
   try {
     const response = await fetch("https://api.openai.com/v1/responses", {
@@ -38,11 +37,12 @@ app.post("/api/mentor", async (req, res) => {
         input: [
           {
             role: "system",
-            content: `You are Rix Mentor, a friendly Python tutor. The learner is currently studying: ${context}. 
-Keep answers simple, under 120 words, and structured with:
-1. Hint (short guiding clue),
-2. Explanation (clear beginner-friendly),
-3. Example (tiny code snippet if relevant).`
+            content: `You are Rix Mentor, a friendly Python tutor.
+The learner is currently studying: ${context}.
+Always answer in this format:
+Hint: ...
+Explanation: ...
+Example: (if possible)`
           },
           { role: "user", content: question }
         ]
@@ -50,23 +50,16 @@ Keep answers simple, under 120 words, and structured with:
     });
 
     const data = await response.json();
+    const text = data.output?.[0]?.content?.[0]?.text || "No response";
 
-    const text = data.output?.[0]?.content?.[0]?.text || "Sorry, no response.";
-
-    // Extract simple structure
-    const exampleMatch = text.match(/```([\s\S]*?)```/);
-    res.json({
-      hint: text.split("\n")[0] || "Think carefully.",
-      explanation: text,
-      example: exampleMatch ? exampleMatch[1] : null
-    });
+    res.json({ answer: text });
   } catch (err) {
     console.error("Mentor API error:", err);
-    res.status(500).json({ error: "Mentor unavailable" });
+    res.status(500).json({ answer: "Mentor is unavailable." });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Rix running at http://localhost:${PORT}`);
+  console.log(`EduGame backend running at http://localhost:${PORT}`);
 });
 

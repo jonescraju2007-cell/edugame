@@ -1,32 +1,45 @@
-const mentorToggle = document.getElementById("mentor-toggle");
-const mentorChat = document.getElementById("mentor-chat");
-const mentorSend = document.getElementById("mentor-send");
-const mentorInput = document.getElementById("mentor-input");
-const chatBody = document.getElementById("chat-body");
+import { BACKEND_URL } from "./config.js";
 
-mentorToggle.addEventListener("click", () => {
-  mentorChat.classList.toggle("open");
-});
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("mentor-toggle");
+  const chatBox = document.getElementById("mentor-chat");
+  const sendBtn = document.getElementById("mentor-send");
+  const input = document.getElementById("mentor-input");
+  const body = document.getElementById("chat-body");
 
-mentorSend.addEventListener("click", async () => {
-  const question = mentorInput.value.trim();
-  if (!question) return;
+  const params = new URLSearchParams(window.location.search);
+  const world = params.get("world") || "general";
 
-  chatBody.innerHTML += `<p><b>You:</b> ${question}</p>`;
-  mentorInput.value = "";
+  toggleBtn.addEventListener("click", () => {
+    chatBox.classList.toggle("open");
+  });
 
-  try {
-    const res = await fetch("http://localhost:10000/mentor", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question })
-    });
+  async function sendQuestion() {
+    const question = input.value.trim();
+    if (!question) return;
 
-    const data = await res.json();
-    chatBody.innerHTML += `<p><b>Mentor:</b> ${data.answer}</p>`;
-    chatBody.scrollTop = chatBody.scrollHeight;
-  } catch {
-    chatBody.innerHTML += `<p><b>Mentor:</b> (No response)</p>`;
+    body.innerHTML += `<p><b>You:</b> ${question}</p>`;
+    input.value = "";
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/mentor`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, world })
+      });
+
+      const data = await res.json();
+      body.innerHTML += `<p><b>Mentor:</b> ${data.answer}</p>`;
+    } catch {
+      body.innerHTML += `<p><b>Mentor:</b> Sorry, I’m not available.</p>`;
+    }
+
+    body.scrollTop = body.scrollHeight;
   }
+
+  sendBtn.addEventListener("click", sendQuestion);
+  input.addEventListener("keypress", e => {
+    if (e.key === "Enter") sendQuestion();
+  });
 });
 
