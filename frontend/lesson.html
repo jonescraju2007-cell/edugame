@@ -7,24 +7,30 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <h1 id="lesson-title">Lesson</h1>
-  <button id="theme-toggle">🌙 Toggle Theme</button>
-  <div id="lesson-container">Loading...</div>
+  <header>
+    <div class="logo">EduGame</div>
+    <nav>
+      <a id="worlds-link" href="index.html">🌍 Worlds</a>
+      <a id="quiz-link" href="#">📝 Quiz</a>
+      <button id="toggle-theme">🌙 Toggle Theme</button>
+    </nav>
+  </header>
 
-  <!-- Mentor Chatbot -->
-  <div id="mentor-chat" class="chat-popup">
-    <div class="chat-header">🤖 AI Mentor</div>
-    <div class="chat-body" id="chat-body"></div>
-    <div class="chat-footer">
-      <input id="mentor-input" type="text" placeholder="Ask me about this lesson..." />
-      <button id="mentor-send">Ask</button>
+  <main>
+    <h1 id="lesson-title">Loading Lesson...</h1>
+    <div id="lesson-container">
+      <!-- lesson content will be injected here by lesson.js -->
     </div>
-  </div>
-  <button id="mentor-toggle" class="chat-toggle">💬</button>
+  </main>
 
-  <script type="module" src="js/lesson.js"></script>
-  <script type="module" src="js/mentor.js"></script>
+  <footer>
+    <p>EduGame © 2025</p>
+  </footer>
+
+  <!-- Scripts -->
   <script src="js/theme.js"></script>
+  <script src="js/lesson.js"></script>
+  <script src="js/mentor.js"></script>
 </body>
 </html>
 
