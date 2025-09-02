@@ -3,12 +3,13 @@ import fetch from "node-fetch";
 import dotenv from "dotenv";
 
 dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// World context mapping
+// Context per world
 const worldContexts = {
   "1": "Python Basics: structure, print(), variables, input(), comments, type casting",
   "2": "Operators and Expressions: arithmetic, comparison, logical operators, precedence",
@@ -38,11 +39,13 @@ app.post("/api/mentor", async (req, res) => {
           {
             role: "system",
             content: `You are Rix Mentor, a friendly Python tutor.
-The learner is currently studying: ${context}.
+The learner is studying: ${context}.
 Always answer in this format:
 Hint: ...
 Explanation: ...
-Example: (if possible)`
+Example 1: ...
+Example 2: ...
+(keep examples simple and beginner-friendly)`
           },
           { role: "user", content: question }
         ]
@@ -60,6 +63,6 @@ Example: (if possible)`
 });
 
 app.listen(PORT, () => {
-  console.log(`EduGame backend running at http://localhost:${PORT}`);
+  console.log(`✅ EduGame backend running at http://localhost:${PORT}`);
 });
 

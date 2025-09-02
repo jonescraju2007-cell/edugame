@@ -1,7 +1,7 @@
 {
   "name": "edugame-backend",
   "version": "1.0.0",
-  "description": "EduGame backend for Mentor AI",
+  "description": "EduGame backend for AI Mentor",
   "main": "server.js",
   "type": "module",
   "scripts": {

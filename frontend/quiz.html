@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EduGame Quiz</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="images/favicon.png" type="image/png" />
 </head>
 <body>
   <header>
@@ -19,6 +18,11 @@
 
   <main>
     <div id="quiz-container">Loading quiz...</div>
+    <div id="quiz-controls">
+      <button id="prev-btn">⬅ Previous</button>
+      <button id="show-answer-btn">👀 Show Answer</button>
+      <button id="next-btn">➡ Next</button>
+    </div>
   </main>
 
   <footer>
@@ -26,9 +30,11 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="theme.js"></script>
-  <script src="quiz.js"></script>
-  <script src="mentor.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/mentor.js"></script>
 </body>
 </html>
 

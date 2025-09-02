@@ -1,5 +1,4 @@
-// lesson.js
-// Loads lesson content dynamically and links to quiz
+// lesson.js - Loads lesson content
 
 async function loadLesson() {
   const params = new URLSearchParams(window.location.search);
@@ -8,7 +7,7 @@ async function loadLesson() {
 
   try {
     const res = await fetch(`worlds/world${world}lesson.json`);
-    if (!res.ok) throw new Error("Lesson file not found");
+    if (!res.ok) throw new Error("Lesson not found");
     const data = await res.json();
 
     document.getElementById("lesson-title").innerText = data.meta.title;
@@ -19,18 +18,15 @@ async function loadLesson() {
 
     data.lessons.forEach(lesson => {
       const sec = document.createElement("section");
-      sec.className = "lesson-section";
+      sec.className = "topic";
       sec.innerHTML = `<h3>${lesson.title}</h3>${lesson.html}`;
       contentDiv.appendChild(sec);
     });
 
-    // Set quiz link dynamically
     const quizLink = document.getElementById("quiz-link");
     if (quizLink) quizLink.href = `quiz.html?world=${world}`;
   } catch (err) {
-    console.error("Error loading lesson", err);
-    document.getElementById("lesson-content").innerHTML =
-      "<p>Lesson not available.</p>";
+    document.getElementById("lesson-content").innerHTML = "<p>Lesson not available.</p>";
   }
 }
 

@@ -1,7 +1,4 @@
-// mentor.js
-// Simple AI Mentor popup (connected to backend API)
-
-const BACKEND_URL = "https://your-backend.onrender.com"; // change to your Render link
+// mentor.js - AI Mentor popup
 
 document.addEventListener("DOMContentLoaded", () => {
   const chatBox = document.createElement("div");
@@ -16,40 +13,41 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   document.body.appendChild(chatBox);
 
-  const header = document.getElementById("mentor-header");
-  header.addEventListener("click", () => {
+  document.getElementById("mentor-header").onclick = () =>
     chatBox.classList.toggle("minimized");
-  });
 
-  document.getElementById("mentor-send").addEventListener("click", sendQuestion);
-
-  function addMessage(text, from = "mentor") {
-    const msg = document.createElement("p");
-    msg.textContent = (from === "user" ? "You: " : "Mentor: ") + text;
-    document.getElementById("mentor-messages").appendChild(msg);
-    document.getElementById("mentor-messages").scrollTop =
-      document.getElementById("mentor-messages").scrollHeight;
-  }
-
-  async function sendQuestion() {
+  document.getElementById("mentor-send").onclick = async () => {
     const input = document.getElementById("mentor-question");
     const question = input.value.trim();
     if (!question) return;
 
-    addMessage(question, "user");
+    addMessage("You: " + question);
     input.value = "";
 
     try {
       const res = await fetch(`${BACKEND_URL}/api/mentor`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question })
+        body: JSON.stringify({ question, world: getWorldFromURL() })
       });
       const data = await res.json();
-      addMessage(data.answer || "No response");
+      addMessage("Mentor: " + data.answer);
     } catch {
       addMessage("⚠️ Mentor is offline.");
     }
-  }
+  };
 });
+
+function addMessage(text) {
+  const div = document.createElement("p");
+  div.textContent = text;
+  document.getElementById("mentor-messages").appendChild(div);
+  document.getElementById("mentor-messages").scrollTop =
+    document.getElementById("mentor-messages").scrollHeight;
+}
+
+function getWorldFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("world") || "general";
+}
 
