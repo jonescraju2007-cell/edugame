@@ -1,35 +1,610 @@
 {
   "meta": {
-    "title": "World 3: Control Flow - Quiz",
-    "intro": "Practice using if/else, loops, and control statements."
+    "title": "Control Flow Quiz",
+    "intro": "Covers if, elif, else, for and while loops."
   },
-  "quizzes": {
-    "if_else": [
-      { "type": "mcq", "question": "Which keyword starts a condition in Python?", "options": ["when", "if", "case"], "answer": "if" },
-      { "type": "truefalse", "question": "The else block is optional in Python.", "answer": "True" },
-      { "type": "fill", "question": "Fill the blank: if x > 5: ___(\"Big\")", "answer": "print" }
-    ],
-    "elif": [
-      { "type": "mcq", "question": "Which keyword allows multiple conditions?", "options": ["elseif", "elif", "else if"], "answer": "elif" }
-    ],
-    "loops": [
-      { "type": "truefalse", "question": "for loops are often used with range().", "answer": "True" },
-      { "type": "mcq", "question": "Which loop repeats until a condition is false?", "options": ["for", "while", "loop"], "answer": "while" }
-    ],
-    "control": [
-      { "type": "fill", "question": "Keyword to stop a loop immediately: ___", "answer": "break" },
-      { "type": "fill", "question": "Keyword to skip to next loop iteration: ___", "answer": "continue" }
-    ],
-    "final_quiz": [
-      { "type": "truefalse", "question": "A while loop can run forever if not updated properly.", "answer": "True" },
-      { "type": "mcq", "question": "Which will print numbers 0,1,2?", "options": ["for i in range(3): print(i)", "while i < 3: print(i)", "loop i 3"], "answer": "for i in range(3): print(i)" }
-    ],
-    "puzzle": {
-      "title": "Guess the Number",
-      "description": "Fix this guessing game so it stops when the user guesses 5.",
-      "broken_code": "while True:\n    n = input(\"Guess: \")\n    if n == 5:\n        print(\"Correct!\")\n        ???",
-      "solution": "while True:\n    n = int(input(\"Guess: \"))\n    if n == 5:\n        print(\"Correct!\")\n        break"
+  "questions": [
+    {
+      "id": "w3-q01",
+      "type": "mcq",
+      "question": "Which of these is an example related to Control Flow?",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q02",
+      "type": "truefalse",
+      "question": "Control Flow question true/false.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q03",
+      "type": "fill",
+      "question": "Fill in blank code example about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q04",
+      "type": "mcq",
+      "question": "Question 4 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q05",
+      "type": "truefalse",
+      "question": "Question 5 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q06",
+      "type": "fill",
+      "question": "Question 6 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q07",
+      "type": "mcq",
+      "question": "Question 7 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q08",
+      "type": "truefalse",
+      "question": "Question 8 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q09",
+      "type": "fill",
+      "question": "Question 9 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q10",
+      "type": "mcq",
+      "question": "Question 10 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q11",
+      "type": "truefalse",
+      "question": "Question 11 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q12",
+      "type": "fill",
+      "question": "Question 12 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q13",
+      "type": "mcq",
+      "question": "Question 13 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q14",
+      "type": "truefalse",
+      "question": "Question 14 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q15",
+      "type": "fill",
+      "question": "Question 15 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q16",
+      "type": "mcq",
+      "question": "Question 16 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q17",
+      "type": "truefalse",
+      "question": "Question 17 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q18",
+      "type": "fill",
+      "question": "Question 18 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q19",
+      "type": "mcq",
+      "question": "Question 19 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q20",
+      "type": "truefalse",
+      "question": "Question 20 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q21",
+      "type": "fill",
+      "question": "Question 21 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q22",
+      "type": "mcq",
+      "question": "Question 22 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q23",
+      "type": "truefalse",
+      "question": "Question 23 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q24",
+      "type": "fill",
+      "question": "Question 24 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q25",
+      "type": "mcq",
+      "question": "Question 25 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q26",
+      "type": "truefalse",
+      "question": "Question 26 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q27",
+      "type": "fill",
+      "question": "Question 27 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q28",
+      "type": "mcq",
+      "question": "Question 28 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q29",
+      "type": "truefalse",
+      "question": "Question 29 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q30",
+      "type": "fill",
+      "question": "Question 30 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q31",
+      "type": "mcq",
+      "question": "Question 31 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q32",
+      "type": "truefalse",
+      "question": "Question 32 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q33",
+      "type": "fill",
+      "question": "Question 33 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q34",
+      "type": "mcq",
+      "question": "Question 34 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q35",
+      "type": "truefalse",
+      "question": "Question 35 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q36",
+      "type": "fill",
+      "question": "Question 36 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q37",
+      "type": "mcq",
+      "question": "Question 37 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q38",
+      "type": "truefalse",
+      "question": "Question 38 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q39",
+      "type": "fill",
+      "question": "Question 39 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q40",
+      "type": "mcq",
+      "question": "Question 40 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q41",
+      "type": "truefalse",
+      "question": "Question 41 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q42",
+      "type": "fill",
+      "question": "Question 42 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q43",
+      "type": "mcq",
+      "question": "Question 43 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q44",
+      "type": "truefalse",
+      "question": "Question 44 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q45",
+      "type": "fill",
+      "question": "Question 45 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q46",
+      "type": "mcq",
+      "question": "Question 46 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q47",
+      "type": "truefalse",
+      "question": "Question 47 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q48",
+      "type": "fill",
+      "question": "Question 48 about Control Flow.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q49",
+      "type": "mcq",
+      "question": "Question 49 about Control Flow.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w3-q50",
+      "type": "truefalse",
+      "question": "Question 50 about Control Flow.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
     }
-  }
+  ]
 }
-

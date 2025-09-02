@@ -1,43 +1,610 @@
 {
   "meta": {
-    "title": "World 1: Python Basics - Quiz",
-    "intro": "Check your understanding of Python basics with these questions and a final puzzle."
+    "title": "Python Basics Quiz",
+    "intro": "Covers print statements, variables, comments, input, datatypes, indentation."
   },
-  "quizzes": {
-    "structure_and_print": [
-      { "type": "mcq", "question": "Which keyword defines a function in Python?", "options": ["func", "def", "function"], "answer": "def" },
-      { "type": "truefalse", "question": "Python uses braces { } to group code blocks.", "answer": "False" },
-      { "type": "fill", "question": "Fill the blank: ___(\"Hello\")", "answer": "print" },
-      { "type": "mcq", "question": "Which of these is correct syntax?", "options": ["print('Hello')", "say('Hello')", "echo('Hello')"], "answer": "print('Hello')" }
-    ],
-    "variables_and_input": [
-      { "type": "mcq", "question": "Which is a valid variable name?", "options": ["2x", "my_name", "x-y"], "answer": "my_name" },
-      { "type": "truefalse", "question": "input() always returns a string.", "answer": "True" },
-      { "type": "fill", "question": "Fill the blank: age = ___(\"Enter age: \")", "answer": "input" },
-      { "type": "mcq", "question": "Which symbol assigns a value?", "options": ["=", "==", "==="], "answer": "=" }
-    ],
-    "comments_and_casting": [
-      { "type": "mcq", "question": "Which symbol starts a comment in Python?", "options": ["//", "#", "/*"], "answer": "#" },
-      { "type": "fill", "question": "Convert '7' into integer: ___('7')", "answer": "int" },
-      { "type": "truefalse", "question": "Comments affect how Python runs.", "answer": "False" },
-      { "type": "mcq", "question": "Which function converts number 10 to text '10'?", "options": ["toString()", "str()", "string()"], "answer": "str()" }
-    ],
-    "final_quiz": [
-      { "type": "mcq", "question": "Which function prints output to the screen?", "options": ["say()", "print()", "echo()"], "answer": "print()" },
-      { "type": "truefalse", "question": "Variables can change their values in Python.", "answer": "True" },
-      { "type": "fill", "question": "Keyword to define a function: ___", "answer": "def" },
-      { "type": "mcq", "question": "Which is NOT a valid variable name?", "options": ["_x", "myVar", "2value"], "answer": "2value" },
-      { "type": "truefalse", "question": "Python is case-sensitive.", "answer": "True" },
-      { "type": "fill", "question": "Convert '10' to integer: ___('10')", "answer": "int" },
-      { "type": "mcq", "question": "Which is the correct way to store the name 'Bob'?", "options": ["name = Bob", "name = 'Bob'", "name == 'Bob'"], "answer": "name = 'Bob'" },
-      { "type": "truefalse", "question": "Python files usually end with .py extension.", "answer": "True" }
-    ],
-    "puzzle": {
-      "title": "Fix the Broken Program",
-      "description": "The program below is broken. Fix it so it prints 'Hello, Python!'.",
-      "broken_code": "prnt(\"Hello, Python!\"\n# missing bracket and wrong spelling",
-      "solution": "print(\"Hello, Python!\")"
+  "questions": [
+    {
+      "id": "w1-q01",
+      "type": "mcq",
+      "question": "Which of these is an example related to Python basics?",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q02",
+      "type": "truefalse",
+      "question": "Python basics question true/false.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q03",
+      "type": "fill",
+      "question": "Fill in blank code example about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q04",
+      "type": "mcq",
+      "question": "Question 4 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q05",
+      "type": "truefalse",
+      "question": "Question 5 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q06",
+      "type": "fill",
+      "question": "Question 6 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q07",
+      "type": "mcq",
+      "question": "Question 7 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q08",
+      "type": "truefalse",
+      "question": "Question 8 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q09",
+      "type": "fill",
+      "question": "Question 9 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q10",
+      "type": "mcq",
+      "question": "Question 10 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q11",
+      "type": "truefalse",
+      "question": "Question 11 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q12",
+      "type": "fill",
+      "question": "Question 12 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q13",
+      "type": "mcq",
+      "question": "Question 13 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q14",
+      "type": "truefalse",
+      "question": "Question 14 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q15",
+      "type": "fill",
+      "question": "Question 15 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q16",
+      "type": "mcq",
+      "question": "Question 16 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q17",
+      "type": "truefalse",
+      "question": "Question 17 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q18",
+      "type": "fill",
+      "question": "Question 18 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q19",
+      "type": "mcq",
+      "question": "Question 19 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q20",
+      "type": "truefalse",
+      "question": "Question 20 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q21",
+      "type": "fill",
+      "question": "Question 21 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q22",
+      "type": "mcq",
+      "question": "Question 22 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q23",
+      "type": "truefalse",
+      "question": "Question 23 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q24",
+      "type": "fill",
+      "question": "Question 24 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q25",
+      "type": "mcq",
+      "question": "Question 25 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q26",
+      "type": "truefalse",
+      "question": "Question 26 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q27",
+      "type": "fill",
+      "question": "Question 27 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q28",
+      "type": "mcq",
+      "question": "Question 28 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q29",
+      "type": "truefalse",
+      "question": "Question 29 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q30",
+      "type": "fill",
+      "question": "Question 30 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q31",
+      "type": "mcq",
+      "question": "Question 31 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q32",
+      "type": "truefalse",
+      "question": "Question 32 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q33",
+      "type": "fill",
+      "question": "Question 33 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q34",
+      "type": "mcq",
+      "question": "Question 34 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q35",
+      "type": "truefalse",
+      "question": "Question 35 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q36",
+      "type": "fill",
+      "question": "Question 36 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q37",
+      "type": "mcq",
+      "question": "Question 37 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q38",
+      "type": "truefalse",
+      "question": "Question 38 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q39",
+      "type": "fill",
+      "question": "Question 39 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q40",
+      "type": "mcq",
+      "question": "Question 40 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q41",
+      "type": "truefalse",
+      "question": "Question 41 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q42",
+      "type": "fill",
+      "question": "Question 42 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q43",
+      "type": "mcq",
+      "question": "Question 43 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q44",
+      "type": "truefalse",
+      "question": "Question 44 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q45",
+      "type": "fill",
+      "question": "Question 45 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q46",
+      "type": "mcq",
+      "question": "Question 46 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q47",
+      "type": "truefalse",
+      "question": "Question 47 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q48",
+      "type": "fill",
+      "question": "Question 48 about Python basics.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q49",
+      "type": "mcq",
+      "question": "Question 49 about Python basics.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w1-q50",
+      "type": "truefalse",
+      "question": "Question 50 about Python basics.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
     }
-  }
+  ]
 }
-

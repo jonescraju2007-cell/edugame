@@ -1,38 +1,610 @@
 {
   "meta": {
-    "title": "World 2: Operators & Expressions - Quiz",
-    "intro": "Test your knowledge of arithmetic, comparison, and logical operators."
+    "title": "Operators and Expressions Quiz",
+    "intro": "Covers arithmetic, comparison, logical, assignment operators."
   },
-  "quizzes": {
-    "arithmetic": [
-      { "type": "mcq", "question": "What is 7 % 3?", "options": ["1", "2", "3"], "answer": "1" },
-      { "type": "truefalse", "question": "2 ** 4 equals 8.", "answer": "False" },
-      { "type": "fill", "question": "Fill the blank: 5 ___ 2 = 25 (power)", "answer": "**" }
-    ],
-    "comparison": [
-      { "type": "mcq", "question": "Which operator checks if two values are equal?", "options": ["=", "==", "==="], "answer": "==" },
-      { "type": "truefalse", "question": "x != y means x equals y.", "answer": "False" }
-    ],
-    "logical": [
-      { "type": "truefalse", "question": "True and False gives True.", "answer": "False" },
-      { "type": "mcq", "question": "Which operator inverts a condition?", "options": ["reverse", "not", "flip"], "answer": "not" }
-    ],
-    "precedence": [
-      { "type": "fill", "question": "Result of 2 + 3 * 4 is ___", "answer": "14" },
-      { "type": "mcq", "question": "Which operation is done first: 2 + 3 * 4?", "options": ["Addition", "Multiplication", "Both"], "answer": "Multiplication" }
-    ],
-    "final_quiz": [
-      { "type": "mcq", "question": "Which operator is used for exponent (power)?", "options": ["^", "**", "pow"], "answer": "**" },
-      { "type": "truefalse", "question": "Logical OR is true if at least one condition is true.", "answer": "True" },
-      { "type": "fill", "question": "Symbol for 'not equal to' is ___", "answer": "!=" },
-      { "type": "mcq", "question": "Which result is correct: 10 / 4?", "options": ["2.5", "2", "2.0"], "answer": "2.5" }
-    ],
-    "puzzle": {
-      "title": "Calculator Puzzle",
-      "description": "Fix this calculator code so it adds correctly.",
-      "broken_code": "a = 10\nb = 5\nprint(a add b)",
-      "solution": "a = 10\nb = 5\nprint(a + b)"
+  "questions": [
+    {
+      "id": "w2-q01",
+      "type": "mcq",
+      "question": "Which of these is an example related to Operators?",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q02",
+      "type": "truefalse",
+      "question": "Operators question true/false.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q03",
+      "type": "fill",
+      "question": "Fill in blank code example about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q04",
+      "type": "mcq",
+      "question": "Question 4 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q05",
+      "type": "truefalse",
+      "question": "Question 5 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q06",
+      "type": "fill",
+      "question": "Question 6 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q07",
+      "type": "mcq",
+      "question": "Question 7 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q08",
+      "type": "truefalse",
+      "question": "Question 8 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q09",
+      "type": "fill",
+      "question": "Question 9 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q10",
+      "type": "mcq",
+      "question": "Question 10 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q11",
+      "type": "truefalse",
+      "question": "Question 11 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q12",
+      "type": "fill",
+      "question": "Question 12 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q13",
+      "type": "mcq",
+      "question": "Question 13 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q14",
+      "type": "truefalse",
+      "question": "Question 14 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q15",
+      "type": "fill",
+      "question": "Question 15 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q16",
+      "type": "mcq",
+      "question": "Question 16 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q17",
+      "type": "truefalse",
+      "question": "Question 17 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q18",
+      "type": "fill",
+      "question": "Question 18 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q19",
+      "type": "mcq",
+      "question": "Question 19 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q20",
+      "type": "truefalse",
+      "question": "Question 20 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q21",
+      "type": "fill",
+      "question": "Question 21 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q22",
+      "type": "mcq",
+      "question": "Question 22 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q23",
+      "type": "truefalse",
+      "question": "Question 23 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q24",
+      "type": "fill",
+      "question": "Question 24 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q25",
+      "type": "mcq",
+      "question": "Question 25 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q26",
+      "type": "truefalse",
+      "question": "Question 26 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q27",
+      "type": "fill",
+      "question": "Question 27 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q28",
+      "type": "mcq",
+      "question": "Question 28 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q29",
+      "type": "truefalse",
+      "question": "Question 29 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q30",
+      "type": "fill",
+      "question": "Question 30 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q31",
+      "type": "mcq",
+      "question": "Question 31 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q32",
+      "type": "truefalse",
+      "question": "Question 32 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q33",
+      "type": "fill",
+      "question": "Question 33 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q34",
+      "type": "mcq",
+      "question": "Question 34 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q35",
+      "type": "truefalse",
+      "question": "Question 35 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q36",
+      "type": "fill",
+      "question": "Question 36 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q37",
+      "type": "mcq",
+      "question": "Question 37 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q38",
+      "type": "truefalse",
+      "question": "Question 38 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q39",
+      "type": "fill",
+      "question": "Question 39 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q40",
+      "type": "mcq",
+      "question": "Question 40 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q41",
+      "type": "truefalse",
+      "question": "Question 41 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q42",
+      "type": "fill",
+      "question": "Question 42 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q43",
+      "type": "mcq",
+      "question": "Question 43 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q44",
+      "type": "truefalse",
+      "question": "Question 44 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q45",
+      "type": "fill",
+      "question": "Question 45 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q46",
+      "type": "mcq",
+      "question": "Question 46 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q47",
+      "type": "truefalse",
+      "question": "Question 47 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q48",
+      "type": "fill",
+      "question": "Question 48 about Operators.",
+      "answer": "example = 42",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q49",
+      "type": "mcq",
+      "question": "Question 49 about Operators.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
+    },
+    {
+      "id": "w2-q50",
+      "type": "truefalse",
+      "question": "Question 50 about Operators.",
+      "answer": "True",
+      "feedback": {
+        "correct": "\u2705 Correct!",
+        "wrong": "\u274c Wrong."
+      }
     }
-  }
+  ]
 }
-
